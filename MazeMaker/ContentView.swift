@@ -1,16 +1,8 @@
-//
-//  ContentView.swift
-//  MazeMaker
-//
-//  Created by Spencer Symington on 2021-06-28.
-//
-
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        MazePresenterView().background(Color.blue).frame(width: 800, height: 800)
     }
 }
 

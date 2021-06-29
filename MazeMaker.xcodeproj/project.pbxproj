@@ -11,6 +11,10 @@
 		0B9AF6D9268ADBFE0044DC40 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6D8268ADBFE0044DC40 /* ContentView.swift */; };
 		0B9AF6DB268ADC000044DC40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B9AF6DA268ADC000044DC40 /* Assets.xcassets */; };
 		0B9AF6DE268ADC000044DC40 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B9AF6DD268ADC000044DC40 /* Preview Assets.xcassets */; };
+		0B9AF6E7268AE0F40044DC40 /* MazePresenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6E6268AE0F40044DC40 /* MazePresenterView.swift */; };
+		0B9AF6E9268AE9C50044DC40 /* Walls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6E8268AE9C50044DC40 /* Walls.swift */; };
+		0B9AF6EB268AEA750044DC40 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6EA268AEA750044DC40 /* Cell.swift */; };
+		0B9AF6ED268AEF0C0044DC40 /* SquareMaze.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6EC268AEF0C0044DC40 /* SquareMaze.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +25,10 @@
 		0B9AF6DD268ADC000044DC40 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0B9AF6DF268ADC000044DC40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B9AF6E0268ADC000044DC40 /* MazeMaker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MazeMaker.entitlements; sourceTree = "<group>"; };
+		0B9AF6E6268AE0F40044DC40 /* MazePresenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazePresenterView.swift; sourceTree = "<group>"; };
+		0B9AF6E8268AE9C50044DC40 /* Walls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Walls.swift; sourceTree = "<group>"; };
+		0B9AF6EA268AEA750044DC40 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		0B9AF6EC268AEF0C0044DC40 /* SquareMaze.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareMaze.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +63,10 @@
 			children = (
 				0B9AF6D6268ADBFE0044DC40 /* MazeMakerApp.swift */,
 				0B9AF6D8268ADBFE0044DC40 /* ContentView.swift */,
+				0B9AF6E6268AE0F40044DC40 /* MazePresenterView.swift */,
+				0B9AF6E8268AE9C50044DC40 /* Walls.swift */,
+				0B9AF6EA268AEA750044DC40 /* Cell.swift */,
+				0B9AF6EC268AEF0C0044DC40 /* SquareMaze.swift */,
 				0B9AF6DA268ADC000044DC40 /* Assets.xcassets */,
 				0B9AF6DF268ADC000044DC40 /* Info.plist */,
 				0B9AF6E0268ADC000044DC40 /* MazeMaker.entitlements */,
@@ -141,7 +153,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B9AF6D9268ADBFE0044DC40 /* ContentView.swift in Sources */,
+				0B9AF6ED268AEF0C0044DC40 /* SquareMaze.swift in Sources */,
+				0B9AF6E9268AE9C50044DC40 /* Walls.swift in Sources */,
+				0B9AF6EB268AEA750044DC40 /* Cell.swift in Sources */,
 				0B9AF6D7268ADBFE0044DC40 /* MazeMakerApp.swift in Sources */,
+				0B9AF6E7268AE0F40044DC40 /* MazePresenterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
