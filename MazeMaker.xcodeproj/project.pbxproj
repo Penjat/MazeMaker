@@ -16,6 +16,7 @@
 		0B9AF6EB268AEA750044DC40 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6EA268AEA750044DC40 /* Cell.swift */; };
 		0B9AF6ED268AEF0C0044DC40 /* SquareMaze.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6EC268AEF0C0044DC40 /* SquareMaze.swift */; };
 		0B9AF6F1268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6F0268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift */; };
+		0B9AF6F3268E61690044DC40 /* RecursiveBacktraceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6F2268E61690044DC40 /* RecursiveBacktraceGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		0B9AF6EA268AEA750044DC40 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		0B9AF6EC268AEF0C0044DC40 /* SquareMaze.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareMaze.swift; sourceTree = "<group>"; };
 		0B9AF6F0268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeMazeGenerator.swift; sourceTree = "<group>"; };
+		0B9AF6F2268E61690044DC40 /* RecursiveBacktraceGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecursiveBacktraceGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,13 +65,11 @@
 		0B9AF6D5268ADBFE0044DC40 /* MazeMaker */ = {
 			isa = PBXGroup;
 			children = (
-				0B9AF6D6268ADBFE0044DC40 /* MazeMakerApp.swift */,
-				0B9AF6D8268ADBFE0044DC40 /* ContentView.swift */,
-				0B9AF6E6268AE0F40044DC40 /* MazePresenterView.swift */,
-				0B9AF6E8268AE9C50044DC40 /* Walls.swift */,
-				0B9AF6EA268AEA750044DC40 /* Cell.swift */,
-				0B9AF6EC268AEF0C0044DC40 /* SquareMaze.swift */,
-				0B9AF6F0268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift */,
+				0B9AF6F8268E622A0044DC40 /* App */,
+				0B9AF6F4268E61700044DC40 /* Generators */,
+				0B9AF6F5268E61A60044DC40 /* Maze Types */,
+				0B9AF6F7268E62080044DC40 /* Views */,
+				0B9AF6F6268E61E80044DC40 /* Maze Components */,
 				0B9AF6DA268ADC000044DC40 /* Assets.xcassets */,
 				0B9AF6DF268ADC000044DC40 /* Info.plist */,
 				0B9AF6E0268ADC000044DC40 /* MazeMaker.entitlements */,
@@ -84,6 +84,49 @@
 				0B9AF6DD268ADC000044DC40 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0B9AF6F4268E61700044DC40 /* Generators */ = {
+			isa = PBXGroup;
+			children = (
+				0B9AF6F0268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift */,
+				0B9AF6F2268E61690044DC40 /* RecursiveBacktraceGenerator.swift */,
+			);
+			path = Generators;
+			sourceTree = "<group>";
+		};
+		0B9AF6F5268E61A60044DC40 /* Maze Types */ = {
+			isa = PBXGroup;
+			children = (
+				0B9AF6EC268AEF0C0044DC40 /* SquareMaze.swift */,
+			);
+			path = "Maze Types";
+			sourceTree = "<group>";
+		};
+		0B9AF6F6268E61E80044DC40 /* Maze Components */ = {
+			isa = PBXGroup;
+			children = (
+				0B9AF6E8268AE9C50044DC40 /* Walls.swift */,
+				0B9AF6EA268AEA750044DC40 /* Cell.swift */,
+			);
+			path = "Maze Components";
+			sourceTree = "<group>";
+		};
+		0B9AF6F7268E62080044DC40 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0B9AF6E6268AE0F40044DC40 /* MazePresenterView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0B9AF6F8268E622A0044DC40 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				0B9AF6D6268ADBFE0044DC40 /* MazeMakerApp.swift */,
+				0B9AF6D8268ADBFE0044DC40 /* ContentView.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B9AF6D9268ADBFE0044DC40 /* ContentView.swift in Sources */,
+				0B9AF6F3268E61690044DC40 /* RecursiveBacktraceGenerator.swift in Sources */,
 				0B9AF6ED268AEF0C0044DC40 /* SquareMaze.swift in Sources */,
 				0B9AF6E9268AE9C50044DC40 /* Walls.swift in Sources */,
 				0B9AF6EB268AEA750044DC40 /* Cell.swift in Sources */,
