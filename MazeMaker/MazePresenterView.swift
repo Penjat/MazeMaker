@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MazePresenterView: View {
-    let mazeProvider = SquareMaze(width: 20, height: 40)
+    let mazeProvider = SquareMaze(width: 20, height: 20)
     var body: some View {
         GeometryReader { geometry in
             Path { path in
@@ -14,7 +14,7 @@ struct MazePresenterView: View {
                     )
                 }
                 
-            }.stroke(LinearGradient(gradient: Gradient(colors: [Color.red, Color.blue]), startPoint: /*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/, endPoint: /*@START_MENU_TOKEN@*/.trailing/*@END_MENU_TOKEN@*/), lineWidth: 4)
+            }.stroke(Color.black, lineWidth: 1)
         }.padding()
     }
 }
