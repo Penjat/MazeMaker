@@ -2,15 +2,16 @@ import SwiftUI
 
 struct MazePresenterView: View {
     let mazeProvider = SquareMaze(width: 20, height: 20)
+    let cellSize: CGFloat = 20.0
     var body: some View {
         GeometryReader { geometry in
             Path { path in
                 for wall in mazeProvider.walls() {
                     path.move(
-                        to: wall.start
+                        to: wall.start*cellSize
                     )
                     path.addLine(
-                        to: wall.end
+                        to: wall.end*cellSize
                     )
                 }
                 
