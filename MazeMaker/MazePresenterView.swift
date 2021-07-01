@@ -1,22 +1,28 @@
 import SwiftUI
 
 struct MazePresenterView: View {
-    let mazeProvider = SquareMaze(width: 20, height: 20)
+    @StateObject var mazeProvider = SquareMaze(width: 30, height: 30)
     let cellSize: CGFloat = 20.0
     var body: some View {
-        GeometryReader { geometry in
-            Path { path in
-                for wall in mazeProvider.walls() {
-                    path.move(
-                        to: wall.start*cellSize
-                    )
-                    path.addLine(
-                        to: wall.end*cellSize
-                    )
-                }
-                
-            }.stroke(Color.black, lineWidth: 1)
-        }.padding()
+        VStack {
+            GeometryReader { geometry in
+                Path { path in
+                    for wall in mazeProvider.walls() {
+                        path.move(
+                            to: wall.start*cellSize
+                        )
+                        path.addLine(
+                            to: wall.end*cellSize
+                        )
+                    }
+                    
+                }.stroke(Color.black, lineWidth: 2)
+            }.padding()
+            Button("Generate") {
+                mazeProvider.generateMaze()
+            }
+        }
+        
     }
 }
 

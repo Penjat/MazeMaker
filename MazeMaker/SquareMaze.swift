@@ -4,19 +4,12 @@ protocol MazeProvider {
     
 }
 
-class SquareMaze: MazeProvider {
-    var grid = [[SquareCell?]]()
+class SquareMaze: MazeProvider, ObservableObject {
+    @Published var grid = [[SquareCell?]]()
     init(width: Int, height: Int) {
         grid = [[SquareCell?]](repeating: [SquareCell?](repeating: nil, count: height), count: width)
-        for x in 0..<width {
-            for y in 0..<height {
-                grid[x][y] = SquareCell(x: x, y: y)
-            }
-        }
-        grid[10][10]?.rightBlocked = .open
-        grid[12][10]?.rightBlocked = .open
-        grid[2][13]?.topBlocked = .open
-        
+        blankMaze(width: width, height: height)
+        generateMaze()
     }
     
     var leftWall: Wall {
@@ -31,6 +24,19 @@ class SquareMaze: MazeProvider {
         return grid.flatMap{$0}.flatMap { cell -> [Wall] in
             cell?.walls ?? []
         } + [leftWall, bottomWall]
+    }
+    
+    func blankMaze(width: Int, height: Int){
+        for x in 0..<width {
+            for y in 0..<height {
+                grid[x][y] = SquareCell(x: x, y: y)
+            }
+        }
+    }
+    
+    func generateMaze() {
+        blankMaze(width: grid.count, height: grid[0].count)
+        grid = BinaryTreeMazeGenerator.generateMaze(grid)
     }
 }
 

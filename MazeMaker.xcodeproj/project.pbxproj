@@ -15,6 +15,7 @@
 		0B9AF6E9268AE9C50044DC40 /* Walls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6E8268AE9C50044DC40 /* Walls.swift */; };
 		0B9AF6EB268AEA750044DC40 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6EA268AEA750044DC40 /* Cell.swift */; };
 		0B9AF6ED268AEF0C0044DC40 /* SquareMaze.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6EC268AEF0C0044DC40 /* SquareMaze.swift */; };
+		0B9AF6F1268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6F0268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		0B9AF6E8268AE9C50044DC40 /* Walls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Walls.swift; sourceTree = "<group>"; };
 		0B9AF6EA268AEA750044DC40 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		0B9AF6EC268AEF0C0044DC40 /* SquareMaze.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareMaze.swift; sourceTree = "<group>"; };
+		0B9AF6F0268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeMazeGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				0B9AF6E8268AE9C50044DC40 /* Walls.swift */,
 				0B9AF6EA268AEA750044DC40 /* Cell.swift */,
 				0B9AF6EC268AEF0C0044DC40 /* SquareMaze.swift */,
+				0B9AF6F0268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift */,
 				0B9AF6DA268ADC000044DC40 /* Assets.xcassets */,
 				0B9AF6DF268ADC000044DC40 /* Info.plist */,
 				0B9AF6E0268ADC000044DC40 /* MazeMaker.entitlements */,
@@ -157,6 +160,7 @@
 				0B9AF6E9268AE9C50044DC40 /* Walls.swift in Sources */,
 				0B9AF6EB268AEA750044DC40 /* Cell.swift in Sources */,
 				0B9AF6D7268ADBFE0044DC40 /* MazeMakerApp.swift in Sources */,
+				0B9AF6F1268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift in Sources */,
 				0B9AF6E7268AE0F40044DC40 /* MazePresenterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
