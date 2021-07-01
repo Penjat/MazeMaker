@@ -9,21 +9,21 @@ struct SquareCell {
     let x: Int
     let y: Int
     
-    var topBlocked: WallState = .open
+    var topBlocked: WallState = .blocked
     var rightBlocked: WallState = .blocked
 }
 
 extension SquareCell {
     var topWall: Wall? {
-        topBlocked == .open ? Wall(start: CGPoint(x: Double(x), y: Double(y)), end: CGPoint(x: 1.0 + Double(x), y: Double(y))) : nil
+        topBlocked == .blocked ? Wall(start: CGPoint(x: Double(x), y: Double(y)), end: CGPoint(x: 1.0 + Double(x), y: Double(y))) : nil
     }
     
-    var rightmWall: Wall? {
-        rightBlocked == .open ? Wall(start: CGPoint(x: 1.0 + Double(x), y: 0.0 + Double(y)), end: CGPoint(x: 1.0 + Double(x), y: 1.0)) : nil
+    var rightWall: Wall? {
+        rightBlocked == .blocked ? Wall(start: CGPoint(x: 1.0 + Double(x), y: 0.0 + Double(y)), end: CGPoint(x: 1.0 + Double(x), y: 1.0 + Double(y))) : nil
     }
     
     var walls: [Wall] {
-        return [topWall, rightmWall].compactMap{$0}
+        return [topWall, rightWall].compactMap{$0}
     }
 }
 
