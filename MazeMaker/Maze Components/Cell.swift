@@ -70,3 +70,9 @@ extension CGPoint {
         return CGPoint(x: left.x * right, y: left.y * right)
     }
 }
+
+extension CGRect {
+    static func * (left: CGRect, right: CGFloat) -> CGRect {
+        return CGRect(x: left.minX*right, y: left.minY*right, width: left.width*right, height: left.height*right)
+    }
+}

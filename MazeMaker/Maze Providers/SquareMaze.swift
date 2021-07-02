@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 protocol MazeProvider {
     
@@ -58,6 +59,13 @@ class SquareMaze: MazeProvider, ObservableObject {
         } + [leftWall, bottomWall]
     }
     
+    func tiles() -> [(CGRect,Color)] {
+        return grid.flatMap{$0}.flatMap { cell -> (CGRect, Color) in
+            return (CGRect(x: cell!.x ?? 0, y: cell!.y ?? 0, width: 1, height: 1),Color.red)
+            
+        }
+    }
+    
     func blankMaze(width: Int, height: Int){
         for x in 0..<width {
             for y in 0..<height {
@@ -69,6 +77,11 @@ class SquareMaze: MazeProvider, ObservableObject {
     func generateMaze() {
         blankMaze(width: grid.count, height: grid[0].count)
         RecursiveBacktraceGenertor.generate(mazeProvider: self)
+    }
+    
+    func generateBinaryMaze() {
+        blankMaze(width: grid.count, height: grid[0].count)
+        grid = BinaryTreeMazeGenerator.generateMaze(grid)
     }
 }
 
