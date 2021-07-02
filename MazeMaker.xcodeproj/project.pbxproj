@@ -15,6 +15,20 @@
 		0B9AF6E9268AE9C50044DC40 /* Walls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6E8268AE9C50044DC40 /* Walls.swift */; };
 		0B9AF6EB268AEA750044DC40 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6EA268AEA750044DC40 /* Cell.swift */; };
 		0B9AF6ED268AEF0C0044DC40 /* SquareMaze.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6EC268AEF0C0044DC40 /* SquareMaze.swift */; };
+		0B9AF6F1268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6F0268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift */; };
+		0B9AF6F3268E61690044DC40 /* RecursiveBacktraceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6F2268E61690044DC40 /* RecursiveBacktraceGenerator.swift */; };
+		0BD3B595268EC1730024EBDC /* DijkstraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3B594268EC1730024EBDC /* DijkstraService.swift */; };
+		0BD3B59D268ECBAA0024EBDC /* MazeMakerIOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3B59C268ECBAA0024EBDC /* MazeMakerIOSApp.swift */; };
+		0BD3B59F268ECBAA0024EBDC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3B59E268ECBAA0024EBDC /* ContentView.swift */; };
+		0BD3B5A1268ECBAB0024EBDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BD3B5A0268ECBAB0024EBDC /* Assets.xcassets */; };
+		0BD3B5A4268ECBAB0024EBDC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BD3B5A3268ECBAB0024EBDC /* Preview Assets.xcassets */; };
+		0BD3B5A9268ECBDE0024EBDC /* DijkstraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3B594268EC1730024EBDC /* DijkstraService.swift */; };
+		0BD3B5AA268ECBDE0024EBDC /* SquareMaze.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6EC268AEF0C0044DC40 /* SquareMaze.swift */; };
+		0BD3B5AB268ECBDE0024EBDC /* BinaryTreeMazeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6F0268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift */; };
+		0BD3B5AC268ECBDE0024EBDC /* MazePresenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6E6268AE0F40044DC40 /* MazePresenterView.swift */; };
+		0BD3B5AD268ECBDE0024EBDC /* RecursiveBacktraceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6F2268E61690044DC40 /* RecursiveBacktraceGenerator.swift */; };
+		0BD3B5AE268ECBDE0024EBDC /* Walls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6E8268AE9C50044DC40 /* Walls.swift */; };
+		0BD3B5AF268ECBDE0024EBDC /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6EA268AEA750044DC40 /* Cell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,10 +43,26 @@
 		0B9AF6E8268AE9C50044DC40 /* Walls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Walls.swift; sourceTree = "<group>"; };
 		0B9AF6EA268AEA750044DC40 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		0B9AF6EC268AEF0C0044DC40 /* SquareMaze.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareMaze.swift; sourceTree = "<group>"; };
+		0B9AF6F0268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeMazeGenerator.swift; sourceTree = "<group>"; };
+		0B9AF6F2268E61690044DC40 /* RecursiveBacktraceGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecursiveBacktraceGenerator.swift; sourceTree = "<group>"; };
+		0BD3B594268EC1730024EBDC /* DijkstraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DijkstraService.swift; sourceTree = "<group>"; };
+		0BD3B59A268ECBAA0024EBDC /* MazeMakerIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MazeMakerIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BD3B59C268ECBAA0024EBDC /* MazeMakerIOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeMakerIOSApp.swift; sourceTree = "<group>"; };
+		0BD3B59E268ECBAA0024EBDC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0BD3B5A0268ECBAB0024EBDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0BD3B5A3268ECBAB0024EBDC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0BD3B5A5268ECBAB0024EBDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0B9AF6D0268ADBFE0044DC40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BD3B597268ECBAA0024EBDC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -46,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				0B9AF6D5268ADBFE0044DC40 /* MazeMaker */,
+				0BD3B59B268ECBAA0024EBDC /* MazeMakerIOS */,
 				0B9AF6D4268ADBFE0044DC40 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				0B9AF6D3268ADBFE0044DC40 /* MazeMaker.app */,
+				0BD3B59A268ECBAA0024EBDC /* MazeMakerIOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,12 +93,11 @@
 		0B9AF6D5268ADBFE0044DC40 /* MazeMaker */ = {
 			isa = PBXGroup;
 			children = (
-				0B9AF6D6268ADBFE0044DC40 /* MazeMakerApp.swift */,
-				0B9AF6D8268ADBFE0044DC40 /* ContentView.swift */,
-				0B9AF6E6268AE0F40044DC40 /* MazePresenterView.swift */,
-				0B9AF6E8268AE9C50044DC40 /* Walls.swift */,
-				0B9AF6EA268AEA750044DC40 /* Cell.swift */,
-				0B9AF6EC268AEF0C0044DC40 /* SquareMaze.swift */,
+				0B9AF6F8268E622A0044DC40 /* App */,
+				0B9AF6F7268E62080044DC40 /* Views */,
+				0B9AF6F4268E61700044DC40 /* Maze Generators */,
+				0B9AF6F5268E61A60044DC40 /* Maze Providers */,
+				0B9AF6F6268E61E80044DC40 /* Maze Components */,
 				0B9AF6DA268ADC000044DC40 /* Assets.xcassets */,
 				0B9AF6DF268ADC000044DC40 /* Info.plist */,
 				0B9AF6E0268ADC000044DC40 /* MazeMaker.entitlements */,
@@ -79,6 +110,70 @@
 			isa = PBXGroup;
 			children = (
 				0B9AF6DD268ADC000044DC40 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0B9AF6F4268E61700044DC40 /* Maze Generators */ = {
+			isa = PBXGroup;
+			children = (
+				0B9AF6F0268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift */,
+				0B9AF6F2268E61690044DC40 /* RecursiveBacktraceGenerator.swift */,
+			);
+			path = "Maze Generators";
+			sourceTree = "<group>";
+		};
+		0B9AF6F5268E61A60044DC40 /* Maze Providers */ = {
+			isa = PBXGroup;
+			children = (
+				0B9AF6EC268AEF0C0044DC40 /* SquareMaze.swift */,
+			);
+			path = "Maze Providers";
+			sourceTree = "<group>";
+		};
+		0B9AF6F6268E61E80044DC40 /* Maze Components */ = {
+			isa = PBXGroup;
+			children = (
+				0B9AF6E8268AE9C50044DC40 /* Walls.swift */,
+				0BD3B594268EC1730024EBDC /* DijkstraService.swift */,
+				0B9AF6EA268AEA750044DC40 /* Cell.swift */,
+			);
+			path = "Maze Components";
+			sourceTree = "<group>";
+		};
+		0B9AF6F7268E62080044DC40 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0B9AF6E6268AE0F40044DC40 /* MazePresenterView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0B9AF6F8268E622A0044DC40 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				0B9AF6D6268ADBFE0044DC40 /* MazeMakerApp.swift */,
+				0B9AF6D8268ADBFE0044DC40 /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		0BD3B59B268ECBAA0024EBDC /* MazeMakerIOS */ = {
+			isa = PBXGroup;
+			children = (
+				0BD3B59C268ECBAA0024EBDC /* MazeMakerIOSApp.swift */,
+				0BD3B59E268ECBAA0024EBDC /* ContentView.swift */,
+				0BD3B5A0268ECBAB0024EBDC /* Assets.xcassets */,
+				0BD3B5A5268ECBAB0024EBDC /* Info.plist */,
+				0BD3B5A2268ECBAB0024EBDC /* Preview Content */,
+			);
+			path = MazeMakerIOS;
+			sourceTree = "<group>";
+		};
+		0BD3B5A2268ECBAB0024EBDC /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				0BD3B5A3268ECBAB0024EBDC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -103,6 +198,23 @@
 			productReference = 0B9AF6D3268ADBFE0044DC40 /* MazeMaker.app */;
 			productType = "com.apple.product-type.application";
 		};
+		0BD3B599268ECBAA0024EBDC /* MazeMakerIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0BD3B5A6268ECBAB0024EBDC /* Build configuration list for PBXNativeTarget "MazeMakerIOS" */;
+			buildPhases = (
+				0BD3B596268ECBAA0024EBDC /* Sources */,
+				0BD3B597268ECBAA0024EBDC /* Frameworks */,
+				0BD3B598268ECBAA0024EBDC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MazeMakerIOS;
+			productName = MazeMakerIOS;
+			productReference = 0BD3B59A268ECBAA0024EBDC /* MazeMakerIOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -113,6 +225,9 @@
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					0B9AF6D2268ADBFE0044DC40 = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					0BD3B599268ECBAA0024EBDC = {
 						CreatedOnToolsVersion = 12.5;
 					};
 				};
@@ -131,6 +246,7 @@
 			projectRoot = "";
 			targets = (
 				0B9AF6D2268ADBFE0044DC40 /* MazeMaker */,
+				0BD3B599268ECBAA0024EBDC /* MazeMakerIOS */,
 			);
 		};
 /* End PBXProject section */
@@ -145,6 +261,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0BD3B598268ECBAA0024EBDC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BD3B5A4268ECBAB0024EBDC /* Preview Assets.xcassets in Resources */,
+				0BD3B5A1268ECBAB0024EBDC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -153,11 +278,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B9AF6D9268ADBFE0044DC40 /* ContentView.swift in Sources */,
+				0B9AF6F3268E61690044DC40 /* RecursiveBacktraceGenerator.swift in Sources */,
 				0B9AF6ED268AEF0C0044DC40 /* SquareMaze.swift in Sources */,
 				0B9AF6E9268AE9C50044DC40 /* Walls.swift in Sources */,
 				0B9AF6EB268AEA750044DC40 /* Cell.swift in Sources */,
 				0B9AF6D7268ADBFE0044DC40 /* MazeMakerApp.swift in Sources */,
+				0BD3B595268EC1730024EBDC /* DijkstraService.swift in Sources */,
+				0B9AF6F1268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift in Sources */,
 				0B9AF6E7268AE0F40044DC40 /* MazePresenterView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BD3B596268ECBAA0024EBDC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BD3B5A9268ECBDE0024EBDC /* DijkstraService.swift in Sources */,
+				0BD3B5AE268ECBDE0024EBDC /* Walls.swift in Sources */,
+				0BD3B5AA268ECBDE0024EBDC /* SquareMaze.swift in Sources */,
+				0BD3B5AD268ECBDE0024EBDC /* RecursiveBacktraceGenerator.swift in Sources */,
+				0BD3B5AC268ECBDE0024EBDC /* MazePresenterView.swift in Sources */,
+				0BD3B5AF268ECBDE0024EBDC /* Cell.swift in Sources */,
+				0BD3B59F268ECBAA0024EBDC /* ContentView.swift in Sources */,
+				0BD3B59D268ECBAA0024EBDC /* MazeMakerIOSApp.swift in Sources */,
+				0BD3B5AB268ECBDE0024EBDC /* BinaryTreeMazeGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +471,53 @@
 			};
 			name = Release;
 		};
+		0BD3B5A7268ECBAB0024EBDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"MazeMakerIOS/Preview Content\"";
+				DEVELOPMENT_TEAM = 26N9GHZX27;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = MazeMakerIOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Penjat.MazeMakerIOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0BD3B5A8268ECBAB0024EBDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"MazeMakerIOS/Preview Content\"";
+				DEVELOPMENT_TEAM = 26N9GHZX27;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = MazeMakerIOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Penjat.MazeMakerIOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -344,6 +535,15 @@
 			buildConfigurations = (
 				0B9AF6E4268ADC000044DC40 /* Debug */,
 				0B9AF6E5268ADC000044DC40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0BD3B5A6268ECBAB0024EBDC /* Build configuration list for PBXNativeTarget "MazeMakerIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BD3B5A7268ECBAB0024EBDC /* Debug */,
+				0BD3B5A8268ECBAB0024EBDC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
