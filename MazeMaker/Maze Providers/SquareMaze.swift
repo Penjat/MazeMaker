@@ -29,6 +29,26 @@ class SquareMaze: MazeProvider, ObservableObject {
         return [cellAt(x: x, y: y+1), cellAt(x: x+1, y: y), cellAt(x: x-1, y: y), cellAt(x: x, y: y-1)].compactMap{$0}
     }
     
+    func freeNeighbors(_ cellLocation: CellLocation) -> [SquareCell] {
+        guard let cell = cellAt(cellLocation) else {
+            return []
+        }
+        var neighbors = [SquareCell]()
+        if cell.topBlocked == .open, let topCell = cellAt(x: cell.x, y: cell.y+1) {
+            neighbors.append(topCell)
+        }
+        if cell.rightBlocked == .open, let rightCell = cellAt(x: cell.x+1, y: cell.y) {
+            neighbors.append(rightCell)
+        }
+        if let leftCell = cellAt(x: cell.x-1, y: cell.y), leftCell.rightBlocked == .open {
+            neighbors.append(leftCell)
+        }
+        if let bottomCell = cellAt(x: cell.x-1, y: cell.y), bottomCell.rightBlocked == .open {
+            neighbors.append(bottomCell)
+        }
+        return neighbors
+    }
+    
     func setWall(cell: CellLocation, direction: WallDirection, wallState: WallState) {
         switch direction {
         case .top:
