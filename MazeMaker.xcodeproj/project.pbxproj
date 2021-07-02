@@ -66,9 +66,9 @@
 			isa = PBXGroup;
 			children = (
 				0B9AF6F8268E622A0044DC40 /* App */,
-				0B9AF6F4268E61700044DC40 /* Generators */,
-				0B9AF6F5268E61A60044DC40 /* Maze Types */,
 				0B9AF6F7268E62080044DC40 /* Views */,
+				0B9AF6F4268E61700044DC40 /* Maze Generators */,
+				0B9AF6F5268E61A60044DC40 /* Maze Providers */,
 				0B9AF6F6268E61E80044DC40 /* Maze Components */,
 				0B9AF6DA268ADC000044DC40 /* Assets.xcassets */,
 				0B9AF6DF268ADC000044DC40 /* Info.plist */,
@@ -86,21 +86,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		0B9AF6F4268E61700044DC40 /* Generators */ = {
+		0B9AF6F4268E61700044DC40 /* Maze Generators */ = {
 			isa = PBXGroup;
 			children = (
 				0B9AF6F0268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift */,
 				0B9AF6F2268E61690044DC40 /* RecursiveBacktraceGenerator.swift */,
 			);
-			path = Generators;
+			path = "Maze Generators";
 			sourceTree = "<group>";
 		};
-		0B9AF6F5268E61A60044DC40 /* Maze Types */ = {
+		0B9AF6F5268E61A60044DC40 /* Maze Providers */ = {
 			isa = PBXGroup;
 			children = (
 				0B9AF6EC268AEF0C0044DC40 /* SquareMaze.swift */,
 			);
-			path = "Maze Types";
+			path = "Maze Providers";
 			sourceTree = "<group>";
 		};
 		0B9AF6F6268E61E80044DC40 /* Maze Components */ = {

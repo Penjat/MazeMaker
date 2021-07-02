@@ -5,12 +5,28 @@ enum WallState {
     case open
 }
 
-struct SquareCell {
+enum WallDirection {
+    case top
+    case right
+    case bottom
+    case left
+}
+
+class SquareCell {
+    internal init(x: Int, y: Int, data: Any? = nil, topBlocked: WallState = .blocked, rightBlocked: WallState = .blocked) {
+        self.x = x
+        self.y = y
+        self.data = data
+        self.topBlocked = topBlocked
+        self.rightBlocked = rightBlocked
+    }
+    
     let x: Int
     let y: Int
+    var data: Any?
     
-    var topBlocked: WallState = .blocked
-    var rightBlocked: WallState = .blocked
+    public var topBlocked: WallState = .blocked
+    public var rightBlocked: WallState = .blocked
 }
 
 extension SquareCell {
@@ -24,6 +40,28 @@ extension SquareCell {
     
     var walls: [Wall] {
         return [topWall, rightWall].compactMap{$0}
+    }
+    
+    var location: CellLocation {
+        return CellLocation(x: x, y: y)
+    }
+    
+    func directionTo(_ cell: SquareCell) -> WallDirection? {
+        let xDistance = x-cell.x
+        let yDistance = y-cell.y
+        
+        switch (xDistance, yDistance) {
+        case (-1,0):
+            return .right
+        case (1,0):
+            return .left
+        case (0,-1):
+            return .bottom
+        case (0,1):
+            return .top
+        default:
+            return nil
+        }
     }
 }
 
