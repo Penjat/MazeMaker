@@ -6,11 +6,13 @@ struct MazePresenterView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
             GeometryReader { geometry in
-                Path { path in
-                    for tile in mazeProvider.tiles() {
+                let tiles = mazeProvider.tiles()
+                ForEach(0..<tiles.count) { x in
+                    let tile = tiles[x]
+                    Path { path in
                         path.addRect(tile.0*cellSize)
-                    }
-                }.fill(Color.white)
+                    }.fill(tile.1)
+                }
                 
                 Path { path in
                     for wall in mazeProvider.walls() {

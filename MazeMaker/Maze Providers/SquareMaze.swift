@@ -61,8 +61,7 @@ class SquareMaze: MazeProvider, ObservableObject {
     
     func tiles() -> [(CGRect,Color)] {
         return grid.flatMap{$0}.flatMap { cell -> (CGRect, Color) in
-            return (CGRect(x: cell!.x ?? 0, y: cell!.y ?? 0, width: 1, height: 1),Color.red)
-            
+            return (CGRect(x: cell!.x, y: cell!.y, width: 1, height: 1),Color.red)
         }
     }
     
