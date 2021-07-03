@@ -2,7 +2,12 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        MazePresenterView().background(Color.blue).frame(width: 800, height: 800)
+        HStack {
+            Spacer()
+            MazePresenterView().background(Color.blue)
+            Spacer()
+        }
+        //.frame(width: 800, height: 800)
     }
 }
 

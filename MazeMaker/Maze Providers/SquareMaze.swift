@@ -111,7 +111,7 @@ class SquareMaze: MazeProvider, ObservableObject {
         clearData()
         let ds = DijkstraService()
         ds.openCells.append(grid[0][0]!)
-        ds.findDistances(value: 0, mazeProvider: self)
+        ds.findFurthest(mazeProvider: self)
         longestDepth = ds.longestPath
     }
     
@@ -121,7 +121,7 @@ class SquareMaze: MazeProvider, ObservableObject {
         clearData()
         let ds = DijkstraService()
         ds.openCells.append(grid[0][0]!)
-        ds.findDistances(value: 0, mazeProvider: self)
+        ds.findFurthest(mazeProvider: self)
         longestDepth = ds.longestPath
     }
 }
