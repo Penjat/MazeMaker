@@ -6,6 +6,7 @@ protocol MazeProvider {
 }
 
 class SquareMaze: MazeProvider, ObservableObject {
+    @Published var longestDepth = 0
     @Published var grid = [[SquareCell?]]()
     init(width: Int, height: Int) {
         grid = [[SquareCell?]](repeating: [SquareCell?](repeating: nil, count: height), count: width)
@@ -34,7 +35,7 @@ class SquareMaze: MazeProvider, ObservableObject {
             return []
         }
         var neighbors = [SquareCell]()
-        if cell.topBlocked == .open, let topCell = cellAt(x: cell.x, y: cell.y+1) {
+        if cell.topBlocked == .open, let topCell = cellAt(x: cell.x, y: cell.y-1) {
             neighbors.append(topCell)
         }
         if cell.rightBlocked == .open, let rightCell = cellAt(x: cell.x+1, y: cell.y) {
@@ -43,7 +44,7 @@ class SquareMaze: MazeProvider, ObservableObject {
         if let leftCell = cellAt(x: cell.x-1, y: cell.y), leftCell.rightBlocked == .open {
             neighbors.append(leftCell)
         }
-        if let bottomCell = cellAt(x: cell.x-1, y: cell.y), bottomCell.rightBlocked == .open {
+        if let bottomCell = cellAt(x: cell.x, y: cell.y+1), bottomCell.topBlocked == .open {
             neighbors.append(bottomCell)
         }
         return neighbors
@@ -81,7 +82,8 @@ class SquareMaze: MazeProvider, ObservableObject {
     
     func tiles() -> [(CGRect,Color)] {
         return grid.flatMap{$0}.flatMap { cell -> (CGRect, Color) in
-            return (CGRect(x: cell!.x, y: cell!.y, width: 1, height: 1),Color.red)
+            let value = 1.0 - Double(cell?.data as? Int ?? 1)/Double(longestDepth)
+            return (CGRect(x: cell!.x, y: cell!.y, width: 1, height: 1),Color.init(red: 1.0, green: value, blue: 1.0, opacity: 1.0))
         }
     }
     
@@ -93,14 +95,34 @@ class SquareMaze: MazeProvider, ObservableObject {
         }
     }
     
+    func allCells() -> [SquareCell] {
+        return grid.flatMap{$0}.flatMap {$0}
+    }
+    
+    func clearData() {
+        for cell in allCells(){
+            cell.data = nil
+        }
+    }
+    
     func generateMaze() {
         blankMaze(width: grid.count, height: grid[0].count)
         RecursiveBacktraceGenertor.generate(mazeProvider: self)
+        clearData()
+        let ds = DijkstraService()
+        ds.openCells.append(grid[0][0]!)
+        ds.findDistances(value: 0, mazeProvider: self)
+        longestDepth = ds.longestPath
     }
     
     func generateBinaryMaze() {
         blankMaze(width: grid.count, height: grid[0].count)
         grid = BinaryTreeMazeGenerator.generateMaze(grid)
+        clearData()
+        let ds = DijkstraService()
+        ds.openCells.append(grid[0][0]!)
+        ds.findDistances(value: 0, mazeProvider: self)
+        longestDepth = ds.longestPath
     }
 }
 
