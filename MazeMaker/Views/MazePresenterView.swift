@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct MazePresenterView: View {
-    @StateObject var mazeProvider = SquareMaze(width: 36, height: 36)
+    @EnvironmentObject var mazeProvider: SquareMaze
+    @State private var percentage: CGFloat = .zero
     let cellSize: CGFloat = 20.0
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
@@ -15,7 +16,7 @@ struct MazePresenterView: View {
                 }
                 
                 Path { path in
-                    for wall in mazeProvider.walls() {
+                    for wall in mazeProvider.walls().shuffled() {
                         path.move(
                             to: wall.start*cellSize
                         )
@@ -23,21 +24,8 @@ struct MazePresenterView: View {
                             to: wall.end*cellSize
                         )
                     }
-                }.stroke(Color.black, lineWidth: 2)
+                }.stroke(Color.black, lineWidth: 2)//.trim(from: 0.5-percentage, to: 0.5+percentage).stroke(Color.black, lineWidth: 2)
             }.padding()
-            Button("Recursive Backtrace") {
-                mazeProvider.generateMaze()
-            }
-            Button("Binary Tree") {
-                mazeProvider.generateBinaryMaze()
-            }
         }
-        
-    }
-}
-
-struct MazePresenterView_Previews: PreviewProvider {
-    static var previews: some View {
-        MazePresenterView()
     }
 }
