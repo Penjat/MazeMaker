@@ -23,7 +23,6 @@ struct MazePresenterView: View {
                             to: wall.end*cellSize
                         )
                     }
-                    
                 }.stroke(Color.black, lineWidth: 2)
             }.padding()
             Button("Recursive Backtrace") {
