@@ -124,6 +124,11 @@ class SquareMaze: MazeProvider, ObservableObject {
         ds.findFurthest(mazeProvider: self)
         longestDepth = ds.longestPath
     }
+    
+    func generateSimplifiedPrimsMaze() {
+        blankMaze(width: grid.count, height: grid[0].count)
+        
+    }
 }
 
 struct CellLocation {

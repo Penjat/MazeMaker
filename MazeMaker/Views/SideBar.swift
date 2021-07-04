@@ -16,6 +16,9 @@ struct SideBar: View {
             Button("Recursive Backtrace") {
                 mazeProvider.generateMaze()
             }
+            Button("Prims Simplified") {
+                mazeProvider.generateMaze()
+            }
         }.listStyle(SidebarListStyle())
     }
     
