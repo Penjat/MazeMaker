@@ -89,10 +89,10 @@ class SquareMaze: MazeProvider, ObservableObject {
         } + [leftWall, bottomWall]
     }
     
-    func tiles() -> [(CGRect,Double)] {
-        return grid.flatMap{$0}.flatMap { cell -> (CGRect, Double) in
+    func tiles() -> [Tile] {
+        return grid.flatMap{$0}.flatMap { cell -> Tile in
             let value = Double(cell?.data as? Int ?? 1)/Double(longestDepth)
-            return (CGRect(x: cell!.x, y: cell!.y, width: 1, height: 1), value)
+            return Tile(x: cell!.x, y: cell!.y, value: value)
         }
     }
     

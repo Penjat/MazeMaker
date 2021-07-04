@@ -4,9 +4,11 @@ struct SideBar: View {
     @EnvironmentObject var mazeProvider: SquareMaze
     @EnvironmentObject var displaySettings: MazeDisplaySettings
     @State var color1: Color = .blue
+    @State var showSetSize = true
     var body: some View {
         ScrollView {
             VStack(alignment: .center, spacing: 20){
+                MazeSizeView()
                 stats
                 
                 Button("Binary Tree") {
