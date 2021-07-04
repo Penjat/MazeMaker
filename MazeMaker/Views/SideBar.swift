@@ -17,7 +17,7 @@ struct SideBar: View {
                 mazeProvider.generateMaze()
             }
             Button("Prims Simplified") {
-                mazeProvider.generateMaze()
+                mazeProvider.generateSimplifiedPrimsMaze()
             }
         }.listStyle(SidebarListStyle())
     }
