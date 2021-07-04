@@ -2,20 +2,18 @@ import SwiftUI
 
 struct MazePresenterView: View {
     @EnvironmentObject var mazeProvider: SquareMaze
+    @EnvironmentObject var displaySettings: MazeDisplaySettings
     @State private var percentage: CGFloat = .zero
-    @State var color1: ColorOutput = ColorOutput(color: .white, red: 1.0, green: 1.0, blue: 1.0)
-    @State var color2: ColorOutput = ColorOutput(color: .blue, red: 0.0, green: 0.0, blue: 1.0)
-    @State var wallColor: ColorOutput = ColorOutput(color: .black, red: 0.0, green: 0.0, blue: 0.0)
-    @State var wallWidth: CGFloat = 2.0
+    
     let cellSize: CGFloat = 10.0
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
             HStack {
                 stats
-                ColorPicker(outputColor: $color1)
-                ColorPicker(outputColor: $color2)
-                ColorPicker(outputColor: $wallColor)
-                Slider(value: $wallWidth, in: 0.0...14.0) {
+                ColorPicker(outputColor: $displaySettings.color1)
+                ColorPicker(outputColor: $displaySettings.color2)
+                ColorPicker(outputColor: $displaySettings.wallColor)
+                Slider(value: $displaySettings.wallWidth, in: 0.0...14.0) {
                     
                 }
             }.padding()
@@ -38,7 +36,7 @@ struct MazePresenterView: View {
                             to: wall.end*cellSize
                         )
                     }
-                }.stroke(wallColor.color, lineWidth: wallWidth)
+                }.stroke(displaySettings.wallColor.color, lineWidth: displaySettings.wallWidth)
                 .toolbar {
                     
                 }
@@ -58,9 +56,9 @@ struct MazePresenterView: View {
     func blendColorForValue(value: Double) -> Color {
         let value2 = 1 - value
         
-        return Color.init(red: color1.red*value + color2.red*value2,
-                                                green: color1.green*value + color2.green*value2,
-                                                              blue: color1.blue*value + color2.blue*value2,
+        return Color.init(red: displaySettings.color1.red*value + displaySettings.color2.red*value2,
+                          green: displaySettings.color1.green*value + displaySettings.color2.green*value2,
+                          blue: displaySettings.color1.blue*value + displaySettings.color2.blue*value2,
                                     opacity: 1)
     }
 }
