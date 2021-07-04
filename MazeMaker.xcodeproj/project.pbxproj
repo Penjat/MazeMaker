@@ -31,6 +31,7 @@
 		0BD3B5AF268ECBDE0024EBDC /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6EA268AEA750044DC40 /* Cell.swift */; };
 		0BD3B5B62690250C0024EBDC /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3B5B52690250C0024EBDC /* SideBar.swift */; };
 		0BD3B5BB26914E290024EBDC /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3B5BA26914E290024EBDC /* ColorPicker.swift */; };
+		0BD3B5BD26915E850024EBDC /* PrimsSimplifiedGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3B5BC26915E850024EBDC /* PrimsSimplifiedGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		0BD3B5A5268ECBAB0024EBDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0BD3B5B52690250C0024EBDC /* SideBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
 		0BD3B5BA26914E290024EBDC /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
+		0BD3B5BC26915E850024EBDC /* PrimsSimplifiedGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimsSimplifiedGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			children = (
 				0B9AF6F0268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift */,
 				0B9AF6F2268E61690044DC40 /* RecursiveBacktraceGenerator.swift */,
+				0BD3B5BC26915E850024EBDC /* PrimsSimplifiedGenerator.swift */,
 			);
 			path = "Maze Generators";
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BD3B5B62690250C0024EBDC /* SideBar.swift in Sources */,
+				0BD3B5BD26915E850024EBDC /* PrimsSimplifiedGenerator.swift in Sources */,
 				0B9AF6D9268ADBFE0044DC40 /* ContentView.swift in Sources */,
 				0B9AF6F3268E61690044DC40 /* RecursiveBacktraceGenerator.swift in Sources */,
 				0B9AF6ED268AEF0C0044DC40 /* SquareMaze.swift in Sources */,

@@ -8,6 +8,11 @@ protocol MazeProvider {
 class SquareMaze: MazeProvider, ObservableObject {
     @Published var longestDepth = 0
     @Published var grid = [[SquareCell?]]()
+    @Published var deadEnds: Int = 0
+    @Published var hallways: Int = 0
+    @Published var threeWayJunctions: Int = 0
+    @Published var fourWayJunctions: Int = 0
+    
     init(width: Int, height: Int) {
         grid = [[SquareCell?]](repeating: [SquareCell?](repeating: nil, count: height), count: width)
         blankMaze(width: width, height: height)
@@ -109,20 +114,35 @@ class SquareMaze: MazeProvider, ObservableObject {
         blankMaze(width: grid.count, height: grid[0].count)
         RecursiveBacktraceGenertor.generate(mazeProvider: self)
         clearData()
-        let ds = DijkstraService()
-        ds.openCells.append(grid[0][0]!)
-        ds.findFurthest(mazeProvider: self)
-        longestDepth = ds.longestPath
+        calculateStats()
     }
     
     func generateBinaryMaze() {
         blankMaze(width: grid.count, height: grid[0].count)
         grid = BinaryTreeMazeGenerator.generateMaze(grid)
         clearData()
+        calculateStats()
+    }
+    
+    func generateSimplifiedPrimsMaze() {
+        blankMaze(width: grid.count, height: grid[0].count)
+        let prims = PrimsMazeGenerator()
+        let startingCell = allCells().randomElement()!
+        prims.activeCells.append(startingCell)
+        prims.findPaths(mazeProvider: self)
+        calculateStats()
+    }
+    
+    func calculateStats() {
+        
         let ds = DijkstraService()
         ds.openCells.append(grid[0][0]!)
         ds.findFurthest(mazeProvider: self)
         longestDepth = ds.longestPath
+        deadEnds = ds.deadEnds.count
+        hallways = ds.hallways
+        threeWayJunctions = ds.threeWayJunctions
+        fourWayJunctions = ds.fourWayJunction
     }
 }
 

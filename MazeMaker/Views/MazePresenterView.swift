@@ -7,10 +7,11 @@ struct MazePresenterView: View {
     @State var color2: ColorOutput = ColorOutput(color: .blue, red: 0.0, green: 0.0, blue: 1.0)
     @State var wallColor: ColorOutput = ColorOutput(color: .black, red: 0.0, green: 0.0, blue: 0.0)
     @State var wallWidth: CGFloat = 2.0
-    let cellSize: CGFloat = 20.0
+    let cellSize: CGFloat = 10.0
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
             HStack {
+                stats
                 ColorPicker(outputColor: $color1)
                 ColorPicker(outputColor: $color2)
                 ColorPicker(outputColor: $wallColor)
@@ -42,6 +43,15 @@ struct MazePresenterView: View {
                     
                 }
             }.padding()
+        }
+    }
+    
+    var stats: some View {
+        VStack {
+            Text("\(mazeProvider.deadEnds) dead ends.")
+            Text("\(mazeProvider.hallways) hallways")
+            Text("\(mazeProvider.threeWayJunctions) three way junctions.")
+            Text("\(mazeProvider.fourWayJunctions) four way junctions.")
         }
     }
     

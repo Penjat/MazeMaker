@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var mazeProvider = SquareMaze(width: 36, height: 36)
+    @StateObject var mazeProvider = SquareMaze(width: 80, height: 60)
     var body: some View {
         NavigationView {
             SideBar()
