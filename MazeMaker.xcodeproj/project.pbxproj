@@ -33,6 +33,7 @@
 		0BD3B5BB26914E290024EBDC /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3B5BA26914E290024EBDC /* ColorPicker.swift */; };
 		0BD3B5BD26915E850024EBDC /* PrimsSimplifiedGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3B5BC26915E850024EBDC /* PrimsSimplifiedGenerator.swift */; };
 		0BD3B5BF269209510024EBDC /* MazeDisplaySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3B5BE269209510024EBDC /* MazeDisplaySettings.swift */; };
+		0BD3B5C126920EC00024EBDC /* MazeGenerationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3B5C026920EC00024EBDC /* MazeGenerationSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		0BD3B5BA26914E290024EBDC /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		0BD3B5BC26915E850024EBDC /* PrimsSimplifiedGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimsSimplifiedGenerator.swift; sourceTree = "<group>"; };
 		0BD3B5BE269209510024EBDC /* MazeDisplaySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeDisplaySettings.swift; sourceTree = "<group>"; };
+		0BD3B5C026920EC00024EBDC /* MazeGenerationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeGenerationSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				0B9AF6E8268AE9C50044DC40 /* Walls.swift */,
+				0BD3B5C026920EC00024EBDC /* MazeGenerationSettings.swift */,
 				0BD3B594268EC1730024EBDC /* DijkstraService.swift */,
 				0B9AF6EA268AEA750044DC40 /* Cell.swift */,
 			);
@@ -290,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BD3B5B62690250C0024EBDC /* SideBar.swift in Sources */,
+				0BD3B5C126920EC00024EBDC /* MazeGenerationSettings.swift in Sources */,
 				0BD3B5BD26915E850024EBDC /* PrimsSimplifiedGenerator.swift in Sources */,
 				0B9AF6D9268ADBFE0044DC40 /* ContentView.swift in Sources */,
 				0BD3B5BF269209510024EBDC /* MazeDisplaySettings.swift in Sources */,

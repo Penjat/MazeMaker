@@ -14,9 +14,13 @@ class SquareMaze: MazeProvider, ObservableObject {
     @Published var fourWayJunctions: Int = 0
     
     init(width: Int, height: Int) {
+        createGrid(width: width, height: height)
+        generateMaze()
+    }
+    
+    func createGrid(width: Int, height: Int) {
         grid = [[SquareCell?]](repeating: [SquareCell?](repeating: nil, count: height), count: width)
         blankMaze(width: width, height: height)
-        generateMaze()
     }
     
     var leftWall: Wall {
@@ -124,12 +128,30 @@ class SquareMaze: MazeProvider, ObservableObject {
         calculateStats()
     }
     
+    func generatePrimsMaze() {
+        blankMaze(width: grid.count, height: grid[0].count)
+        let prims = PrimsMazeGenerator()
+        let startingCell = allCells().randomElement()!
+        prims.activeCells.append(startingCell)
+        prims.primsToBackTrace(mazeProvider: self)
+        calculateStats()
+    }
+    
+    func backtraceToPrims() {
+        blankMaze(width: grid.count, height: grid[0].count)
+        let prims = PrimsMazeGenerator()
+        let startingCell = allCells().randomElement()!
+        prims.activeCells.append(startingCell)
+        prims.backtraceToPrims(mazeProvider: self)
+        calculateStats()
+    }
+    
     func generateSimplifiedPrimsMaze() {
         blankMaze(width: grid.count, height: grid[0].count)
         let prims = PrimsMazeGenerator()
         let startingCell = allCells().randomElement()!
         prims.activeCells.append(startingCell)
-        prims.findPaths(mazeProvider: self)
+        prims.simplifiedFindPaths(mazeProvider: self)
         calculateStats()
     }
     

@@ -8,6 +8,7 @@ struct SideBar: View {
         ScrollView {
             VStack(alignment: .center, spacing: 20){
                 stats
+                
                 Button("Binary Tree") {
                     print("pressed button")
                     mazeProvider.generateBinaryMaze()
@@ -17,6 +18,16 @@ struct SideBar: View {
                 }
                 Button("Prims Simplified") {
                     mazeProvider.generateSimplifiedPrimsMaze()
+                }
+                
+                Button("Backtrace to Prims") {
+                    print("pressed button")
+                    mazeProvider.backtraceToPrims()
+                }
+                
+                Button("Prims to Backtrace") {
+                    print("pressed button")
+                    mazeProvider.generatePrimsMaze()
                 }
                 HStack {
                     ColorPicker(outputColor: $displaySettings.color1)
@@ -30,6 +41,7 @@ struct SideBar: View {
                     }
                 }
                 Spacer()
+                    
             }
         }.frame(width:200).padding()
     }
@@ -70,3 +82,5 @@ struct SideBar: View {
 //        SideBar()
 //    }
 //}
+
+    
