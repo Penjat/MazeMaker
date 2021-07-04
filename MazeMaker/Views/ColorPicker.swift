@@ -16,7 +16,7 @@ struct ColorPicker: View {
     
     var body: some View {
         VStack {
-            Rectangle().fill(outputColor.color).frame(width: 40, height: 40, alignment: .center)
+            Rectangle().fill(outputColor.color).frame(width: 40, height: 40, alignment: .center).cornerRadius(20.0).shadow(radius: 2.0)
             Slider(value: $red, in: 0...1) { _ in
                 updateOutput()
             }

@@ -128,10 +128,11 @@ class SquareMaze: MazeProvider, ObservableObject {
     func generateSimplifiedPrimsMaze() {
         blankMaze(width: grid.count, height: grid[0].count)
         let prims = PrimsMazeGenerator()
-        prims.activeCells.append(grid[0][0]!)
+        let startingCell = allCells().randomElement()!
+        prims.activeCells.append(startingCell)
         prims.findPaths(mazeProvider: self)
         let ds = DijkstraService()
-        ds.openCells.append(grid[0][0]!)
+        ds.openCells.append(startingCell)
         ds.findFurthest(mazeProvider: self)
         longestDepth = ds.longestPath
     }
