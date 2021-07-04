@@ -8,16 +8,6 @@ struct MazePresenterView: View {
     let cellSize: CGFloat = 10.0
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
-            HStack {
-                stats
-                ColorPicker(outputColor: $displaySettings.color1)
-                ColorPicker(outputColor: $displaySettings.color2)
-                ColorPicker(outputColor: $displaySettings.wallColor)
-                Slider(value: $displaySettings.wallWidth, in: 0.0...14.0) {
-                    
-                }
-            }.padding()
-            
             GeometryReader { geometry in
                 let tiles = mazeProvider.tiles()
                 ForEach(0..<tiles.count) { x in
@@ -44,14 +34,7 @@ struct MazePresenterView: View {
         }
     }
     
-    var stats: some View {
-        VStack {
-            Text("\(mazeProvider.deadEnds) dead ends.")
-            Text("\(mazeProvider.hallways) hallways")
-            Text("\(mazeProvider.threeWayJunctions) three way junctions.")
-            Text("\(mazeProvider.fourWayJunctions) four way junctions.")
-        }
-    }
+    
     
     func blendColorForValue(value: Double) -> Color {
         let value2 = 1 - value

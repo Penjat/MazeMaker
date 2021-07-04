@@ -2,29 +2,54 @@ import SwiftUI
 
 struct SideBar: View {
     @EnvironmentObject var mazeProvider: SquareMaze
+    @EnvironmentObject var displaySettings: MazeDisplaySettings
     @State var color1: Color = .blue
     var body: some View {
+        ScrollView {
+            VStack(alignment: .center, spacing: 20){
+                stats
+                Button("Binary Tree") {
+                    print("pressed button")
+                    mazeProvider.generateBinaryMaze()
+                }
+                Button("Recursive Backtrace") {
+                    mazeProvider.generateMaze()
+                }
+                Button("Prims Simplified") {
+                    mazeProvider.generateSimplifiedPrimsMaze()
+                }
+                HStack {
+                    ColorPicker(outputColor: $displaySettings.color1)
+                    ColorPicker(outputColor: $displaySettings.color2)
+                }
+                
+                HStack {
+                    ColorPicker(outputColor: $displaySettings.wallColor)
+                    Slider(value: $displaySettings.wallWidth, in: 0.0...14.0) {
+                        
+                    }
+                }
+                Spacer()
+            }
+        }.frame(width:200).padding()
+    }
+    
+    var stats: some View {
         VStack {
-            Button("Binary Tree") {
-                print("pressed button")
-                mazeProvider.generateBinaryMaze()
-            }
-            Button("Recursive Backtrace") {
-                mazeProvider.generateMaze()
-            }
-            Button("Prims Simplified") {
-                mazeProvider.generateSimplifiedPrimsMaze()
-            }
-        }.frame(width:200)
+            Text("\(mazeProvider.deadEnds) dead ends.")
+            Text("\(mazeProvider.hallways) hallways")
+            Text("\(mazeProvider.threeWayJunctions) three way junctions.")
+            Text("\(mazeProvider.fourWayJunctions) four way junctions.")
+        }
     }
     
     func saveMaze() {
-//        let nsView = NSHostingView(rootView: MazePresenterView())
-//        let bitmapRep = nsView.bitmapImageRepForCachingDisplay(in: nsView.bounds)!
-//        bitmapRep.size = nsView.bounds.size
-//        nsView.cacheDisplay(in: nsView.bounds, to: bitmapRep)
-//        let data = image.representation(using: .jpeg, properties: [:])
-//        try data?.write(to: path)
+        //        let nsView = NSHostingView(rootView: MazePresenterView())
+        //        let bitmapRep = nsView.bitmapImageRepForCachingDisplay(in: nsView.bounds)!
+        //        bitmapRep.size = nsView.bounds.size
+        //        nsView.cacheDisplay(in: nsView.bounds, to: bitmapRep)
+        //        let data = image.representation(using: .jpeg, properties: [:])
+        //        try data?.write(to: path)
     }
 }
 
