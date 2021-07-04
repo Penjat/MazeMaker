@@ -4,11 +4,7 @@ struct SideBar: View {
     @EnvironmentObject var mazeProvider: SquareMaze
     @State var color1: Color = .blue
     var body: some View {
-        List {
-            
-            Button("SAVE") {
-                saveMaze()
-            }
+        VStack {
             Button("Binary Tree") {
                 print("pressed button")
                 mazeProvider.generateBinaryMaze()
@@ -19,7 +15,7 @@ struct SideBar: View {
             Button("Prims Simplified") {
                 mazeProvider.generateSimplifiedPrimsMaze()
             }
-        }.listStyle(SidebarListStyle())
+        }.frame(width:200)
     }
     
     func saveMaze() {
