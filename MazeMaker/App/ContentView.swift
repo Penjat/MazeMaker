@@ -1,8 +1,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var mazeProvider = SquareMaze(width: 36, height: 36)
     var body: some View {
-        MazePresenterView().background(Color.blue).frame(width: 800, height: 800)
+        NavigationView {
+            SideBar()
+            MazePresenterView().background(Color.blue)
+        }.environmentObject(mazeProvider)
+        //.frame(width: 800, height: 800)
     }
 }
 

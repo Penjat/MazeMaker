@@ -80,10 +80,10 @@ class SquareMaze: MazeProvider, ObservableObject {
         } + [leftWall, bottomWall]
     }
     
-    func tiles() -> [(CGRect,Color)] {
-        return grid.flatMap{$0}.flatMap { cell -> (CGRect, Color) in
-            let value = 1.0 - Double(cell?.data as? Int ?? 1)/Double(longestDepth)
-            return (CGRect(x: cell!.x, y: cell!.y, width: 1, height: 1),Color.init(red: 1.0, green: value, blue: 1.0, opacity: 1.0))
+    func tiles() -> [(CGRect,Double)] {
+        return grid.flatMap{$0}.flatMap { cell -> (CGRect, Double) in
+            let value = Double(cell?.data as? Int ?? 1)/Double(longestDepth)
+            return (CGRect(x: cell!.x, y: cell!.y, width: 1, height: 1), value)
         }
     }
     
@@ -111,7 +111,7 @@ class SquareMaze: MazeProvider, ObservableObject {
         clearData()
         let ds = DijkstraService()
         ds.openCells.append(grid[0][0]!)
-        ds.findDistances(value: 0, mazeProvider: self)
+        ds.findFurthest(mazeProvider: self)
         longestDepth = ds.longestPath
     }
     
@@ -121,7 +121,7 @@ class SquareMaze: MazeProvider, ObservableObject {
         clearData()
         let ds = DijkstraService()
         ds.openCells.append(grid[0][0]!)
-        ds.findDistances(value: 0, mazeProvider: self)
+        ds.findFurthest(mazeProvider: self)
         longestDepth = ds.longestPath
     }
 }
@@ -129,4 +129,10 @@ class SquareMaze: MazeProvider, ObservableObject {
 struct CellLocation {
     let x: Int
     let y: Int
+}
+
+struct ColorInput {
+    let red: Double
+    let blue: Double
+    let green: Double
 }
