@@ -5,6 +5,9 @@ class DijkstraService {
     var futhestCells = [SquareCell]()
     var openCells = [SquareCell]()
     var deadEnds = [SquareCell]()
+    var hallways = 0
+    var threeWayJunctions = 0
+    var fourWayJunction = 0
     func findFurthest(statingLocation: CellLocation = CellLocation(x: 0, y: 0), mazeProvider: SquareMaze) {
         guard let startingCell = mazeProvider.cellAt(statingLocation) else {
             return
@@ -13,17 +16,30 @@ class DijkstraService {
         findDistances(value: 0, mazeProvider: mazeProvider)
         mazeProvider.clearData()
         openCells = [futhestCells.first].compactMap{$0}
-        findDistances(value: 0, mazeProvider: mazeProvider, findDeadEnds: true)
+        
+        hallways = 0
+        threeWayJunctions = 0
+        fourWayJunction = 0
+        
+        findDistances(value: 0, mazeProvider: mazeProvider)
     }
-    func findDistances(value: Int, mazeProvider: SquareMaze, findDeadEnds: Bool = false) {
+    func findDistances(value: Int, mazeProvider: SquareMaze) {
         var neighbors = [SquareCell]()
         for cell in openCells {
             neighbors = neighbors + mazeProvider.freeNeighbors(cell.location).filter{$0.data == nil}
             cell.data = value
-            if findDeadEnds, mazeProvider.freeNeighbors(cell.location).count == 1 {
-                print("dead end found")
+            let connectedNeighbors = mazeProvider.freeNeighbors(cell.location).count
+            switch connectedNeighbors {
+            case 1:
                 deadEnds.append(cell)
-                cell.data = 0
+            case 2:
+                hallways += 1
+            case 3:
+                threeWayJunctions += 1
+            case 4:
+                fourWayJunction += 1
+            default:
+                fatalError("Should not be another value.")
             }
         }
         guard !neighbors.isEmpty else {
