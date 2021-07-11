@@ -23,12 +23,15 @@ class PolarCell: Hashable, Cell {
         return CellLocation(x: x, y: y)
     }
     
-    var hashValue: Int {
-            return ObjectIdentifier(self).hashValue
-        }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(x)
+        hasher.combine(y)
+        hasher.combine(bottomBlocked)
+        hasher.combine(leftBlocked)
+    }
     
     static func ==(lhs: PolarCell, rhs: PolarCell) -> Bool {
-        return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
+        return ObjectIdentifier(lhs) == ObjectIdentifier(rhs) && lhs.leftBlocked == rhs.leftBlocked && lhs.bottomBlocked == rhs.bottomBlocked
     }
     
     let col: Int

@@ -2,8 +2,7 @@ import SwiftUI
 
 struct PolarMazeView: View {
     @StateObject var mazeProvider = PolarMazeProvider()
-    let ringHeight: CGFloat = 40.0
-    let myCell = PolarCell(col: 1, row: 2)
+    let ringHeight: CGFloat = 20.0
     let rowSize: Int = 13
     var body: some View {
         GeometryReader { geometry in
@@ -11,6 +10,12 @@ struct PolarMazeView: View {
             let centerScreen = CGPoint(x: geometry.size.width/2, y: geometry.size.height/2)
             ForEach(mazeProvider.polarRows, id: \.self) { row in
                 PolarRowView(row: row, centerScreen: centerScreen, ringHeight: ringHeight)
+            }
+        }.toolbar {
+            ToolbarItem {
+                Button("generate") {
+                    mazeProvider.recursiveBacktrace()
+                }
             }
         }
     }
