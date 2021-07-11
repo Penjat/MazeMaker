@@ -1,41 +1,21 @@
 import SwiftUI
 
 struct PolarMazeView: View {
+    @StateObject var mazeProvider = PolarMazeProvider()
     let ringHeight: CGFloat = 40.0
     let myCell = PolarCell(col: 1, row: 2)
     let rowSize: Int = 13
     var body: some View {
         GeometryReader { geometry in
-            let rows = createCells()
+            
             let centerScreen = CGPoint(x: geometry.size.width/2, y: geometry.size.height/2)
-            ForEach(rows, id: \.self) { row in
+            ForEach(mazeProvider.polarRows, id: \.self) { row in
                 PolarRowView(row: row, centerScreen: centerScreen, ringHeight: ringHeight)
             }
         }
     }
     
-    func createCells() -> [PolarRow] {
-        var rows = [PolarRow]()
-        
-        var numberCells =  8
-        for column in 0..<10 {
-            //            let innerRadians = CGFloat(col)*ringHeight
-            let col = CGFloat(column)
-            let rowArea = CGFloat.pi*CGFloat(ringHeight*col)*CGFloat(ringHeight*col) - CGFloat.pi*CGFloat(ringHeight*(col-1))*CGFloat(ringHeight*(col-1))
-            let idealCellArea = ringHeight*ringHeight
-            if rowArea/CGFloat(numberCells) > idealCellArea*2 {
-                numberCells = numberCells*2
-            }
-            print("column is: \(column) - \(numberCells) cells")
-            var cells = [PolarCell]()
-            for row in 0..<numberCells {
-                cells.append(PolarCell(col: column, row: row))
-            }
-            let polarRow = PolarRow(col: column , cells: cells)
-            rows.append(polarRow)
-        }
-        return rows
-    }
+    
 }
 
 struct PolarMazeView_Previews: PreviewProvider {
