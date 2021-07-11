@@ -6,7 +6,7 @@ struct ContentView: View {
     var body: some View {
         HStack {
             SideBar()
-            MazePresenterView().background(Color.blue)
+            PolarMazeView()
         }.environmentObject(mazeProvider)
         .environmentObject(displaySettings)
     }
