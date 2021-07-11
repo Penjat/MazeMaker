@@ -2,9 +2,11 @@ import Foundation
 
 class PolarRow: Hashable {
     let col: Int
-    init(col: Int, cells: [PolarCell]) {
+    let lastRow: Bool
+    init(col: Int, cells: [PolarCell], lastRow: Bool = false) {
         self.col = col
         self.cells = cells
+        self.lastRow = lastRow
     }
     
     let cells: [PolarCell]

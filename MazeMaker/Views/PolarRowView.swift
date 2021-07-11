@@ -6,7 +6,6 @@ struct PolarRowView: View {
     let ringHeight: CGFloat
     
     var body: some View {
-//        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/).foregroundColor(.red)
         ForEach(row.cells, id: \.self) { cell in
             
             drawCell(cell)
@@ -30,29 +29,22 @@ struct PolarRowView: View {
         //                let dx = centerScreen.x + outerRadians*cos(angle2)
         //                let dy = centerScreen.y + outerRadians*sin(angle2)
         return Group {
-            if !cell.bottomBlocked {
-                AnyView(PolarBottomWall(centerScreen: centerScreen, angle1: angle1, angle2: angle2, innerRadians: innerRadians, outerRadians: outerRadians))
+            if cell.bottomBlocked {
+                AnyView(PolarBottomWall(centerScreen: centerScreen, angle1: angle1, angle2: angle2, radius: innerRadians))
             }
-            if !cell.leftBlocked {
+            
+            if row.lastRow {
+                AnyView(PolarBottomWall(centerScreen: centerScreen, angle1: angle1, angle2: angle2, radius: outerRadians))
+            }
+            
+            if cell.leftBlocked {
                 Path { path in
                     path.move(to: CGPoint(x: ax, y: ay))
                     path.addLines([CGPoint(x: ax, y: ay),CGPoint(x: bx, y: by)])
                 }.stroke(Color.red, lineWidth: 4)
             }
         }
-        
-        
-            
-
     }
-    
-//    func leftWall(cell: PolarCell) -> Path? {
-//        if !cell.bottomBlocked {
-//            return Path { path in
-//                path.addArc(center: centerScreen, radius: innerRadians, startAngle: Angle.init(radians: Double(angle1)), endAngle: Angle.init(radians: Double(angle2)), clockwise: false)
-//            }.stroke(Color.red, lineWidth: 4)
-//        }
-//    }
 }
 
 struct PolarBottomWall: View {
@@ -60,18 +52,11 @@ struct PolarBottomWall: View {
     
     let angle1: CGFloat
     let angle2: CGFloat
-    let innerRadians: CGFloat
-    let outerRadians: CGFloat
+    let radius: CGFloat
     
     var body: some View {
         return AnyView(Path { path in
-            path.addArc(center: centerScreen, radius: innerRadians, startAngle: Angle.init(radians: Double(angle1)), endAngle: Angle.init(radians: Double(angle2)), clockwise: false)
+            path.addArc(center: centerScreen, radius: radius, startAngle: Angle.init(radians: Double(angle1)), endAngle: Angle.init(radians: Double(angle2)), clockwise: false)
         }.stroke(Color.red, lineWidth: 4))
     }
 }
-
-//struct PolarRowView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PolarRowView(row: PolarRow(cells: <#T##[PolarCell]#>))
-//    }
-//}

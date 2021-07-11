@@ -11,7 +11,8 @@ class PolarMazeProvider: ObservableObject {
         var rows = [PolarRow]()
         
         var numberCells =  8
-        for column in 0..<10 {
+        var numberColumns = 12
+        for column in 0..<numberColumns {
             //            let innerRadians = CGFloat(col)*ringHeight
             let col = CGFloat(column)
             let rowArea = CGFloat.pi*CGFloat(ringHeight*col)*CGFloat(ringHeight*col) - CGFloat.pi*CGFloat(ringHeight*(col-1))*CGFloat(ringHeight*(col-1))
@@ -24,7 +25,8 @@ class PolarMazeProvider: ObservableObject {
             for row in 0..<numberCells {
                 cells.append(PolarCell(col: column, row: row))
             }
-            let polarRow = PolarRow(col: column , cells: cells)
+            let lastRow = column == (numberColumns-1)
+            let polarRow = PolarRow(col: column , cells: cells, lastRow: lastRow)
             rows.append(polarRow)
         }
         return rows
