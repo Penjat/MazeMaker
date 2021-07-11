@@ -12,6 +12,13 @@ class PolarCell: Hashable {
     let col: Int
     let row: Int
     let isOpen: Bool
+    var leftBlocked: Bool {
+        return Bool.random()
+    }
+    
+    var bottomBlocked: Bool {
+        return Bool.random()
+    }
     
     init(col: Int, row: Int, isOpen: Bool = false) {
         self.col = col

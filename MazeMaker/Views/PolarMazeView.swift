@@ -14,8 +14,6 @@ struct PolarMazeView: View {
             }
         }
     }
-    
-    
 }
 
 struct PolarMazeView_Previews: PreviewProvider {
