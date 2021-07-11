@@ -4,12 +4,12 @@ import Combine
 class PrimsMazeGenerator: ObservableObject {
     let VISITED = "visited"
     @Published var isProcessing = false
-    var activeCells = [SquareCell]()
+    var activeCells = [Cell]()
     let variation: Double = 0.6
     var cellCount = 0
     var tunnelLength = Int.random(in: 1...150)
     
-    func findPathsCycling(mazeProvider: SquareMaze) {
+    func findPathsCycling(mazeProvider: MazeProvider) {
         guard !activeCells.isEmpty else {
             return
         }
@@ -22,9 +22,9 @@ class PrimsMazeGenerator: ObservableObject {
         if neighbors.isEmpty {
             activeCells.remove(at: randomIndex)
         } else {
-            if let otherCell = neighbors.randomElement(), let direction = cell.directionTo(otherCell) {
-                mazeProvider.setWall(cell: cell.location, direction: direction, wallState: .open)
-                otherCell.data = VISITED
+            if let otherCell = neighbors.randomElement() {
+                mazeProvider.setWall(cell1: cell, cell2: otherCell, wallState: .open)
+                otherCell.setData(VISITED)
                 cellCount += 1
                 
                 activeCells.remove(at: 0)
@@ -52,9 +52,9 @@ class PrimsMazeGenerator: ObservableObject {
         if neighbors.isEmpty {
             activeCells.remove(at: randomIndex)
         } else {
-            if let otherCell = neighbors.randomElement(), let direction = cell.directionTo(otherCell) {
-                mazeProvider.setWall(cell: cell.location, direction: direction, wallState: .open)
-                otherCell.data = VISITED
+            if let otherCell = neighbors.randomElement() {
+                mazeProvider.setWall(cell1: cell, cell2: otherCell, wallState: .open)
+                otherCell.setData(VISITED)
                 cellCount += 1
                 
                 activeCells.remove(at: 0)
@@ -80,9 +80,9 @@ class PrimsMazeGenerator: ObservableObject {
         if neighbors.isEmpty {
             activeCells.remove(at: randomIndex)
         } else {
-            if let otherCell = neighbors.randomElement(), let direction = cell.directionTo(otherCell) {
-                mazeProvider.setWall(cell: cell.location, direction: direction, wallState: .open)
-                otherCell.data = VISITED
+            if let otherCell = neighbors.randomElement() {
+                mazeProvider.setWall(cell1: cell, cell2: otherCell, wallState: .open)
+                otherCell.setData(VISITED)
                 activeCells.append(otherCell)
             }
         }
@@ -100,9 +100,9 @@ class PrimsMazeGenerator: ObservableObject {
         if neighbors.isEmpty {
             activeCells.remove(at: randomIndex)
         } else {
-            if let otherCell = neighbors.randomElement(), let direction = cell.directionTo(otherCell) {
-                mazeProvider.setWall(cell: cell.location, direction: direction, wallState: .open)
-                otherCell.data = VISITED
+            if let otherCell = neighbors.randomElement() {
+                mazeProvider.setWall(cell1: cell, cell2: otherCell, wallState: .open)
+                otherCell.setData(VISITED)
                 activeCells.append(otherCell)
                 cellCount += 1
             }
@@ -121,9 +121,9 @@ class PrimsMazeGenerator: ObservableObject {
         if neighbors.isEmpty {
             activeCells.remove(at: randomIndex)
         } else {
-            if let otherCell = neighbors.randomElement(), let direction = cell.directionTo(otherCell) {
-                mazeProvider.setWall(cell: cell.location, direction: direction, wallState: .open)
-                otherCell.data = VISITED
+            if let otherCell = neighbors.randomElement() {
+                mazeProvider.setWall(cell1: cell, cell2: otherCell, wallState: .open)
+                otherCell.setData(VISITED)
                 activeCells.append(otherCell)
                 cellCount += 1
             }

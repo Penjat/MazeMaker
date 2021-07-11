@@ -2,7 +2,10 @@ import Foundation
 import SwiftUI
 
 protocol MazeProvider {
-    
+    func neighborsFor(_ cellLocation: CellLocation) -> [Cell]
+    func setWall(cell1: Cell, cell2: Cell, wallState: WallState)
+    func cellAt(_ cellLocation: CellLocation) -> Cell?
+    func randomCell() -> Cell?
 }
 
 class SquareMaze: MazeProvider, ObservableObject {
@@ -18,6 +21,18 @@ class SquareMaze: MazeProvider, ObservableObject {
         generateMaze()
     }
     
+    func setWall(cell1: Cell, cell2: Cell, wallState: WallState) {
+        guard let squareCell1 = cell1 as? SquareCell, let squareCell2 = cell2 as? SquareCell, let direction = squareCell1.directionTo(squareCell2) else {
+            return
+        }
+        
+        setWall(cell: squareCell1.location, direction: direction, wallState: wallState)
+    }
+    
+    func randomCell() -> Cell? {
+        return grid.randomElement()?.randomElement() as? Cell
+    }
+    
     func createGrid(width: Int, height: Int) {
         grid = [[SquareCell?]](repeating: [SquareCell?](repeating: nil, count: height), count: width)
         blankMaze(width: width, height: height)
@@ -31,40 +46,40 @@ class SquareMaze: MazeProvider, ObservableObject {
         Wall(start: CGPoint(x: 0.0, y: CGFloat(grid[0].count)), end: CGPoint(x: CGFloat(grid.count), y: CGFloat(grid[0].count)))
     }
     
-    func neighborsFor(_ cellLocation: CellLocation) -> [SquareCell] {
+    func neighborsFor(_ cellLocation: CellLocation) -> [Cell] {
         return neighborsFor(x: cellLocation.x, y: cellLocation.y)
     }
     
-    func neighborsFor(x: Int, y: Int) -> [SquareCell] {
+    func neighborsFor(x: Int, y: Int) -> [Cell] {
         return [cellAt(x: x, y: y+1), cellAt(x: x+1, y: y), cellAt(x: x-1, y: y), cellAt(x: x, y: y-1)].compactMap{$0}
     }
     
-    func freeNeighbors(_ cellLocation: CellLocation) -> [SquareCell] {
-        guard let cell = cellAt(cellLocation) else {
+    func freeNeighbors(_ cellLocation: CellLocation) -> [Cell] {
+        guard let cell = cellAt(cellLocation) as? SquareCell else {
             return []
         }
-        var neighbors = [SquareCell]()
+        var neighbors = [Cell]()
         if cell.topBlocked == .open, let topCell = cellAt(x: cell.x, y: cell.y-1) {
             neighbors.append(topCell)
         }
         if cell.rightBlocked == .open, let rightCell = cellAt(x: cell.x+1, y: cell.y) {
             neighbors.append(rightCell)
         }
-        if let leftCell = cellAt(x: cell.x-1, y: cell.y), leftCell.rightBlocked == .open {
+        if let leftCell = cellAt(x: cell.x-1, y: cell.y) as? SquareCell, leftCell.rightBlocked == .open {
             neighbors.append(leftCell)
         }
-        if let bottomCell = cellAt(x: cell.x, y: cell.y+1), bottomCell.topBlocked == .open {
+        if let bottomCell = cellAt(x: cell.x, y: cell.y+1) as? SquareCell, bottomCell.topBlocked == .open {
             neighbors.append(bottomCell)
         }
         return neighbors
     }
     
-    func setWall(cell: CellLocation, direction: WallDirection, wallState: WallState) {
+    private func setWall(cell: CellLocation, direction: WallDirection, wallState: WallState) {
         switch direction {
         case .top:
-            cellAt(cell)?.topBlocked = wallState
+            squareCellAt(cell)?.topBlocked = wallState
         case .right:
-            cellAt(cell)?.rightBlocked = wallState
+            squareCellAt(cell)?.rightBlocked = wallState
         case .left:
             cellAt(x: cell.x-1, y: cell.y)?.rightBlocked = wallState
         case .bottom:
@@ -72,7 +87,11 @@ class SquareMaze: MazeProvider, ObservableObject {
         }
     }
     
-    func cellAt(_ cellLocation: CellLocation) -> SquareCell? {
+    private func squareCellAt(_ cellLocation: CellLocation) -> SquareCell? {
+        return cellAt(x: cellLocation.x, y: cellLocation.y)
+    }
+    
+    func cellAt(_ cellLocation: CellLocation) -> Cell? {
         return cellAt(x: cellLocation.x, y: cellLocation.y)
     }
     

@@ -2,9 +2,9 @@ import Foundation
 
 class DijkstraService {
     var longestPath = 0
-    var futhestCells = [SquareCell]()
-    var openCells = [SquareCell]()
-    var deadEnds = [SquareCell]()
+    var futhestCells = [Cell]()
+    var openCells = [Cell]()
+    var deadEnds = [Cell]()
     var hallways = 0
     var threeWayJunctions = 0
     var fourWayJunction = 0
@@ -24,10 +24,10 @@ class DijkstraService {
         findDistances(value: 0, mazeProvider: mazeProvider)
     }
     func findDistances(value: Int, mazeProvider: SquareMaze) {
-        var neighbors = [SquareCell]()
+        var neighbors = [Cell]()
         for cell in openCells {
             neighbors = neighbors + mazeProvider.freeNeighbors(cell.location).filter{$0.data == nil}
-            cell.data = value
+            cell.setData(value)
             let connectedNeighbors = mazeProvider.freeNeighbors(cell.location).count
             switch connectedNeighbors {
             case 1:
