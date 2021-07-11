@@ -7,6 +7,7 @@ struct ContentView: View {
         HStack {
             SideBar()
             PolarMazeView()
+//            MazePresenterView()
         }.environmentObject(mazeProvider)
         .environmentObject(displaySettings)
     }

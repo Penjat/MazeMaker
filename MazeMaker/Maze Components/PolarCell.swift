@@ -1,6 +1,28 @@
 import Foundation
 
-class PolarCell: Hashable {
+class PolarCell: Hashable, Cell {
+    var x: Int {
+        return row
+    }
+    
+    var y: Int {
+        return col
+    }
+    
+    func setData(_ data: Any?) {
+        self.data = data
+    }
+    
+    var data: Any? = nil
+    
+    var walls: [Wall] {
+        []
+    }
+    
+    var location: CellLocation {
+        return CellLocation(x: x, y: y)
+    }
+    
     var hashValue: Int {
             return ObjectIdentifier(self).hashValue
         }
