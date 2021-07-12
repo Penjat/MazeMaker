@@ -39,7 +39,7 @@ class PrimsMazeGenerator: ObservableObject {
         findPathsCycling(mazeProvider: mazeProvider)
     }
     
-    func findPaths(mazeProvider: SquareMaze) {
+    func findPaths(mazeProvider: MazeProvider) {
         guard !activeCells.isEmpty else {
             return
         }
@@ -69,7 +69,7 @@ class PrimsMazeGenerator: ObservableObject {
         findPaths(mazeProvider: mazeProvider)
     }
     
-    func simplifiedFindPaths(mazeProvider: SquareMaze) {
+    func simplifiedFindPaths(mazeProvider: MazeProvider) {
         guard !activeCells.isEmpty else {
             return
         }
@@ -89,7 +89,7 @@ class PrimsMazeGenerator: ObservableObject {
         simplifiedFindPaths(mazeProvider: mazeProvider)
     }
     
-    func primsToBackTrace(mazeProvider: SquareMaze) {
+    func primsToBackTrace(mazeProvider: MazeProvider) {
         guard !activeCells.isEmpty else {
             return
         }
@@ -110,7 +110,7 @@ class PrimsMazeGenerator: ObservableObject {
         primsToBackTrace(mazeProvider: mazeProvider)
     }
     
-    func backtraceToPrims(mazeProvider: SquareMaze) {
+    func backtraceToPrims(mazeProvider: MazeProvider) {
         guard !activeCells.isEmpty else {
             return
         }

@@ -6,4 +6,5 @@ class MazeDisplaySettings: ObservableObject {
     @Published var color2: ColorOutput = ColorOutput(color: .blue, red: 0.0, green: 0.0, blue: 1.0)
     @Published var wallColor: ColorOutput = ColorOutput(color: .black, red: 0.0, green: 0.0, blue: 0.0)
     @Published var wallWidth: CGFloat = 2.0
+    
 }

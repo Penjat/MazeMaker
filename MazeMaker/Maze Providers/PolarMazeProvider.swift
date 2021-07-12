@@ -8,15 +8,22 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
         self.polarRows = createCells(ringHeight: 20)
         
         print("Generating maze")
-//        setWall(cell1: cellAt(CellLocation(x: 1, y: 1))!, cell2: cellAt(CellLocation(x: 0, y: 1))!, wallState: .open)
-//        setWall(cell1: cellAt(CellLocation(x: 1, y: 1))!, cell2: cellAt(CellLocation(x: 1, y: 2))!, wallState: .open)
-        RecursiveBacktraceGenertor.generate(mazeProvider: self)
+//        RecursiveBacktraceGenertor.generate(mazeProvider: self)
+        prims()
     }
     
     func recursiveBacktrace() {
         print("generating maze")
         blancMaze()
         RecursiveBacktraceGenertor.generate(mazeProvider: self)
+    }
+    
+    func prims() {
+        
+        let prims = PrimsMazeGenerator()
+        let startingCell = randomCell()!
+        prims.activeCells.append(startingCell)
+        prims.primsToBackTrace(mazeProvider: self)
     }
     
     func blancMaze() {
@@ -42,7 +49,6 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
             for neighbor in newNeighbors {
                 neighbors.append(neighbor)
             }
-//            neighbors = neighbors + newNeighbors
         }
         
         if let lowerRow = rowAt(cellLocation.y-1) {
@@ -53,7 +59,6 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
             for neighbor in newNeighbors {
                 neighbors.append(neighbor)
             }
-//            neighbors = neighbors + newNeighbors
         }
         
         return neighbors.compactMap{$0}
