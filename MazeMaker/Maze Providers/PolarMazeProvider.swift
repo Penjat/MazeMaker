@@ -143,7 +143,7 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
     func createCells(ringHeight: CGFloat) -> [PolarRow] {
         var rows = [PolarRow]()
         
-        var numberCells =  3
+        var numberCells =  5
         var numberColumns = 23
         for column in 0..<numberColumns {
             //            let innerRadians = CGFloat(col)*ringHeight

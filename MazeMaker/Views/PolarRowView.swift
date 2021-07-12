@@ -41,7 +41,7 @@ struct PolarRowView: View {
                 Path { path in
                     path.move(to: CGPoint(x: ax, y: ay))
                     path.addLines([CGPoint(x: ax, y: ay),CGPoint(x: bx, y: by)])
-                }.stroke(Color.red, lineWidth: 4)
+                }.stroke(Color.blue, lineWidth: 4)
             }
         }
     }
@@ -57,6 +57,6 @@ struct PolarBottomWall: View {
     var body: some View {
         return AnyView(Path { path in
             path.addArc(center: centerScreen, radius: radius, startAngle: Angle.init(radians: Double(angle1)), endAngle: Angle.init(radians: Double(angle2)), clockwise: false)
-        }.stroke(Color.red, lineWidth: 4))
+        }.stroke(Color.blue, lineWidth: 4))
     }
 }
