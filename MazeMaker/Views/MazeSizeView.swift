@@ -54,7 +54,7 @@ struct MazeSizeView: View {
     //                            mazeProvider.generateMaze()
                                 displaySettings.mazeType = mazeType
                             } else {
-                                displaySettings.mazeProvider = PolarMazeProvider()
+                                displaySettings.mazeProvider = PolarMazeProvider(startingCells: newWidth, columns: newHeight)
                             }
                             
                             

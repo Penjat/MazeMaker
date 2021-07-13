@@ -1,6 +1,19 @@
 import Foundation
 
 class PolarMazeProvider: ObservableObject, MazeProvider {
+    
+    
+    @Published var polarRows = [PolarRow]()
+    
+    init(startingCells: Int, columns: Int) {
+        print("creating cells")
+        self.polarRows = createCells(ringHeight: 20, startingCells: startingCells, numberColumns: columns)
+        
+        print("Generating maze")
+//        RecursiveBacktraceGenertor.generate(mazeProvider: self)
+        prims()
+    }
+    
     func tiles() -> [Tile] {
         return []
     }
@@ -10,17 +23,6 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
         print("# walls: \(walls.count)")
         return walls
         
-    }
-    
-    @Published var polarRows = [PolarRow]()
-    
-    init() {
-        print("creating cells")
-        self.polarRows = createCells(ringHeight: 20)
-        
-        print("Generating maze")
-//        RecursiveBacktraceGenertor.generate(mazeProvider: self)
-        prims()
     }
     
     func recursiveBacktrace() {
@@ -147,22 +149,21 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
         return polarRows.randomElement()?.cells.randomElement() as? Cell
     }
     
-    func createCells(ringHeight: CGFloat) -> [PolarRow] {
+    func createCells(ringHeight: CGFloat, startingCells: Int, numberColumns: Int) -> [PolarRow] {
         var rows = [PolarRow]()
         
-        var numberCells =  5
-        var numberColumns = 23
+        var rowSize =  startingCells
         for column in 0..<numberColumns {
             //            let innerRadians = CGFloat(col)*ringHeight
             let col = CGFloat(column)
             let rowArea = CGFloat.pi*CGFloat(ringHeight*col)*CGFloat(ringHeight*col) - CGFloat.pi*CGFloat(ringHeight*(col-1))*CGFloat(ringHeight*(col-1))
             let idealCellArea = ringHeight*ringHeight
-            if rowArea/CGFloat(numberCells) > idealCellArea*2 {
-                numberCells = numberCells*2
+            if rowArea/CGFloat(rowSize) > idealCellArea*2 {
+                rowSize = rowSize*2
             }
-            print("column is: \(column) - \(numberCells) cells")
+            print("column is: \(column) - \(rowSize) cells")
             var cells = [PolarCell]()
-            for row in 0..<numberCells {
+            for row in 0..<rowSize {
                 cells.append(PolarCell(col: column, row: row))
             }
             let lastRow = column == (numberColumns-1)
