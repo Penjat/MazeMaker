@@ -30,8 +30,8 @@
             filePath = "MazeMaker/Maze Providers/PolarMazeProvider.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "cellAt(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "MazeMaker/Maze Providers/PolarMazeProvider.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "cellAt(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,10 +62,58 @@
             filePath = "MazeMaker/Maze Providers/PolarMazeProvider.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "cellAt(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4B3893C5-582B-4660-BC3E-95444AFE2CC5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MazeMaker/Maze Providers/PolarMazeProvider.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "walls(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4B3893C5-582B-4660-BC3E-95444AFE2CC5 - 5f72f18f700dc035"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MazeMaker.PolarMazeProvider.walls(__C.CGPoint) -&gt; Swift.Array&lt;MazeMaker.Wall&gt;"
+                  moduleName = "MazeMaker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Development/MazeMaker/MazeMaker/Maze%20Providers/PolarMazeProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "9"
+                  endingLineNumber = "9"
+                  offsetFromSymbolStart = "49">
+               </Location>
+               <Location
+                  uuid = "4B3893C5-582B-4660-BC3E-95444AFE2CC5 - 37c623b363b2384a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (MazeMaker.PolarRow) -&gt; Swift.Array&lt;MazeMaker.Wall&gt; in MazeMaker.PolarMazeProvider.walls(__C.CGPoint) -&gt; Swift.Array&lt;MazeMaker.Wall&gt;"
+                  moduleName = "MazeMaker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Development/MazeMaker/MazeMaker/Maze%20Providers/PolarMazeProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "9"
+                  endingLineNumber = "9"
+                  offsetFromSymbolStart = "39">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

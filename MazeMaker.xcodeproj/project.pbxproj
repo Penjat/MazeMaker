@@ -22,6 +22,7 @@
 		0BBE9674269AB4080069BDEE /* PolarRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE9673269AB4080069BDEE /* PolarRow.swift */; };
 		0BBE9676269B36FE0069BDEE /* PolarRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE9675269B36FE0069BDEE /* PolarRowView.swift */; };
 		0BBE9678269B441F0069BDEE /* PolarMazeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE9677269B441F0069BDEE /* PolarMazeProvider.swift */; };
+		0BBE96DA269D40580069BDEE /* MazeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE96D9269D40580069BDEE /* MazeType.swift */; };
 		0BD3B595268EC1730024EBDC /* DijkstraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3B594268EC1730024EBDC /* DijkstraService.swift */; };
 		0BD3B59D268ECBAA0024EBDC /* MazeMakerIOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3B59C268ECBAA0024EBDC /* MazeMakerIOSApp.swift */; };
 		0BD3B59F268ECBAA0024EBDC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3B59E268ECBAA0024EBDC /* ContentView.swift */; };
@@ -61,6 +62,7 @@
 		0BBE9673269AB4080069BDEE /* PolarRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolarRow.swift; sourceTree = "<group>"; };
 		0BBE9675269B36FE0069BDEE /* PolarRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolarRowView.swift; sourceTree = "<group>"; };
 		0BBE9677269B441F0069BDEE /* PolarMazeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolarMazeProvider.swift; sourceTree = "<group>"; };
+		0BBE96D9269D40580069BDEE /* MazeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeType.swift; sourceTree = "<group>"; };
 		0BD3B594268EC1730024EBDC /* DijkstraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DijkstraService.swift; sourceTree = "<group>"; };
 		0BD3B59A268ECBAA0024EBDC /* MazeMakerIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MazeMakerIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BD3B59C268ECBAA0024EBDC /* MazeMakerIOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeMakerIOSApp.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				0B9AF6EA268AEA750044DC40 /* Cell.swift */,
 				0B801D882692C43500129463 /* PolarCell.swift */,
 				0BBE9673269AB4080069BDEE /* PolarRow.swift */,
+				0BBE96D9269D40580069BDEE /* MazeType.swift */,
 			);
 			path = "Maze Components";
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 			files = (
 				0BD3B5B62690250C0024EBDC /* SideBar.swift in Sources */,
 				0BD3B5C126920EC00024EBDC /* MazeGenerationSettings.swift in Sources */,
+				0BBE96DA269D40580069BDEE /* MazeType.swift in Sources */,
 				0BD3B5BD26915E850024EBDC /* PrimsSimplifiedGenerator.swift in Sources */,
 				0BBE9674269AB4080069BDEE /* PolarRow.swift in Sources */,
 				0BBE9678269B441F0069BDEE /* PolarMazeProvider.swift in Sources */,

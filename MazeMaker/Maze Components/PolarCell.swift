@@ -16,6 +16,7 @@ class PolarCell: Hashable, Cell {
     var data: Any? = nil
     
     var walls: [Wall] {
+        
         []
     }
     

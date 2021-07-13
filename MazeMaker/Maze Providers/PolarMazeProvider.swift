@@ -1,6 +1,17 @@
 import Foundation
 
 class PolarMazeProvider: ObservableObject, MazeProvider {
+    func tiles() -> [Tile] {
+        return []
+    }
+    
+    func walls(_ center: CGPoint) -> [Wall] {
+        let walls = polarRows.flatMap { $0.walls(center) }
+        print("# walls: \(walls.count)")
+        return walls
+        
+    }
+    
     @Published var polarRows = [PolarRow]()
     
     init() {
@@ -135,10 +146,6 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
     func randomCell() -> Cell? {
         return polarRows.randomElement()?.cells.randomElement() as? Cell
     }
-    
-    
-    
-    
     
     func createCells(ringHeight: CGFloat) -> [PolarRow] {
         var rows = [PolarRow]()

@@ -50,10 +50,10 @@ struct SideBar: View {
     
     var stats: some View {
         VStack {
-            Text("\(mazeProvider.deadEnds) dead ends.")
-            Text("\(mazeProvider.hallways) hallways")
-            Text("\(mazeProvider.threeWayJunctions) three way junctions.")
-            Text("\(mazeProvider.fourWayJunctions) four way junctions.")
+//            Text("\(mazeProvider.deadEnds) dead ends.")
+//            Text("\(mazeProvider.hallways) hallways")
+//            Text("\(mazeProvider.threeWayJunctions) three way junctions.")
+//            Text("\(mazeProvider.fourWayJunctions) four way junctions.")
         }
     }
     

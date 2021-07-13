@@ -4,11 +4,17 @@ struct MazeSizeView: View {
     @State var expanded = false
     @State var width: String = ""
     @State var height: String = ""
-    @EnvironmentObject var mazeProvider: SquareMaze
+    @State var mazeType: MazeType = .square
+    
+    @EnvironmentObject var displaySettings: MazeDisplaySettings
+    
     var body: some View {
-        states.onAppear {
-            width = "\(mazeProvider.grid.count)"
-            height = "\(mazeProvider.grid[0].count)"
+        states.padding(40)
+            .background(Color.blue)
+            .onAppear {
+//            width = "\(mazeProvider.grid.count)"
+//            height = "\(mazeProvider.grid[0].count)"
+                mazeType = displaySettings.mazeType
         }
     }
     
@@ -16,6 +22,10 @@ struct MazeSizeView: View {
         if expanded {
             return AnyView(
                 VStack {
+                    Picker("Maze Type", selection: $mazeType) {
+                        Text("Grid").tag(MazeType.square)
+                        Text("Polar").tag(MazeType.polar)
+                    }.pickerStyle(SegmentedPickerStyle())
                     HStack {
                         TextField("width", text: $width)
                         TextField("width", text: $height)
@@ -23,8 +33,8 @@ struct MazeSizeView: View {
                     HStack {
                         Button {
                             expanded = false
-                            width = "\(mazeProvider.grid.count)"
-                            height = "\(mazeProvider.grid[0].count)"
+//                            width = "\(mazeProvider.grid.count)"
+//                            height = "\(mazeProvider.grid[0].count)"
                         } label: {
                             Text("cancel")
                         }
@@ -34,8 +44,19 @@ struct MazeSizeView: View {
                                 return
                             }
                             expanded = false
-                            mazeProvider.createGrid(width: newWidth, height: newHeight)
-                            mazeProvider.generateMaze()
+                            displaySettings.mazeType = mazeType
+                            if mazeType == .square {
+                                let squareMaze = SquareMaze(width: newWidth, height: newHeight)
+                                    squareMaze.createGrid(width: newWidth, height: newHeight)
+                                squareMaze.backtraceToPrims()
+                                displaySettings.mazeProvider = squareMaze
+                                
+    //                            mazeProvider.generateMaze()
+                                displaySettings.mazeType = mazeType
+                            } else {
+                                displaySettings.mazeProvider = PolarMazeProvider()
+                            }
+                            
                             
                         } label: {
                             Text("create")
@@ -44,8 +65,9 @@ struct MazeSizeView: View {
                 }
             )
         } else {
-            return AnyView(Text("\(mazeProvider.grid.count) x \(mazeProvider.grid[0].count)").onTapGesture {
-                expanded = true
+//            return AnyView(Text("\(mazeProvider.grid.count) x \(mazeProvider.grid[0].count)").onTapGesture {
+            return AnyView(Text("Hi").onTapGesture {
+            expanded = true
             })
         }
     }

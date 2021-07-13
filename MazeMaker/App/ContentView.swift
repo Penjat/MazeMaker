@@ -1,14 +1,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var mazeProvider = SquareMaze(width: 80, height: 60)
     @StateObject var displaySettings = MazeDisplaySettings()
     var body: some View {
         HStack {
             SideBar()
-            PolarMazeView()
-//            MazePresenterView()
-        }.environmentObject(mazeProvider)
+            if displaySettings.mazeType == .polar {
+                PolarMazeView()
+            } else {
+                MazePresenterView()
+            }
+        }
         .environmentObject(displaySettings)
     }
 }

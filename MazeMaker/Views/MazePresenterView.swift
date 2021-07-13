@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct MazePresenterView: View {
-    @EnvironmentObject var mazeProvider: SquareMaze
     @EnvironmentObject var displaySettings: MazeDisplaySettings
     @State private var percentage: CGFloat = .zero
     
@@ -9,15 +8,15 @@ struct MazePresenterView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
             GeometryReader { geometry in
-                let tiles = mazeProvider.tiles()
-                ForEach(mazeProvider.tiles(), id: \.self) { tile in
+                let centerScreen = CGPoint.zero//CGPoint(x: geometry.size.width/2, y: geometry.size.height/2)
+                ForEach(displaySettings.mazeProvider.tiles(), id: \.self) { tile in
                     Path { path in
                         path.addRect(CGRect(x: tile.x, y: tile.y, width: 1, height: 1)*cellSize)
                     }.fill(blendColorForValue(value: tile.value))
                 }
                 
                 Path { path in
-                    for wall in mazeProvider.walls().shuffled() {
+                    for wall in displaySettings.mazeProvider.walls(centerScreen) {
                         path.move(
                             to: wall.start*cellSize
                         )

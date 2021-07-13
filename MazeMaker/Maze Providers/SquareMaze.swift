@@ -6,6 +6,8 @@ protocol MazeProvider {
     func setWall(cell1: Cell, cell2: Cell, wallState: WallState)
     func cellAt(_ cellLocation: CellLocation) -> Cell?
     func randomCell() -> Cell?
+    func tiles() -> [Tile]
+    func walls(_ center: CGPoint) -> [Wall]
 }
 
 class SquareMaze: MazeProvider, ObservableObject {
@@ -102,7 +104,7 @@ class SquareMaze: MazeProvider, ObservableObject {
         return grid[x][y]
     }
     
-    func walls() -> [Wall] {
+    func walls(_ center: CGPoint) -> [Wall] {
         return grid.flatMap{$0}.flatMap { cell -> [Wall] in
             cell?.walls ?? []
         } + [leftWall, bottomWall]
@@ -197,3 +199,5 @@ struct ColorInput {
     let blue: Double
     let green: Double
 }
+
+
