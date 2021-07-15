@@ -5,13 +5,13 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
     
     @Published var polarRows = [PolarRow]()
     
-    init(startingCells: Int, columns: Int) {
+    init(wallHeight: CGFloat, startingCells: Int, columns: Int) {
         print("creating cells")
-        self.polarRows = createCells(ringHeight: 20, startingCells: startingCells, numberColumns: columns)
+        self.polarRows = createCells(ringHeight: wallHeight, startingCells: startingCells, numberColumns: columns)
         
         print("Generating maze")
-//        RecursiveBacktraceGenertor.generate(mazeProvider: self)
-        prims()
+        RecursiveBacktraceGenertor.generate(mazeProvider: self)
+//        prims()
     }
     
     func tiles() -> [Tile] {
@@ -27,7 +27,7 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
     
     func recursiveBacktrace() {
         print("generating maze")
-        blancMaze()
+        clearData()
         RecursiveBacktraceGenertor.generate(mazeProvider: self)
     }
     
@@ -39,7 +39,7 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
         prims.primsToBackTrace(mazeProvider: self)
     }
     
-    func blancMaze() {
+    func clearData() {
         for row in polarRows {
             for cell in row.cells {
                 cell.setData(nil)

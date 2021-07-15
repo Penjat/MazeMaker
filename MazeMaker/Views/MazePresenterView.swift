@@ -4,30 +4,26 @@ struct MazePresenterView: View {
     @EnvironmentObject var displaySettings: MazeDisplaySettings
     @State private var percentage: CGFloat = .zero
     
-    let cellSize: CGFloat = 10.0
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
             GeometryReader { geometry in
-                let centerScreen = CGPoint.zero//CGPoint(x: geometry.size.width/2, y: geometry.size.height/2)
+                let centerScreen = CGPoint(x: geometry.size.width/2.0, y: geometry.size.height/2.0)
                 ForEach(displaySettings.mazeProvider.tiles(), id: \.self) { tile in
                     Path { path in
-                        path.addRect(CGRect(x: tile.x, y: tile.y, width: 1, height: 1)*cellSize)
+                        path.addRect(CGRect(x: tile.x, y: tile.y, width: 1, height: 1))
                     }.fill(blendColorForValue(value: tile.value))
                 }
                 
                 Path { path in
                     for wall in displaySettings.mazeProvider.walls(centerScreen) {
                         path.move(
-                            to: wall.start*cellSize
+                            to: wall.start
                         )
                         path.addLine(
-                            to: wall.end*cellSize
+                            to: wall.end
                         )
                     }
                 }.stroke(displaySettings.wallColor.color, lineWidth: displaySettings.wallWidth)
-                .toolbar {
-                    
-                }
             }.padding()
         }
     }

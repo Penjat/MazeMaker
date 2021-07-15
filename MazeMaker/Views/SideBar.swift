@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct SideBar: View {
-    @EnvironmentObject var mazeProvider: SquareMaze
     @EnvironmentObject var displaySettings: MazeDisplaySettings
     @State var color1: Color = .blue
     @State var showSetSize = true
@@ -13,23 +12,25 @@ struct SideBar: View {
                 
                 Button("Binary Tree") {
                     print("pressed button")
-                    mazeProvider.generateBinaryMaze()
+//                    mazeProvider.generateBinaryMaze()
                 }
                 Button("Recursive Backtrace") {
-                    mazeProvider.generateMaze()
+                    print("backtrace")
+                    displaySettings.mazeProvider.clearData()
+                    RecursiveBacktraceGenertor.generate(mazeProvider: displaySettings.mazeProvider)
                 }
                 Button("Prims Simplified") {
-                    mazeProvider.generateSimplifiedPrimsMaze()
+//                    mazeProvider.generateSimplifiedPrimsMaze()
                 }
                 
                 Button("Backtrace to Prims") {
                     print("pressed button")
-                    mazeProvider.backtraceToPrims()
+//                    mazeProvider.backtraceToPrims()
                 }
                 
                 Button("Prims to Backtrace") {
                     print("pressed button")
-                    mazeProvider.generatePrimsMaze()
+//                    mazeProvider.generatePrimsMaze()
                 }
                 HStack {
                     ColorPicker(outputColor: $displaySettings.color1)

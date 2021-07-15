@@ -8,6 +8,7 @@ protocol MazeProvider {
     func randomCell() -> Cell?
     func tiles() -> [Tile]
     func walls(_ center: CGPoint) -> [Wall]
+    func clearData()
 }
 
 class SquareMaze: MazeProvider, ObservableObject {

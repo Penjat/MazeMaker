@@ -6,7 +6,7 @@ struct PolarMazeView: View {
         let polarMaze = displaySettings.mazeProvider as? PolarMazeProvider
         return polarMaze?.polarRows ?? []
     }
-    let ringHeight: CGFloat = 20.0
+    var ringHeight: CGFloat { displaySettings.wallSize }
     let rowSize: Int = 13
     var body: some View {
         GeometryReader { geometry in

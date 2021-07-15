@@ -5,6 +5,8 @@ struct PolarRowView: View {
     let centerScreen: CGPoint
     let ringHeight: CGFloat
     
+    @EnvironmentObject var displaySettings: MazeDisplaySettings
+    
     var body: some View {
         ForEach(row.cells, id: \.self) { cell in
             
@@ -41,13 +43,14 @@ struct PolarRowView: View {
                 Path { path in
                     path.move(to: CGPoint(x: ax, y: ay))
                     path.addLines([CGPoint(x: ax, y: ay),CGPoint(x: bx, y: by)])
-                }.stroke(Color.blue, lineWidth: 4)
+                }.stroke(displaySettings.wallColor.color, lineWidth: displaySettings.wallWidth)
             }
         }
     }
 }
 
 struct PolarBottomWall: View {
+    @EnvironmentObject var displaySettings: MazeDisplaySettings
     let centerScreen: CGPoint
     
     let angle1: CGFloat
@@ -57,6 +60,6 @@ struct PolarBottomWall: View {
     var body: some View {
         return AnyView(Path { path in
             path.addArc(center: centerScreen, radius: radius, startAngle: Angle.init(radians: Double(angle1)), endAngle: Angle.init(radians: Double(angle2)), clockwise: false)
-        }.stroke(Color.blue, lineWidth: 4))
+        }.stroke(displaySettings.wallColor.color, lineWidth: displaySettings.wallWidth))
     }
 }

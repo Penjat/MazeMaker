@@ -3,10 +3,12 @@ import Foundation
 class RecursiveBacktraceGenertor {
     static let VISITED = "visited"
     static func generate(mazeProvider: MazeProvider) {
+        print("generating maze")
         guard let location = mazeProvider.randomCell()?.location else {
             return
         }
         carvePaths(at: location, mazeProvider: mazeProvider)
+        print("done")
     }
     
     static func carvePaths(at location: CellLocation, mazeProvider: MazeProvider) {

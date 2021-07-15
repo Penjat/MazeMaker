@@ -4,6 +4,7 @@ struct MazeSizeView: View {
     @State var expanded = false
     @State var width: String = ""
     @State var height: String = ""
+    @State var wallSize: String = ""
     @State var mazeType: MazeType = .square
     
     @EnvironmentObject var displaySettings: MazeDisplaySettings
@@ -29,6 +30,7 @@ struct MazeSizeView: View {
                     HStack {
                         TextField("width", text: $width)
                         TextField("width", text: $height)
+                        TextField("wall size", text: $wallSize)
                     }
                     HStack {
                         Button {
@@ -40,7 +42,7 @@ struct MazeSizeView: View {
                         }
                         
                         Button {
-                            guard let newWidth = Int(width), let newHeight = Int(height) else {
+                            guard let newWidth = Int(width), let newHeight = Int(height), let wallSize = Int(wallSize) else {
                                 return
                             }
                             expanded = false
@@ -54,7 +56,8 @@ struct MazeSizeView: View {
     //                            mazeProvider.generateMaze()
                                 displaySettings.mazeType = mazeType
                             } else {
-                                displaySettings.mazeProvider = PolarMazeProvider(startingCells: newWidth, columns: newHeight)
+                                displaySettings.mazeProvider = PolarMazeProvider(wallHeight: CGFloat(wallSize), startingCells: newWidth, columns: newHeight)
+                                displaySettings.wallSize = CGFloat(wallSize)
                             }
                             
                             

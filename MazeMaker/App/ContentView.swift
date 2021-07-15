@@ -5,11 +5,7 @@ struct ContentView: View {
     var body: some View {
         HStack {
             SideBar()
-            if displaySettings.mazeType == .polar {
-                PolarMazeView()
-            } else {
-                MazePresenterView()
-            }
+            MazePresenterView()
         }
         .environmentObject(displaySettings)
     }
