@@ -1,34 +1,70 @@
 import SwiftUI
 
 struct SideBar: View {
-    @EnvironmentObject var mazeProvider: SquareMaze
+    @EnvironmentObject var displaySettings: MazeDisplaySettings
     @State var color1: Color = .blue
+    @State var showSetSize = true
     var body: some View {
-        List {
-            
-            Button("SAVE") {
-                saveMaze()
+        ScrollView {
+            VStack(alignment: .center, spacing: 20){
+                MazeSizeView()
+                stats
+                
+                Button("Binary Tree") {
+                    print("pressed button")
+//                    mazeProvider.generateBinaryMaze()
+                }
+                Button("Recursive Backtrace") {
+                    print("backtrace")
+                    displaySettings.mazeProvider.clearData()
+                    RecursiveBacktraceGenertor.generate(mazeProvider: displaySettings.mazeProvider)
+                }
+                Button("Prims Simplified") {
+//                    mazeProvider.generateSimplifiedPrimsMaze()
+                }
+                
+                Button("Backtrace to Prims") {
+                    print("pressed button")
+//                    mazeProvider.backtraceToPrims()
+                }
+                
+                Button("Prims to Backtrace") {
+                    print("pressed button")
+//                    mazeProvider.generatePrimsMaze()
+                }
+                HStack {
+                    ColorPicker(outputColor: $displaySettings.color1)
+                    ColorPicker(outputColor: $displaySettings.color2)
+                }
+                
+                HStack {
+                    ColorPicker(outputColor: $displaySettings.wallColor)
+                    Slider(value: $displaySettings.wallWidth, in: 0.0...14.0) {
+                        
+                    }
+                }
+                Spacer()
+                    
             }
-            Button("Binary Tree") {
-                print("pressed button")
-                mazeProvider.generateBinaryMaze()
-            }
-            Button("Recursive Backtrace") {
-                mazeProvider.generateMaze()
-            }
-            Button("Prims Simplified") {
-                mazeProvider.generateSimplifiedPrimsMaze()
-            }
-        }.listStyle(SidebarListStyle())
+        }.frame(width:200).padding()
+    }
+    
+    var stats: some View {
+        VStack {
+//            Text("\(mazeProvider.deadEnds) dead ends.")
+//            Text("\(mazeProvider.hallways) hallways")
+//            Text("\(mazeProvider.threeWayJunctions) three way junctions.")
+//            Text("\(mazeProvider.fourWayJunctions) four way junctions.")
+        }
     }
     
     func saveMaze() {
-//        let nsView = NSHostingView(rootView: MazePresenterView())
-//        let bitmapRep = nsView.bitmapImageRepForCachingDisplay(in: nsView.bounds)!
-//        bitmapRep.size = nsView.bounds.size
-//        nsView.cacheDisplay(in: nsView.bounds, to: bitmapRep)
-//        let data = image.representation(using: .jpeg, properties: [:])
-//        try data?.write(to: path)
+        //        let nsView = NSHostingView(rootView: MazePresenterView())
+        //        let bitmapRep = nsView.bitmapImageRepForCachingDisplay(in: nsView.bounds)!
+        //        bitmapRep.size = nsView.bounds.size
+        //        nsView.cacheDisplay(in: nsView.bounds, to: bitmapRep)
+        //        let data = image.representation(using: .jpeg, properties: [:])
+        //        try data?.write(to: path)
     }
 }
 
@@ -49,3 +85,5 @@ struct SideBar: View {
 //        SideBar()
 //    }
 //}
+
+    

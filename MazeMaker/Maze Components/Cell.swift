@@ -15,7 +15,20 @@ enum WallDirection {
     case left
 }
 
-class SquareCell {
+protocol Cell {
+    var x: Int { get }
+    var y: Int { get }
+    func setData(_ data: Any?)
+    var data: Any? { get }
+    var walls: [Wall] { get }
+    var location: CellLocation { get }
+}
+
+class SquareCell: Cell {
+    func setData(_ data: Any?) {
+        self.data = data
+    }
+    
     internal init(x: Int, y: Int, data: Any? = nil, topBlocked: WallState = .blocked, rightBlocked: WallState = .blocked) {
         self.x = x
         self.y = y
