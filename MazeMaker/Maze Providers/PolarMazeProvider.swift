@@ -178,7 +178,7 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
                 cells.append(PolarCell(col: column, row: row))
             }
             let lastRow = column == (numberColumns-1)
-            let polarRow = PolarRow(col: column , cells: cells, lastRow: lastRow)
+            let polarRow = PolarRow(col: column , cells: cells, lastRow: lastRow, ringHeight: ringHeight)
             rows.append(polarRow)
         }
         return rows

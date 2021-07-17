@@ -18,10 +18,13 @@ class SquareMaze: MazeProvider, ObservableObject {
     @Published var hallways: Int = 0
     @Published var threeWayJunctions: Int = 0
     @Published var fourWayJunctions: Int = 0
+    let wallHeight: CGFloat
     
-    init(width: Int, height: Int) {
+    init(width: Int, height: Int, wallHeight: CGFloat) {
+        self.wallHeight = wallHeight
         createGrid(width: width, height: height)
         generateMaze()
+        
     }
     
     func setWall(cell1: Cell, cell2: Cell, wallState: WallState) {
@@ -42,11 +45,11 @@ class SquareMaze: MazeProvider, ObservableObject {
     }
     
     var leftWall: Wall {
-        Wall(start: CGPoint.zero, end: CGPoint(x: 0.0, y: CGFloat(grid[0].count)))
+        Wall(start: CGPoint.zero, end: CGPoint(x: 0.0, y: CGFloat(grid[0].count)))*wallHeight
     }
     
     var bottomWall: Wall {
-        Wall(start: CGPoint(x: 0.0, y: CGFloat(grid[0].count)), end: CGPoint(x: CGFloat(grid.count), y: CGFloat(grid[0].count)))
+        Wall(start: CGPoint(x: 0.0, y: CGFloat(grid[0].count)), end: CGPoint(x: CGFloat(grid.count), y: CGFloat(grid[0].count)))*wallHeight
     }
     
     func neighborsFor(_ cellLocation: CellLocation) -> [Cell] {
@@ -107,14 +110,25 @@ class SquareMaze: MazeProvider, ObservableObject {
     
     func walls(_ center: CGPoint) -> [Wall] {
         return grid.flatMap{$0}.flatMap { cell -> [Wall] in
-            cell?.walls ?? []
+            cell?.walls.map{ $0*wallHeight } ?? []
         } + [leftWall, bottomWall]
     }
     
     func tiles(_ center: CGPoint) -> [Tile] {
         return grid.flatMap{$0}.flatMap { cell -> Tile in
             let value = Double(cell?.data as? Int ?? 1)/Double(longestDepth)
-            return Tile(x: cell!.x, y: cell!.y, value: value)
+            let x1 = cell!.x
+            let x2 = x1 + 1
+            let y1 = cell!.y
+            let y2 = y1 + 1
+            return Tile(
+                id: "\(x1)-\(y1)",
+                points: [
+                CGPoint(x: x1, y: y1)*wallHeight,
+                CGPoint(x: x2, y: y1)*wallHeight,
+                CGPoint(x: x2, y: y2)*wallHeight,
+                CGPoint(x: x1, y: y2)*wallHeight
+            ], value: value)
         }
     }
     

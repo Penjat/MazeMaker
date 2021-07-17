@@ -3,14 +3,15 @@ import Foundation
 class PolarRow: Hashable {
     let col: Int
     let lastRow: Bool
-    init(col: Int, cells: [PolarCell], lastRow: Bool = false) {
+    init(col: Int, cells: [PolarCell], lastRow: Bool = false, ringHeight: CGFloat) {
         self.col = col
         self.cells = cells
         self.lastRow = lastRow
+        self.ringHeight = ringHeight
     }
     
     let cells: [PolarCell]
-    let ringHeight: CGFloat = 10.0
+    let ringHeight: CGFloat
     func walls(_ center: CGPoint) -> MazeData {
         
         return cells.reduce(MazeData(walls: [], tiles: []), { result, cell -> MazeData in
@@ -42,6 +43,8 @@ class PolarRow: Hashable {
             if lastRow {
                 mazeData.walls.append(Wall(start: CGPoint(x: bx, y: by), end: CGPoint(x: dx, y: dy)))
             }
+            
+//            mazeData.tiles.append(Tile(x: <#T##Int#>, y: <#T##Int#>, value: <#T##Double#>))
             
             return result + mazeData
         })

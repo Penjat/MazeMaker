@@ -1,4 +1,4 @@
-import Foundation
+import SwiftUI
 
 struct MazeData {
     var walls: [Wall]

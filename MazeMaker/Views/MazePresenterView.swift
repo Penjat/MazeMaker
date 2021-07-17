@@ -8,9 +8,11 @@ struct MazePresenterView: View {
         VStack(alignment: .center, spacing: 20) {
             GeometryReader { geometry in
                 let centerScreen = CGPoint(x: geometry.size.width/2.0, y: geometry.size.height/2.0)
-                ForEach(displaySettings.mazeProvider.tiles(centerScreen), id: \.self) { tile in
+                ForEach(displaySettings.mazeProvider.tiles(centerScreen), id: \.self.id) { tile in
                     Path { path in
-                        path.addRect(CGRect(x: tile.x, y: tile.y, width: 1, height: 1))
+                        path.move(to: tile.points.first!)
+                        path.addLines(tile.points)
+                        print(tile.points)
                     }.fill(blendColorForValue(value: tile.value))
                 }
                 
@@ -40,9 +42,10 @@ struct MazePresenterView: View {
     }
 }
 
-struct Tile: Hashable {
-    let x: Int
-    let y: Int
+struct Tile {
+    var id: String
+    let points: [CGPoint]
     let value: Double
+    
 }
 
