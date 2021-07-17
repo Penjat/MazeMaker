@@ -1,9 +1,9 @@
 import Foundation
 
 class PolarMazeProvider: ObservableObject, MazeProvider {
-    
-    
     @Published var polarRows = [PolarRow]()
+    var tiles = [Tile]()
+    var walls = [Wall]()
     
     init(wallHeight: CGFloat, startingCells: Int, columns: Int) {
         print("creating cells")
@@ -12,17 +12,28 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
         print("Generating maze")
         RecursiveBacktraceGenertor.generate(mazeProvider: self)
 //        prims()
+        //generate data
+        generateMazeData()
     }
     
-    func tiles() -> [Tile] {
-        return []
+    func tiles(_ center: CGPoint) -> [Tile] {
+        return tiles
     }
     
     func walls(_ center: CGPoint) -> [Wall] {
-        let walls = polarRows.flatMap { $0.walls(center) }
-        print("# walls: \(walls.count)")
         return walls
+//        let walls = polarRows.flatMap { $0.walls(center) }
+//        print("# walls: \(walls.count)")
+//        return walls
         
+    }
+    
+    func generateMazeData() {
+        let mazeData = polarRows.reduce(MazeData(walls: [], tiles: [])) { result, polarRow in
+            return result + polarRow.walls(CGPoint(x: 200, y: 200))
+        }
+        walls = mazeData.walls
+        tiles = mazeData.tiles
     }
     
     func recursiveBacktrace() {

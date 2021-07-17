@@ -8,7 +8,7 @@ struct MazePresenterView: View {
         VStack(alignment: .center, spacing: 20) {
             GeometryReader { geometry in
                 let centerScreen = CGPoint(x: geometry.size.width/2.0, y: geometry.size.height/2.0)
-                ForEach(displaySettings.mazeProvider.tiles(), id: \.self) { tile in
+                ForEach(displaySettings.mazeProvider.tiles(centerScreen), id: \.self) { tile in
                     Path { path in
                         path.addRect(CGRect(x: tile.x, y: tile.y, width: 1, height: 1))
                     }.fill(blendColorForValue(value: tile.value))

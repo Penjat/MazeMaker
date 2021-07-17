@@ -6,7 +6,7 @@ protocol MazeProvider {
     func setWall(cell1: Cell, cell2: Cell, wallState: WallState)
     func cellAt(_ cellLocation: CellLocation) -> Cell?
     func randomCell() -> Cell?
-    func tiles() -> [Tile]
+    func tiles(_ center: CGPoint) -> [Tile]
     func walls(_ center: CGPoint) -> [Wall]
     func clearData()
 }
@@ -111,7 +111,7 @@ class SquareMaze: MazeProvider, ObservableObject {
         } + [leftWall, bottomWall]
     }
     
-    func tiles() -> [Tile] {
+    func tiles(_ center: CGPoint) -> [Tile] {
         return grid.flatMap{$0}.flatMap { cell -> Tile in
             let value = Double(cell?.data as? Int ?? 1)/Double(longestDepth)
             return Tile(x: cell!.x, y: cell!.y, value: value)

@@ -11,9 +11,9 @@ class PolarRow: Hashable {
     
     let cells: [PolarCell]
     let ringHeight: CGFloat = 10.0
-    func walls(_ center: CGPoint) -> [Wall] {
+    func walls(_ center: CGPoint) -> MazeData {
         
-        return cells.reduce([Wall](), { result, cell -> [Wall] in
+        return cells.reduce(MazeData(walls: [], tiles: []), { result, cell -> MazeData in
             let theta = CGFloat.pi*2.0/CGFloat(cells.count)
             let angle1 = CGFloat(cell.row)*theta
             let angle2 = CGFloat(cell.row + 1)*theta
@@ -30,20 +30,20 @@ class PolarRow: Hashable {
             let dx = center.x + outerRadians*cos(angle2)
             let dy = center.y + outerRadians*sin(angle2)
             
-            var walls = [Wall]()
+            var mazeData = MazeData(walls: [], tiles: [])
             if cell.leftBlocked {
-                walls.append(Wall(start: CGPoint(x: ax, y: ay), end: CGPoint(x: bx, y: by)))
+                mazeData.walls.append(Wall(start: CGPoint(x: ax, y: ay), end: CGPoint(x: bx, y: by)))
             }
             
             if cell.bottomBlocked {
-                walls.append(Wall(start: CGPoint(x: ax, y: ay), end: CGPoint(x: cx, y: cy)))
+                mazeData.walls.append(Wall(start: CGPoint(x: ax, y: ay), end: CGPoint(x: cx, y: cy)))
             }
             
             if lastRow {
-                walls.append(Wall(start: CGPoint(x: bx, y: by), end: CGPoint(x: dx, y: dy)))
+                mazeData.walls.append(Wall(start: CGPoint(x: bx, y: by), end: CGPoint(x: dx, y: dy)))
             }
             
-            return result + walls
+            return result + mazeData
         })
     }
     
