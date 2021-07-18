@@ -13,6 +13,9 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
         RecursiveBacktraceGenertor.generate(mazeProvider: self)
 //        prims()
         //generate data
+        clearData()
+//        let djService = DijkstraService()
+//        djService.findFurthest(mazeProvider: <#T##SquareMaze#>)
         generateMazeData()
     }
     
@@ -30,7 +33,7 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
     
     func generateMazeData() {
         let mazeData = polarRows.reduce(MazeData(walls: [], tiles: [])) { result, polarRow in
-            return result + polarRow.walls(CGPoint(x: 200, y: 200))
+            return result + polarRow.walls(CGPoint(x: 500, y: 700))
         }
         walls = mazeData.walls
         tiles = mazeData.tiles
@@ -167,18 +170,25 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
         for column in 0..<numberColumns {
             //            let innerRadians = CGFloat(col)*ringHeight
             let col = CGFloat(column)
-            let rowArea = CGFloat.pi*CGFloat(ringHeight*col)*CGFloat(ringHeight*col) - CGFloat.pi*CGFloat(ringHeight*(col-1))*CGFloat(ringHeight*(col-1))
-            let idealCellArea = ringHeight*ringHeight
-            if rowArea/CGFloat(rowSize) > idealCellArea*2 {
-                rowSize = rowSize*2
-            }
+            
             print("column is: \(column) - \(rowSize) cells")
             var cells = [PolarCell]()
             for row in 0..<rowSize {
                 cells.append(PolarCell(col: column, row: row))
             }
             let lastRow = column == (numberColumns-1)
-            let polarRow = PolarRow(col: column , cells: cells, lastRow: lastRow, ringHeight: ringHeight)
+            
+            
+            
+            let rowArea = CGFloat.pi*CGFloat(ringHeight*col)*CGFloat(ringHeight*col) - CGFloat.pi*CGFloat(ringHeight*(col-1))*CGFloat(ringHeight*(col-1))
+            let idealCellArea = ringHeight*ringHeight
+            var upperNeighbors = false
+            if rowArea/CGFloat(rowSize) > idealCellArea*2 {
+                rowSize = rowSize*2
+                upperNeighbors = true
+            }
+            
+            let polarRow = PolarRow(col: column , cells: cells, lastRow: lastRow, ringHeight: ringHeight, upperNeighbors: upperNeighbors)
             rows.append(polarRow)
         }
         return rows

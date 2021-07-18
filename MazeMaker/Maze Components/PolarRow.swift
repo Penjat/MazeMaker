@@ -3,11 +3,13 @@ import Foundation
 class PolarRow: Hashable {
     let col: Int
     let lastRow: Bool
-    init(col: Int, cells: [PolarCell], lastRow: Bool = false, ringHeight: CGFloat) {
+    let multipleUpperNeighbors: Bool
+    init(col: Int, cells: [PolarCell], lastRow: Bool = false, ringHeight: CGFloat, upperNeighbors: Bool) {
         self.col = col
         self.cells = cells
         self.lastRow = lastRow
         self.ringHeight = ringHeight
+        self.multipleUpperNeighbors = upperNeighbors
     }
     
     let cells: [PolarCell]
@@ -44,7 +46,24 @@ class PolarRow: Hashable {
                 mazeData.walls.append(Wall(start: CGPoint(x: bx, y: by), end: CGPoint(x: dx, y: dy)))
             }
             
-//            mazeData.tiles.append(Tile(x: <#T##Int#>, y: <#T##Int#>, value: <#T##Double#>))
+            if !lastRow && multipleUpperNeighbors {
+                let nextRadius = CGFloat(cell.col+2)*ringHeight
+                let middleAngle = (CGFloat(cell.row) + 0.5)*theta
+                let px = center.x + nextRadius*cos(middleAngle)
+                let py = center.y + nextRadius*sin(middleAngle)
+                mazeData.tiles.append(Tile(id: "\(cell.row)-\(cell.col)", points: [
+                                            CGPoint(x: ax, y: ay),
+                                            CGPoint(x: cx, y: cy),
+                                            CGPoint(x: dx, y: dy),
+                                            CGPoint(x: px, y: py),
+                                            CGPoint(x: bx, y: by)], value: 1))
+            } else {
+                mazeData.tiles.append(Tile(id: "\(cell.row)-\(cell.col)", points: [
+                                            CGPoint(x: ax, y: ay),
+                                            CGPoint(x: cx, y: cy),
+                                            CGPoint(x: dx, y: dy),
+                                            CGPoint(x: bx, y: by)], value: 1))
+            }
             
             return result + mazeData
         })
