@@ -14,7 +14,7 @@ class PolarRow: Hashable {
     
     let cells: [PolarCell]
     let ringHeight: CGFloat
-    func walls(_ center: CGPoint) -> MazeData {
+    func walls(_ center: CGPoint, longestDepth: Int) -> MazeData {
         
         return cells.reduce(MazeData(walls: [], tiles: []), { result, cell -> MazeData in
             let theta = CGFloat.pi*2.0/CGFloat(cells.count)
@@ -46,6 +46,8 @@ class PolarRow: Hashable {
                 mazeData.walls.append(Wall(start: CGPoint(x: bx, y: by), end: CGPoint(x: dx, y: dy)))
             }
             
+            let value = Double(cell.data as? Int ?? 1)/Double(longestDepth)
+            
             if !lastRow && multipleUpperNeighbors {
                 let nextRadius = CGFloat(cell.col+2)*ringHeight
                 let middleAngle = (CGFloat(cell.row) + 0.5)*theta
@@ -56,13 +58,13 @@ class PolarRow: Hashable {
                                             CGPoint(x: cx, y: cy),
                                             CGPoint(x: dx, y: dy),
                                             CGPoint(x: px, y: py),
-                                            CGPoint(x: bx, y: by)], value: 1))
+                                            CGPoint(x: bx, y: by)], value: value))
             } else {
                 mazeData.tiles.append(Tile(id: "\(cell.row)-\(cell.col)", points: [
                                             CGPoint(x: ax, y: ay),
                                             CGPoint(x: cx, y: cy),
                                             CGPoint(x: dx, y: dy),
-                                            CGPoint(x: bx, y: by)], value: 1))
+                                            CGPoint(x: bx, y: by)], value: value))
             }
             
             return result + mazeData

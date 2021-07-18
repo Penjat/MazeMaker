@@ -2,6 +2,7 @@ import Foundation
 
 class PolarMazeProvider: ObservableObject, MazeProvider {
     @Published var polarRows = [PolarRow]()
+    @Published var longestDepth = 0
     var tiles = [Tile]()
     var walls = [Wall]()
     
@@ -14,8 +15,9 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
 //        prims()
         //generate data
         clearData()
-//        let djService = DijkstraService()
-//        djService.findFurthest(mazeProvider: <#T##SquareMaze#>)
+        let djService = DijkstraService()
+        djService.findFurthest(mazeProvider: self)
+        longestDepth = djService.longestPath
         generateMazeData()
     }
     
@@ -33,7 +35,7 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
     
     func generateMazeData() {
         let mazeData = polarRows.reduce(MazeData(walls: [], tiles: [])) { result, polarRow in
-            return result + polarRow.walls(CGPoint(x: 500, y: 700))
+            return result + polarRow.walls(CGPoint(x: 700, y: 900), longestDepth: longestDepth)
         }
         walls = mazeData.walls
         tiles = mazeData.tiles
@@ -57,9 +59,35 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
         for row in polarRows {
             for cell in row.cells {
                 cell.setData(nil)
-                cell.leftBlocked = true
-                cell.bottomBlocked = true
             }
+        }
+    }
+    
+    func freeNeighbors(_ cellLocation: CellLocation) -> [Cell] {
+        neighborsFor(cellLocation).filter{ cell in
+            guard let cell = cell as? PolarCell, let currentCell = cellAt(cellLocation) as? PolarCell else {
+                return false
+            }
+            
+            if cell.y == cellLocation.y {
+                if cell.x == cellLocation.x+1 {
+                    return !cell.leftBlocked
+                }
+                
+                if cell.x+1 == cellLocation.x {
+                    return !currentCell.leftBlocked
+                }
+                return cell.x < cellLocation.x ? !cell.leftBlocked : !currentCell.leftBlocked
+            }
+            
+            if cell.y < cellLocation.y {
+                return !currentCell.bottomBlocked
+            }
+            
+            if cell.y > cellLocation.y {
+                return !cell.bottomBlocked
+            }
+            return false
         }
     }
     
