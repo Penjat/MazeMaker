@@ -9,7 +9,12 @@ protocol MazeProvider {
     func tiles(_ center: CGPoint) -> [Tile]
     func walls(_ center: CGPoint) -> [Wall]
     func clearData()
+    func clearAll()
+    
     func freeNeighbors(_ cellLocation: CellLocation) -> [Cell]
+    var longest: Int {get set}
+    var numberCells: Int { get }
+    func generateMazeData()
 }
 
 class SquareMaze: MazeProvider, ObservableObject {
@@ -20,11 +25,23 @@ class SquareMaze: MazeProvider, ObservableObject {
     @Published var threeWayJunctions: Int = 0
     @Published var fourWayJunctions: Int = 0
     let wallHeight: CGFloat
+    var longest = 0
+    var numberCells: Int {
+        allCells().count
+    }
     
     init(width: Int, height: Int, wallHeight: CGFloat) {
         self.wallHeight = wallHeight
         createGrid(width: width, height: height)
         generateMaze()
+        
+    }
+    
+    func clearAll() {
+        
+    }
+    
+    func generateMazeData() {
         
     }
     

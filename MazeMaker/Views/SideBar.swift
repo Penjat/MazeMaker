@@ -12,25 +12,67 @@ struct SideBar: View {
                 
                 Button("Binary Tree") {
                     print("pressed button")
-//                    mazeProvider.generateBinaryMaze()
-                }
+                    guard let mazeProvider = displaySettings.mazeProvider as? SquareMaze else {
+                        return
+                    }
+                    mazeProvider.generateBinaryMaze()
+                }.disabled(displaySettings.mazeType != .square)
                 Button("Recursive Backtrace") {
                     print("backtrace")
                     displaySettings.mazeProvider.clearData()
+                    displaySettings.mazeProvider.clearAll()
                     RecursiveBacktraceGenertor.generate(mazeProvider: displaySettings.mazeProvider)
+                    displaySettings.mazeProvider.clearData()
+                    
+                    let ds = DijkstraService()
+                    ds.findFurthest(mazeProvider: displaySettings.mazeProvider)
+                    displaySettings.mazeProvider.longest = ds.longestPath
+                    displaySettings.mazeProvider.generateMazeData()
+                    
                 }
                 Button("Prims Simplified") {
 //                    mazeProvider.generateSimplifiedPrimsMaze()
+                    displaySettings.mazeProvider.clearData()
+                    displaySettings.mazeProvider.clearAll()
+                    let prims = PrimsMazeGenerator()
+                    prims.activeCells.append(displaySettings.mazeProvider.randomCell()!)
+                    prims.simplifiedFindPaths(mazeProvider: displaySettings.mazeProvider)
+                    displaySettings.mazeProvider.clearData()
+                    
+                    let ds = DijkstraService()
+                    ds.findFurthest(mazeProvider: displaySettings.mazeProvider)
+                    displaySettings.mazeProvider.longest = ds.longestPath
+                    displaySettings.mazeProvider.generateMazeData()
                 }
                 
                 Button("Backtrace to Prims") {
                     print("pressed button")
-//                    mazeProvider.backtraceToPrims()
+                    displaySettings.mazeProvider.clearData()
+                    displaySettings.mazeProvider.clearAll()
+                    let prims = PrimsMazeGenerator()
+                    prims.activeCells.append(displaySettings.mazeProvider.randomCell()!)
+                    prims.backtraceToPrims(mazeProvider: displaySettings.mazeProvider)
+                    displaySettings.mazeProvider.clearData()
+                    
+                    let ds = DijkstraService()
+                    ds.findFurthest(mazeProvider: displaySettings.mazeProvider)
+                    displaySettings.mazeProvider.longest = ds.longestPath
+                    displaySettings.mazeProvider.generateMazeData()
                 }
                 
                 Button("Prims to Backtrace") {
                     print("pressed button")
-//                    mazeProvider.generatePrimsMaze()
+                    displaySettings.mazeProvider.clearData()
+                    displaySettings.mazeProvider.clearAll()
+                    let prims = PrimsMazeGenerator()
+                    prims.activeCells.append(displaySettings.mazeProvider.randomCell()!)
+                    prims.primsToBackTrace(mazeProvider: displaySettings.mazeProvider)
+                    displaySettings.mazeProvider.clearData()
+                    
+                    let ds = DijkstraService()
+                    ds.findFurthest(mazeProvider: displaySettings.mazeProvider)
+                    displaySettings.mazeProvider.longest = ds.longestPath
+                    displaySettings.mazeProvider.generateMazeData()
                 }
                 HStack {
                     ColorPicker(outputColor: $displaySettings.color1)

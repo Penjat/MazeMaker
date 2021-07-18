@@ -93,7 +93,7 @@ class PrimsMazeGenerator: ObservableObject {
         guard !activeCells.isEmpty else {
             return
         }
-        let randomIndex = cellCount < 2000 ? Int.random(in: 0..<activeCells.count) : max(0, activeCells.count-1)
+        let randomIndex = cellCount < mazeProvider.numberCells/2 ? Int.random(in: 0..<activeCells.count) : max(0, activeCells.count-1)
         let cell = activeCells[randomIndex]
         let neighbors = mazeProvider.neighborsFor(cell.location).filter{ $0.data as? String ?? "" != VISITED}
         
@@ -114,7 +114,7 @@ class PrimsMazeGenerator: ObservableObject {
         guard !activeCells.isEmpty else {
             return
         }
-        let randomIndex = cellCount > 2000 ? Int.random(in: 0..<activeCells.count) : max(0, activeCells.count-1)
+        let randomIndex = cellCount > mazeProvider.numberCells/2 ? Int.random(in: 0..<activeCells.count) : max(0, activeCells.count-1)
         let cell = activeCells[randomIndex]
         let neighbors = mazeProvider.neighborsFor(cell.location).filter{ $0.data as? String ?? "" != VISITED}
         

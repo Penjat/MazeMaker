@@ -2,24 +2,32 @@ import Foundation
 
 class PolarMazeProvider: ObservableObject, MazeProvider {
     @Published var polarRows = [PolarRow]()
-    @Published var longestDepth = 0
+    var longest = 0
     var tiles = [Tile]()
     var walls = [Wall]()
+    var numberCells: Int {
+        return polarRows.map{ $0.cells}.flatMap{}.count
+    }
     
     init(wallHeight: CGFloat, startingCells: Int, columns: Int) {
         print("creating cells")
         self.polarRows = createCells(ringHeight: wallHeight, startingCells: startingCells, numberColumns: columns)
         
         print("Generating maze")
-        RecursiveBacktraceGenertor.generate(mazeProvider: self)
+//        RecursiveBacktraceGenertor.generate(mazeProvider: self)
+        
+        let prims = PrimsMazeGenerator()
+        prims.activeCells.append(randomCell()!)
+        prims.simplifiedFindPaths(mazeProvider: self)
 //        prims()
         //generate data
         clearData()
         let djService = DijkstraService()
         djService.findFurthest(mazeProvider: self)
-        longestDepth = djService.longestPath
+        longest = djService.longestPath
         generateMazeData()
     }
+    
     
     func tiles(_ center: CGPoint) -> [Tile] {
         return tiles
@@ -35,7 +43,7 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
     
     func generateMazeData() {
         let mazeData = polarRows.reduce(MazeData(walls: [], tiles: [])) { result, polarRow in
-            return result + polarRow.walls(CGPoint(x: 700, y: 900), longestDepth: longestDepth)
+            return result + polarRow.walls(CGPoint.zero, longestDepth: longest)
         }
         walls = mazeData.walls
         tiles = mazeData.tiles
@@ -162,6 +170,17 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
         
     }
     
+    func clearAll() {
+        walls = []
+        tiles = []
+        for row in polarRows {
+            for cell in row.cells {
+                cell.leftBlocked = true
+                cell.bottomBlocked = true
+            }
+        }
+    }
+    
     func cellAt(_ cellLocation: CellLocation) -> Cell? {
         if polarRows == nil {
             
@@ -215,8 +234,8 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
                 rowSize = rowSize*2
                 upperNeighbors = true
             }
-            
             let polarRow = PolarRow(col: column , cells: cells, lastRow: lastRow, ringHeight: ringHeight, upperNeighbors: upperNeighbors)
+            
             rows.append(polarRow)
         }
         return rows

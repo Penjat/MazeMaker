@@ -1,7 +1,4 @@
 import Foundation
-#if os(iOS)
-import UIKit
-#endif
 
 enum WallState {
     case blocked
@@ -78,17 +75,5 @@ extension SquareCell {
         default:
             return nil
         }
-    }
-}
-
-extension CGPoint {
-    static func * (left: CGPoint, right: CGFloat) -> CGPoint {
-        return CGPoint(x: left.x * right, y: left.y * right)
-    }
-}
-
-extension CGRect {
-    static func * (left: CGRect, right: CGFloat) -> CGRect {
-        return CGRect(x: left.minX*right, y: left.minY*right, width: left.width*right, height: left.height*right)
     }
 }

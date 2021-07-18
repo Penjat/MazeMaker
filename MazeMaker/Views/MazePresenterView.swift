@@ -1,5 +1,13 @@
 import SwiftUI
 
+import Foundation
+#if os(iOS)
+import UIKit
+#endif
+
+import Cocoa
+
+
 struct MazePresenterView: View {
     @EnvironmentObject var displaySettings: MazeDisplaySettings
     @State private var percentage: CGFloat = .zero
@@ -10,19 +18,19 @@ struct MazePresenterView: View {
                 let centerScreen = CGPoint(x: geometry.size.width/2.0, y: geometry.size.height/2.0)
                 ForEach(displaySettings.mazeProvider.tiles(centerScreen), id: \.self.id) { tile in
                     Path { path in
-                        path.move(to: tile.points.first!)
-                        path.addLines(tile.points)
-                        print(tile.points)
+                        let points = tile.points.map{ $0 + centerScreen}
+                        path.move(to: points.first!)
+                        path.addLines(points)
                     }.fill(blendColorForValue(value: tile.value))
                 }
                 
                 Path { path in
                     for wall in displaySettings.mazeProvider.walls(centerScreen) {
                         path.move(
-                            to: wall.start
+                            to: wall.start + centerScreen
                         )
                         path.addLine(
-                            to: wall.end
+                            to: wall.end + centerScreen
                         )
                     }
                 }.stroke(displaySettings.wallColor.color, lineWidth: displaySettings.wallWidth)
@@ -48,4 +56,3 @@ struct Tile {
     let value: Double
     
 }
-
