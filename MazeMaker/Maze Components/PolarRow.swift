@@ -3,17 +3,20 @@ import Foundation
 class PolarRow: Hashable {
     let col: Int
     let lastRow: Bool
-    init(col: Int, cells: [PolarCell], lastRow: Bool = false) {
+    let multipleUpperNeighbors: Bool
+    init(col: Int, cells: [PolarCell], lastRow: Bool = false, ringHeight: CGFloat, upperNeighbors: Bool) {
         self.col = col
         self.cells = cells
         self.lastRow = lastRow
+        self.ringHeight = ringHeight
+        self.multipleUpperNeighbors = upperNeighbors
     }
     
     let cells: [PolarCell]
-    let ringHeight: CGFloat = 10.0
-    func walls(_ center: CGPoint) -> [Wall] {
+    let ringHeight: CGFloat
+    func walls(_ center: CGPoint, longestDepth: Int) -> MazeData {
         
-        return cells.reduce([Wall](), { result, cell -> [Wall] in
+        return cells.reduce(MazeData(walls: [], tiles: []), { result, cell -> MazeData in
             let theta = CGFloat.pi*2.0/CGFloat(cells.count)
             let angle1 = CGFloat(cell.row)*theta
             let angle2 = CGFloat(cell.row + 1)*theta
@@ -30,20 +33,41 @@ class PolarRow: Hashable {
             let dx = center.x + outerRadians*cos(angle2)
             let dy = center.y + outerRadians*sin(angle2)
             
-            var walls = [Wall]()
+            var mazeData = MazeData(walls: [], tiles: [])
             if cell.leftBlocked {
-                walls.append(Wall(start: CGPoint(x: ax, y: ay), end: CGPoint(x: bx, y: by)))
+                mazeData.walls.append(Wall(start: CGPoint(x: ax, y: ay), end: CGPoint(x: bx, y: by)))
             }
             
             if cell.bottomBlocked {
-                walls.append(Wall(start: CGPoint(x: ax, y: ay), end: CGPoint(x: cx, y: cy)))
+                mazeData.walls.append(Wall(start: CGPoint(x: ax, y: ay), end: CGPoint(x: cx, y: cy)))
             }
             
             if lastRow {
-                walls.append(Wall(start: CGPoint(x: bx, y: by), end: CGPoint(x: dx, y: dy)))
+                mazeData.walls.append(Wall(start: CGPoint(x: bx, y: by), end: CGPoint(x: dx, y: dy)))
             }
             
-            return result + walls
+            let value = Double(cell.data as? Int ?? 1)/Double(longestDepth)
+            
+            if !lastRow && multipleUpperNeighbors {
+                let nextRadius = CGFloat(cell.col+2)*ringHeight
+                let middleAngle = (CGFloat(cell.row) + 0.5)*theta
+                let px = center.x + nextRadius*cos(middleAngle)
+                let py = center.y + nextRadius*sin(middleAngle)
+                mazeData.tiles.append(Tile(id: "\(cell.row)-\(cell.col)", points: [
+                                            CGPoint(x: ax, y: ay),
+                                            CGPoint(x: cx, y: cy),
+                                            CGPoint(x: dx, y: dy),
+                                            CGPoint(x: px, y: py),
+                                            CGPoint(x: bx, y: by)], value: value))
+            } else {
+                mazeData.tiles.append(Tile(id: "\(cell.row)-\(cell.col)", points: [
+                                            CGPoint(x: ax, y: ay),
+                                            CGPoint(x: cx, y: cy),
+                                            CGPoint(x: dx, y: dy),
+                                            CGPoint(x: bx, y: by)], value: value))
+            }
+            
+            return result + mazeData
         })
     }
     

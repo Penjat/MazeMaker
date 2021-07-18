@@ -8,7 +8,7 @@ class DijkstraService {
     var hallways = 0
     var threeWayJunctions = 0
     var fourWayJunction = 0
-    func findFurthest(statingLocation: CellLocation = CellLocation(x: 0, y: 0), mazeProvider: SquareMaze) {
+    func findFurthest(statingLocation: CellLocation = CellLocation(x: 0, y: 0), mazeProvider: MazeProvider) {
         guard let startingCell = mazeProvider.cellAt(statingLocation) else {
             return
         }
@@ -23,7 +23,7 @@ class DijkstraService {
         
         findDistances(value: 0, mazeProvider: mazeProvider)
     }
-    func findDistances(value: Int, mazeProvider: SquareMaze) {
+    func findDistances(value: Int, mazeProvider: MazeProvider) {
         var neighbors = [Cell]()
         for cell in openCells {
             neighbors = neighbors + mazeProvider.freeNeighbors(cell.location).filter{$0.data == nil}
@@ -39,7 +39,8 @@ class DijkstraService {
             case 4:
                 fourWayJunction += 1
             default:
-                fatalError("Should not be another value.")
+//                fatalError("Should not be another value.")
+            print("more than 4 junction")
             }
         }
         guard !neighbors.isEmpty else {

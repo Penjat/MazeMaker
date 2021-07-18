@@ -1,9 +1,10 @@
 import Foundation
 
 class PolarMazeProvider: ObservableObject, MazeProvider {
-    
-    
     @Published var polarRows = [PolarRow]()
+    @Published var longestDepth = 0
+    var tiles = [Tile]()
+    var walls = [Wall]()
     
     init(wallHeight: CGFloat, startingCells: Int, columns: Int) {
         print("creating cells")
@@ -12,17 +13,32 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
         print("Generating maze")
         RecursiveBacktraceGenertor.generate(mazeProvider: self)
 //        prims()
+        //generate data
+        clearData()
+        let djService = DijkstraService()
+        djService.findFurthest(mazeProvider: self)
+        longestDepth = djService.longestPath
+        generateMazeData()
     }
     
-    func tiles() -> [Tile] {
-        return []
+    func tiles(_ center: CGPoint) -> [Tile] {
+        return tiles
     }
     
     func walls(_ center: CGPoint) -> [Wall] {
-        let walls = polarRows.flatMap { $0.walls(center) }
-        print("# walls: \(walls.count)")
         return walls
+//        let walls = polarRows.flatMap { $0.walls(center) }
+//        print("# walls: \(walls.count)")
+//        return walls
         
+    }
+    
+    func generateMazeData() {
+        let mazeData = polarRows.reduce(MazeData(walls: [], tiles: [])) { result, polarRow in
+            return result + polarRow.walls(CGPoint(x: 700, y: 900), longestDepth: longestDepth)
+        }
+        walls = mazeData.walls
+        tiles = mazeData.tiles
     }
     
     func recursiveBacktrace() {
@@ -43,9 +59,35 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
         for row in polarRows {
             for cell in row.cells {
                 cell.setData(nil)
-                cell.leftBlocked = true
-                cell.bottomBlocked = true
             }
+        }
+    }
+    
+    func freeNeighbors(_ cellLocation: CellLocation) -> [Cell] {
+        neighborsFor(cellLocation).filter{ cell in
+            guard let cell = cell as? PolarCell, let currentCell = cellAt(cellLocation) as? PolarCell else {
+                return false
+            }
+            
+            if cell.y == cellLocation.y {
+                if cell.x == cellLocation.x+1 {
+                    return !cell.leftBlocked
+                }
+                
+                if cell.x+1 == cellLocation.x {
+                    return !currentCell.leftBlocked
+                }
+                return cell.x < cellLocation.x ? !cell.leftBlocked : !currentCell.leftBlocked
+            }
+            
+            if cell.y < cellLocation.y {
+                return !currentCell.bottomBlocked
+            }
+            
+            if cell.y > cellLocation.y {
+                return !cell.bottomBlocked
+            }
+            return false
         }
     }
     
@@ -156,18 +198,25 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
         for column in 0..<numberColumns {
             //            let innerRadians = CGFloat(col)*ringHeight
             let col = CGFloat(column)
-            let rowArea = CGFloat.pi*CGFloat(ringHeight*col)*CGFloat(ringHeight*col) - CGFloat.pi*CGFloat(ringHeight*(col-1))*CGFloat(ringHeight*(col-1))
-            let idealCellArea = ringHeight*ringHeight
-            if rowArea/CGFloat(rowSize) > idealCellArea*2 {
-                rowSize = rowSize*2
-            }
+            
             print("column is: \(column) - \(rowSize) cells")
             var cells = [PolarCell]()
             for row in 0..<rowSize {
                 cells.append(PolarCell(col: column, row: row))
             }
             let lastRow = column == (numberColumns-1)
-            let polarRow = PolarRow(col: column , cells: cells, lastRow: lastRow)
+            
+            
+            
+            let rowArea = CGFloat.pi*CGFloat(ringHeight*col)*CGFloat(ringHeight*col) - CGFloat.pi*CGFloat(ringHeight*(col-1))*CGFloat(ringHeight*(col-1))
+            let idealCellArea = ringHeight*ringHeight
+            var upperNeighbors = false
+            if rowArea/CGFloat(rowSize) > idealCellArea*2 {
+                rowSize = rowSize*2
+                upperNeighbors = true
+            }
+            
+            let polarRow = PolarRow(col: column , cells: cells, lastRow: lastRow, ringHeight: ringHeight, upperNeighbors: upperNeighbors)
             rows.append(polarRow)
         }
         return rows
