@@ -182,9 +182,6 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
     }
     
     func cellAt(_ cellLocation: CellLocation) -> Cell? {
-        if polarRows == nil {
-            
-        }
         guard cellLocation.y < polarRows.count, cellLocation.y >= 0 else {
             return nil
         }

@@ -43,6 +43,7 @@
 		0BD3B5C126920EC00024EBDC /* MazeGenerationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3B5C026920EC00024EBDC /* MazeGenerationSettings.swift */; };
 		0BD3B5C32692702A0024EBDC /* MazeSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3B5C22692702A0024EBDC /* MazeSizeView.swift */; };
 		0BFF221226A4C520008495C9 /* CGPoint+math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFF221126A4C520008495C9 /* CGPoint+math.swift */; };
+		0BFF221426A4DA53008495C9 /* BacktraceControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFF221326A4DA53008495C9 /* BacktraceControlView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		0BD3B5C026920EC00024EBDC /* MazeGenerationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeGenerationSettings.swift; sourceTree = "<group>"; };
 		0BD3B5C22692702A0024EBDC /* MazeSizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeSizeView.swift; sourceTree = "<group>"; };
 		0BFF221126A4C520008495C9 /* CGPoint+math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+math.swift"; sourceTree = "<group>"; };
+		0BFF221326A4DA53008495C9 /* BacktraceControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BacktraceControlView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 				0BBE9675269B36FE0069BDEE /* PolarRowView.swift */,
 				0BD3B5B52690250C0024EBDC /* SideBar.swift */,
 				0BD3B5BA26914E290024EBDC /* ColorPicker.swift */,
+				0BFF221326A4DA53008495C9 /* BacktraceControlView.swift */,
 				0BD3B5BE269209510024EBDC /* MazeDisplaySettings.swift */,
 				0BD3B5C22692702A0024EBDC /* MazeSizeView.swift */,
 			);
@@ -328,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BD3B5B62690250C0024EBDC /* SideBar.swift in Sources */,
+				0BFF221426A4DA53008495C9 /* BacktraceControlView.swift in Sources */,
 				0BD3B5C126920EC00024EBDC /* MazeGenerationSettings.swift in Sources */,
 				0BBE96DA269D40580069BDEE /* MazeType.swift in Sources */,
 				0BD3B5BD26915E850024EBDC /* PrimsSimplifiedGenerator.swift in Sources */,

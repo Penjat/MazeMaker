@@ -17,19 +17,24 @@ struct SideBar: View {
                     }
                     mazeProvider.generateBinaryMaze()
                 }.disabled(displaySettings.mazeType != .square)
-                Button("Recursive Backtrace") {
-                    print("backtrace")
-                    displaySettings.mazeProvider.clearData()
-                    displaySettings.mazeProvider.clearAll()
-                    RecursiveBacktraceGenertor.generate(mazeProvider: displaySettings.mazeProvider)
-                    displaySettings.mazeProvider.clearData()
-                    
-                    let ds = DijkstraService()
-                    ds.findFurthest(mazeProvider: displaySettings.mazeProvider)
-                    displaySettings.mazeProvider.longest = ds.longestPath
-                    displaySettings.mazeProvider.generateMazeData()
-                    
+                Group {
+                    Divider()
+                    Button("Recursive Backtrace") {
+                        print("backtrace")
+                        displaySettings.mazeProvider.clearData()
+                        displaySettings.mazeProvider.clearAll()
+                        RecursiveBacktraceGenertor.generate(mazeProvider: displaySettings.mazeProvider)
+                        displaySettings.mazeProvider.clearData()
+                        
+                        let ds = DijkstraService()
+                        ds.findFurthest(mazeProvider: displaySettings.mazeProvider)
+                        displaySettings.mazeProvider.longest = ds.longestPath
+                        displaySettings.mazeProvider.generateMazeData()
+                        
+                    }
+//                    Slider(
                 }
+                
                 Button("Prims Simplified") {
 //                    mazeProvider.generateSimplifiedPrimsMaze()
                     displaySettings.mazeProvider.clearData()
@@ -101,12 +106,15 @@ struct SideBar: View {
     }
     
     func saveMaze() {
-        //        let nsView = NSHostingView(rootView: MazePresenterView())
-        //        let bitmapRep = nsView.bitmapImageRepForCachingDisplay(in: nsView.bounds)!
-        //        bitmapRep.size = nsView.bounds.size
-        //        nsView.cacheDisplay(in: nsView.bounds, to: bitmapRep)
-        //        let data = image.representation(using: .jpeg, properties: [:])
-        //        try data?.write(to: path)
+                let nsView = NSHostingView(rootView: MazePresenterView())
+                let bitmapRep = nsView.bitmapImageRepForCachingDisplay(in: nsView.bounds)!
+                bitmapRep.size = nsView.bounds.size
+                bitmapRep.canBeCompressed(using: .jpeg)
+                nsView.cacheDisplay(in: nsView.bounds, to: bitmapRep)
+                
+//        bitmapRep.bitmapData
+        let data = bitmapRep.bitmapData//image.representation(using: .jpeg, properties: [:])
+//                try data?.write(to: "myMaze.jpg")
     }
 }
 
