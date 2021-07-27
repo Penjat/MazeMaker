@@ -20,15 +20,15 @@ class PolarMazeProvider: ObservableObject, MazeProvider {
         print("Generating maze")
 //        RecursiveBacktraceGenertor.generate(mazeProvider: self)
         
-        let prims = PrimsMazeGenerator()
-        prims.activeCells.append(randomCell()!)
-        prims.simplifiedFindPaths(mazeProvider: self)
-//        prims()
-        //generate data
-        clearData()
-        let djService = DijkstraService()
-        djService.findFurthest(mazeProvider: self)
-        longest = djService.longestPath
+//        let prims = PrimsMazeGenerator()
+//        prims.activeCells.append(randomCell()!)
+//        prims.simplifiedFindPaths(mazeProvider: self)
+////        prims()
+//        //generate data
+//        clearData()
+//        let djService = DijkstraService()
+//        djService.findFurthest(mazeProvider: self)
+//        longest = djService.longestPath
         generateMazeData()
     }
     

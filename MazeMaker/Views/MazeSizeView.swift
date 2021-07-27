@@ -70,15 +70,15 @@ struct MazeSizeView: View {
                         print("creating maze")
                         let squareMaze = SquareMaze(width: newWidth, height: newHeight, wallHeight: CGFloat(wallSize))
                         squareMaze.createGrid(width: newWidth, height: newHeight)
-                        squareMaze.backtraceToPrims()
-                        let djService = DijkstraService()
-                        //                                djService.findFurthest(mazeProvider: squareMaze)
-                        squareMaze.clearData()
-                        djService.findFurthest(mazeProvider: squareMaze)
+//                        squareMaze.backtraceToPrims()
+//                        let djService = DijkstraService()
+//                        //                                djService.findFurthest(mazeProvider: squareMaze)
+//                        squareMaze.clearData()
+//                        djService.findFurthest(mazeProvider: squareMaze)
                         displaySettings.mazeProvider = squareMaze
+//
+                                                    
                         
-                        //                            mazeProvider.generateMaze()
-                        displaySettings.mazeType = mazeType
                     } else {
                         displaySettings.mazeProvider = PolarMazeProvider(wallHeight: CGFloat(wallSize), startingCells: newWidth, columns: newHeight)
                         displaySettings.wallSize = CGFloat(wallSize)
