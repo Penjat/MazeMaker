@@ -1,6 +1,10 @@
 import Foundation
 
 class PolarMazeProvider: ObservableObject, MazeProvider {
+    var mazeSize: (Int, Int) {
+        return (polarRows.count, polarRows.first?.cells.count ?? 0)
+    }
+    
     @Published var polarRows = [PolarRow]()
     var longest = 0
     var tiles = [Tile]()

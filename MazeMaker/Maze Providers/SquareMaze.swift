@@ -15,6 +15,7 @@ protocol MazeProvider {
     var longest: Int {get set}
     var numberCells: Int { get }
     func generateMazeData()
+    var mazeSize: (Int, Int) { get }
 }
 
 class SquareMaze: MazeProvider, ObservableObject {
@@ -35,6 +36,10 @@ class SquareMaze: MazeProvider, ObservableObject {
         createGrid(width: width, height: height)
         generateMaze()
         
+    }
+    
+    var mazeSize: (Int, Int) {
+        (grid.count, grid[0].count)
     }
     
     func clearAll() {
