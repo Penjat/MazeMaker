@@ -43,7 +43,10 @@ class SquareMaze: MazeProvider, ObservableObject {
     }
     
     func clearAll() {
-        
+        allCells().forEach { cell in
+            cell.rightBlocked = .blocked
+            cell.topBlocked = .blocked
+        }
     }
     
     func generateMazeData() {
@@ -169,7 +172,7 @@ class SquareMaze: MazeProvider, ObservableObject {
     
     func clearData() {
         for cell in allCells(){
-            cell.data = nil
+            cell.setData(nil)
         }
     }
     
