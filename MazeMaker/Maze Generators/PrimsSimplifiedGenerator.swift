@@ -130,4 +130,26 @@ class PrimsMazeGenerator: ObservableObject {
         }
         primsToBackTrace(mazeProvider: mazeProvider)
     }
+    
+    func centerPrims(mazeProvider: MazeProvider) {
+        guard !activeCells.isEmpty else {
+            return
+        }
+        let randomIndex = 0
+        let cell = activeCells[randomIndex]
+        var neighbors = mazeProvider.neighborsFor(cell.location).filter{ $0.data as? String ?? "" != VISITED}
+        if neighbors.isEmpty {
+            activeCells.remove(at: randomIndex)
+        } else {
+            if let otherCell = neighbors.randomElement() {
+                mazeProvider.setWall(cell1: cell, cell2: otherCell, wallState: .open)
+                otherCell.setData(VISITED)
+                activeCells.append(otherCell)
+            }
+        }
+        if cell.y < 10 {
+            activeCells.shuffle()
+        }
+        centerPrims(mazeProvider: mazeProvider)
+    }
 }
