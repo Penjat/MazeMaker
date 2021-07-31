@@ -137,11 +137,12 @@ class PrimsMazeGenerator: ObservableObject {
         }
         let randomIndex = 0
         let cell = activeCells[randomIndex]
-        var neighbors = mazeProvider.neighborsFor(cell.location).filter{ $0.data as? String ?? "" != VISITED}
+        var neighbors = mazeProvider.neighborsFor(cell.location).filter{ $0.data as? String ?? "" != VISITED}.shuffled()
+        neighbors.partition { $0.y < 10 }
         if neighbors.isEmpty {
             activeCells.remove(at: randomIndex)
         } else {
-            if let otherCell = neighbors.randomElement() {
+            if let otherCell = neighbors.first {
                 mazeProvider.setWall(cell1: cell, cell2: otherCell, wallState: .open)
                 otherCell.setData(VISITED)
                 activeCells.append(otherCell)
