@@ -93,7 +93,7 @@ class PrimsMazeGenerator: ObservableObject {
         guard !activeCells.isEmpty else {
             return
         }
-        let randomIndex = cellCount < 2000 ? Int.random(in: 0..<activeCells.count) : max(0, activeCells.count-1)
+        let randomIndex = cellCount < mazeProvider.numberCells/2 ? Int.random(in: 0..<activeCells.count) : max(0, activeCells.count-1)
         let cell = activeCells[randomIndex]
         let neighbors = mazeProvider.neighborsFor(cell.location).filter{ $0.data as? String ?? "" != VISITED}
         
@@ -114,7 +114,7 @@ class PrimsMazeGenerator: ObservableObject {
         guard !activeCells.isEmpty else {
             return
         }
-        let randomIndex = cellCount > 2000 ? Int.random(in: 0..<activeCells.count) : max(0, activeCells.count-1)
+        let randomIndex = cellCount > mazeProvider.numberCells/2 ? Int.random(in: 0..<activeCells.count) : max(0, activeCells.count-1)
         let cell = activeCells[randomIndex]
         let neighbors = mazeProvider.neighborsFor(cell.location).filter{ $0.data as? String ?? "" != VISITED}
         
@@ -129,5 +129,28 @@ class PrimsMazeGenerator: ObservableObject {
             }
         }
         primsToBackTrace(mazeProvider: mazeProvider)
+    }
+    
+    func centerPrims(mazeProvider: MazeProvider) {
+        guard !activeCells.isEmpty else {
+            return
+        }
+        let randomIndex = 0
+        let cell = activeCells[randomIndex]
+        var neighbors = mazeProvider.neighborsFor(cell.location).filter{ $0.data as? String ?? "" != VISITED}.shuffled()
+        neighbors.partition { $0.y < 10 }
+        if neighbors.isEmpty {
+            activeCells.remove(at: randomIndex)
+        } else {
+            if let otherCell = neighbors.first {
+                mazeProvider.setWall(cell1: cell, cell2: otherCell, wallState: .open)
+                otherCell.setData(VISITED)
+                activeCells.append(otherCell)
+            }
+        }
+        if cell.y < 10 {
+            activeCells.shuffle()
+        }
+        centerPrims(mazeProvider: mazeProvider)
     }
 }
