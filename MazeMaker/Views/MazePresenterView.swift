@@ -18,7 +18,7 @@ struct MazePresenterView: View {
                 let centerScreen = CGPoint(x: geometry.size.width/2.0, y: geometry.size.height/2.0)
                 ForEach(displaySettings.mazeProvider.tiles(centerScreen), id: \.self.id) { tile in
                     Path { path in
-                        let points = tile.points.map{ $0 + centerScreen}
+                        let points = tile.points.map{ $0 + offset(centerScreen)}
                         path.move(to: points.first!)
                         path.addLines(points)
                     }.fill(blendColorForValue(value: tile.value))
@@ -27,15 +27,19 @@ struct MazePresenterView: View {
                 Path { path in
                     for wall in displaySettings.mazeProvider.walls(centerScreen) {
                         path.move(
-                            to: wall.start + centerScreen
+                            to: wall.start + offset(centerScreen)
                         )
                         path.addLine(
-                            to: wall.end + centerScreen
+                            to: wall.end + offset(centerScreen)
                         )
                     }
                 }.stroke(displaySettings.wallColor.color, lineWidth: displaySettings.wallWidth)
             }.padding()
         }
+    }
+    
+    func offset(_ centerScreen: CGPoint) -> CGPoint {
+        (displaySettings.mazeType == .square ? CGPoint.zero : centerScreen)
     }
     
     
