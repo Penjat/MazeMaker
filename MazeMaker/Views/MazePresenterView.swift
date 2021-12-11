@@ -8,15 +8,17 @@ import UIKit
 import Cocoa
 
 var distortion = { (point: CGPoint) -> CGPoint in
-    let xDistortion =  sin(point.y/1700*Double.pi*2)*((point.x-point.y)/7)
-    let yDistortion = sin(point.x/900*Double.pi*2 + Double.pi/2)*((point.x-point.y)/5)
-    return CGPoint(x: xDistortion, y: yDistortion)
+//    let xDistortion =  sin(point.y/1700*Double.pi*2)*((point.x-point.y)/7)
+//    let yDistortion = sin(point.x/900*Double.pi*2 + Double.pi/2)*((point.x-point.y)/5)
+//    return CGPoint(x: xDistortion, y: yDistortion)
+    
+    CGPoint.zero
 }
 
 struct MazePresenterView: View {
     @EnvironmentObject var displaySettings: MazeDisplaySettings
     @State private var percentage: CGFloat = .zero
-    
+    let wav: (Double) -> Double = {sawWave($0) + sawWave($0*8 + Double.pi*2/6)/3}
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
             GeometryReader { geometry in
@@ -57,7 +59,8 @@ struct MazePresenterView: View {
             return .white
         }
        print(value)
-        let (red, blue, green, color) = calcRGB(Int(value*100), total: 100)
+        
+        let (red, blue, green, color) = calcRGB(Int(value*600+400), total: 1000, wav: wav)
         return color
 //        return Color.init(red: displaySettings.color1.red*value + displaySettings.color2.red*value2,
 //                          green: displaySettings.color1.green*value + displaySettings.color2.green*value2,
