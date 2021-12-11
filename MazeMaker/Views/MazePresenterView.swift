@@ -7,6 +7,11 @@ import UIKit
 
 import Cocoa
 
+var distortion = { (point: CGPoint) -> CGPoint in
+    let xDistortion =  sin(point.y/1700*Double.pi*2)*((point.x-point.y)/7)
+    let yDistortion = sin(point.x/900*Double.pi*2 + Double.pi/2)*((point.x-point.y)/5)
+    return CGPoint(x: xDistortion, y: yDistortion)
+}
 
 struct MazePresenterView: View {
     @EnvironmentObject var displaySettings: MazeDisplaySettings
@@ -18,7 +23,7 @@ struct MazePresenterView: View {
                 let centerScreen = CGPoint(x: geometry.size.width/2.0, y: geometry.size.height/2.0)
                 ForEach(displaySettings.mazeProvider.tiles(centerScreen), id: \.self.id) { tile in
                     Path { path in
-                        let points = tile.points.map{ $0 + offset(centerScreen)}
+                        let points = tile.points.map{ $0 + offset(centerScreen) + distortion($0)}
                         path.move(to: points.first!)
                         path.addLines(points)
                     }.fill(blendColorForValue(value: tile.value))
@@ -27,16 +32,18 @@ struct MazePresenterView: View {
                 Path { path in
                     for wall in displaySettings.mazeProvider.walls(centerScreen) {
                         path.move(
-                            to: wall.start + offset(centerScreen)
+                            to: wall.start + offset(centerScreen) + distortion(wall.start)
                         )
                         path.addLine(
-                            to: wall.end + offset(centerScreen)
+                            to: wall.end + offset(centerScreen) + distortion(wall.end)
                         )
                     }
                 }.stroke(displaySettings.wallColor.color, lineWidth: displaySettings.wallWidth)
             }.padding()
         }
     }
+    
+    
     
     func offset(_ centerScreen: CGPoint) -> CGPoint {
         (displaySettings.mazeType == .square ? CGPoint.zero : centerScreen)

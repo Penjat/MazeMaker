@@ -137,7 +137,7 @@ class SquareMaze: MazeProvider, ObservableObject {
     func walls(_ center: CGPoint) -> [Wall] {
         return grid.flatMap{$0}.flatMap { cell -> [Wall] in
             cell?.walls.map{ $0*wallHeight } ?? []
-        } + [leftWall, bottomWall]
+        }// + [leftWall, bottomWall]
     }
     
     func tiles(_ center: CGPoint) -> [Tile] {
