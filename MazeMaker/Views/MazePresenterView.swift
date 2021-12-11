@@ -7,9 +7,10 @@ import UIKit
 
 import Cocoa
 
-var distortion = { (input: CGFloat) -> CGFloat in
-    
-    return sin(input/8)*5 + sin(input/3)*4 + sin(input/12.4)
+var distortion = { (point: CGPoint) -> CGPoint in
+    let xDistortion =  sin(point.y/1700*Double.pi*2)*((point.x-point.y)/7)
+    let yDistortion = sin(point.x/900*Double.pi*2 + Double.pi/2)*((point.x-point.y)/5)
+    return CGPoint(x: xDistortion, y: yDistortion)
 }
 
 struct MazePresenterView: View {
@@ -22,7 +23,7 @@ struct MazePresenterView: View {
                 let centerScreen = CGPoint(x: geometry.size.width/2.0, y: geometry.size.height/2.0)
                 ForEach(displaySettings.mazeProvider.tiles(centerScreen), id: \.self.id) { tile in
                     Path { path in
-                        let points = tile.points.map{ $0 + offset(centerScreen) + CGPoint(x: distortion($0.y), y: distortion($0.x+Double.pi/2))}
+                        let points = tile.points.map{ $0 + offset(centerScreen) + distortion($0)}
                         path.move(to: points.first!)
                         path.addLines(points)
                     }.fill(blendColorForValue(value: tile.value))
@@ -31,10 +32,10 @@ struct MazePresenterView: View {
                 Path { path in
                     for wall in displaySettings.mazeProvider.walls(centerScreen) {
                         path.move(
-                            to: wall.start + offset(centerScreen) + CGPoint(x: distortion(wall.start.y), y: distortion(wall.start.x+Double.pi/2))
+                            to: wall.start + offset(centerScreen) + distortion(wall.start)
                         )
                         path.addLine(
-                            to: wall.end + offset(centerScreen) + CGPoint(x: distortion(wall.end.y), y: distortion(wall.end.x+Double.pi/2))
+                            to: wall.end + offset(centerScreen) + distortion(wall.end)
                         )
                     }
                 }.stroke(displaySettings.wallColor.color, lineWidth: displaySettings.wallWidth)
