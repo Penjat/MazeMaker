@@ -30,34 +30,42 @@ struct WaveController: View {
     @State var magnitude = 0.25
     @State var phase = 0.0
     @State var waveType = WaveType.SIN
+    @State var isOn = true
     var body: some View {
         VStack {
-            Picker(selection: $waveType, label: Text("")) {
-                ForEach(WaveType.allCases, id: \.rawValue){ waveType in
-                    Text("\(waveType.rawValue)").tag(waveType)
+            Toggle(isOn: $isOn) {
+                Text(isOn ? "on" : "off")
+            }
+            Group {
+                Picker(selection: $waveType, label: Text("")) {
+                    ForEach(WaveType.allCases, id: \.rawValue){ waveType in
+                        Text("\(waveType.rawValue)").tag(waveType)
+                    }
+                }.pickerStyle(SegmentedPickerStyle()).frame(height: 100).padding()
+                Text("\(frequency)")
+                Slider(value: $frequency, in: 0.0...5.0).onChange(of: frequency) { _ in
+                    setWave()
                 }
-            }.pickerStyle(SegmentedPickerStyle()).frame(height: 100).padding()
-            Text("\(frequency)")
-            Slider(value: $frequency, in: 0.0...5.0).onChange(of: frequency) { _ in
-                setWave()
-            }
-            
-            Text("\(magnitude)")
-            Slider(value: $magnitude, in: 0.0...2.0).onChange(of: magnitude) { _ in
-                setWave()
-            }
-            
-            Text("\(phase)")
-            Slider(value: $phase, in: (Double.pi*(-2))...Double.pi*(2)).onChange(of: phase) { _ in
-                setWave()
-            }
+                
+                Text("\(magnitude)")
+                Slider(value: $magnitude, in: 0.0...2.0).onChange(of: magnitude) { _ in
+                    setWave()
+                }
+                
+                Text("\(phase)")
+                Slider(value: $phase, in: (Double.pi*(-2))...Double.pi*(2)).onChange(of: phase) { _ in
+                    setWave()
+                }
+            }.disabled(!isOn)
         }.onChange(of: waveType) { _ in
+            setWave()
+        }.onChange(of: isOn) { isOn in
             setWave()
         }
     }
     
     func setWave() {
-        wav = { waveType.waveForm($0*frequency + phase)*magnitude}
+        wav = isOn ? { waveType.waveForm($0*frequency + phase)*magnitude} : { (_:Double) in 0}
     }
 }
 
