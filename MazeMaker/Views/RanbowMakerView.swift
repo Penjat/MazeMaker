@@ -31,6 +31,7 @@ struct WaveController: View {
     @State var phase = 0.0
     @State var waveType = WaveType.SIN
     @State var isOn = true
+    @State var lift = 0.0
     var body: some View {
         VStack(spacing: 0.0) {
             Toggle(isOn: $isOn) {
@@ -61,6 +62,13 @@ struct WaveController: View {
                         setWave()
                     }
                 }
+                
+                HStack {
+                    Text(String(format: "%.02f", lift))
+                    Slider(value: $lift, in: (-2...3)).onChange(of: lift) { _ in
+                        setWave()
+                    }
+                }
             }.frame(width: 250)
                 .disabled(!isOn)
         }.padding([.top, .bottom])
@@ -73,7 +81,7 @@ struct WaveController: View {
     }
     
     func setWave() {
-        wav = isOn ? { waveType.waveForm($0*frequency + phase)*magnitude} : { (_:Double) in -1}
+        wav = isOn ? { waveType.waveForm($0*frequency + phase)*magnitude + lift}: { (_:Double) in -1}
     }
 }
 
@@ -114,9 +122,10 @@ struct WaveBowView: View {
                 .padding()
             
             ZStack {
-                WaveView(frequency: 1.0, wav: redWav, color: .red)
-                WaveView(frequency: 1.0, wav: blueWav, color: .blue)
-                WaveView(frequency: 1.0, wav: greenWav, color: .green)
+//                WaveView(frequency: 1.0, wav: {redWav($0) + blueWav($0) + greenWav($0)}, color: .white.opacity(0.5))
+                WaveView(frequency: 1.0, wav: redWav, color: .red.opacity(0.5))
+                WaveView(frequency: 1.0, wav: blueWav, color: .blue.opacity(0.5))
+                WaveView(frequency: 1.0, wav: greenWav, color: .green.opacity(0.5))
             }.frame(width: 600, height: 300)
                 .padding()
             
