@@ -9,4 +9,5 @@ class MazeDisplaySettings: ObservableObject {
     @Published var mazeProvider: MazeProvider = PolarMazeProvider(wallHeight: 10, startingCells: 5, columns: 30)//SquareMaze(width: 22, height: 22, wallHeight: 16)
     @Published var mazeType: MazeType = .polar
     @Published var wallSize: CGFloat = 20
+    @Published var colorWav: (Double) -> Double = {sin($0*3)}
 }
