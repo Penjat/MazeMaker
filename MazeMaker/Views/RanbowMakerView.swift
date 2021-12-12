@@ -43,7 +43,7 @@ struct WaveController: View {
                     }
                 }.pickerStyle(SegmentedPickerStyle()).frame(height: 100).padding()
                 Text("\(frequency)")
-                Slider(value: $frequency, in: 0.0...5.0).onChange(of: frequency) { _ in
+                Slider(value: $frequency, in: 0.0...12.0).onChange(of: frequency) { _ in
                     setWave()
                 }
                 
