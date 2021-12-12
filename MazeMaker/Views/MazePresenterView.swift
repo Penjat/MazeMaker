@@ -60,7 +60,7 @@ struct MazePresenterView: View {
         }
        print(value)
         
-        let (red, blue, green, color) = calcRGB(Int(value*1000)+800, total: 1000, wav: displaySettings.colorWav)
+        let (red, blue, green, color) = calcRGB(Int(value*1000)+800, total: 1000, redWav: displaySettings.colorWav)
         return color
 //        return Color.init(red: displaySettings.color1.red*value + displaySettings.color2.red*value2,
 //                          green: displaySettings.color1.green*value + displaySettings.color2.green*value2,
@@ -88,6 +88,22 @@ func calcRGB(_ index: Int, total: Double, wav: (Double)->Double = sin) -> (Doubl
     let red = (wav(theta)+1)/2
     let blue = (wav(theta + offset1)+1)/2
     let green = (wav(theta + offset2)+1)/2
+    let color = Color(red: red, green: green, blue: blue, opacity: 1.0)
+    
+    return (red, blue, green, color)
+}
+
+func calcRGB(_ index: Int,
+              total: Double,
+              redWav: (Double)->Double = {_ in 0},
+              blueWav: (Double)->Double = {_ in 0},
+              greenWav: (Double)->Double = {_ in 0}) -> (Double, Double, Double, Color) {
+    let circ = Double.pi*2
+    
+    let theta = Double(index)/total*circ
+    let red = (redWav(theta)+1)/2
+    let blue = (blueWav(theta)+1)/2
+    let green = (greenWav(theta)+1)/2
     let color = Color(red: red, green: green, blue: blue, opacity: 1.0)
     
     return (red, blue, green, color)

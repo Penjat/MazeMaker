@@ -160,7 +160,7 @@ struct ColorBandView: View  {
         ScrollView(.horizontal) {
             HStack {
                 ForEach(0..<200) { index in
-                    let (red, blue, green, color) = calcRGB(index, total: 200, wav: wav)
+                    let (red, blue, green, color) = calcRGB(index, total: 200, redWav: wav)
                     Rectangle()
                         .fill(color)
                         .frame(width: 20, height: 60)
