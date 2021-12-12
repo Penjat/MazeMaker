@@ -32,36 +32,44 @@ struct WaveController: View {
     @State var waveType = WaveType.SIN
     @State var isOn = true
     var body: some View {
-        VStack {
+        VStack(spacing: 0.0) {
             Toggle(isOn: $isOn) {
                 Text(isOn ? "on" : "off")
             }
+            Picker(selection: $waveType, label: Text("")) {
+                ForEach(WaveType.allCases, id: \.rawValue){ waveType in
+                    Text("\(waveType.rawValue)").tag(waveType)
+                }
+            }.pickerStyle(SegmentedPickerStyle()).frame(height: 100).padding()
             Group {
-                Picker(selection: $waveType, label: Text("")) {
-                    ForEach(WaveType.allCases, id: \.rawValue){ waveType in
-                        Text("\(waveType.rawValue)").tag(waveType)
+                HStack {
+                    Text(String(format: "%.02f", frequency))
+                    Slider(value: $frequency, in: 0.0...12.0).onChange(of: frequency) { _ in
+                        setWave()
                     }
-                }.pickerStyle(SegmentedPickerStyle()).frame(height: 100).padding()
-                Text("\(frequency)")
-                Slider(value: $frequency, in: 0.0...12.0).onChange(of: frequency) { _ in
-                    setWave()
+                }
+                HStack {
+                    Text(String(format: "%.02f", magnitude))
+                    Slider(value: $magnitude, in: 0.0...2.0).onChange(of: magnitude) { _ in
+                        setWave()
+                    }
                 }
                 
-                Text("\(magnitude)")
-                Slider(value: $magnitude, in: 0.0...2.0).onChange(of: magnitude) { _ in
-                    setWave()
+                HStack {
+                    Text(String(format: "%.02f", phase))
+                    Slider(value: $phase, in: (Double.pi*(-2))...Double.pi*(2)).onChange(of: phase) { _ in
+                        setWave()
+                    }
                 }
-                
-                Text("\(phase)")
-                Slider(value: $phase, in: (Double.pi*(-2))...Double.pi*(2)).onChange(of: phase) { _ in
-                    setWave()
-                }
-            }.disabled(!isOn)
-        }.onChange(of: waveType) { _ in
-            setWave()
-        }.onChange(of: isOn) { isOn in
-            setWave()
-        }
+            }.frame(width: 250)
+                .disabled(!isOn)
+        }.padding([.top, .bottom])
+            .border(Color.white, width: 4)
+            .onChange(of: waveType) { _ in
+                setWave()
+            }.onChange(of: isOn) { isOn in
+                setWave()
+            }
     }
     
     func setWave() {
@@ -92,7 +100,7 @@ struct RanbowMakerView: View {
             } label: {
                 Text("set")
             }
-
+            
         }
     }
 }
@@ -134,7 +142,7 @@ struct WaveBowView: View {
                 .frame(width: 600, height: 300)
                 .padding()
             
-//            PolarView(wav: wav)
+            //            PolarView(wav: wav)
         }.border(Color.black, width: 4)
     }
 }
@@ -180,10 +188,10 @@ struct WaveView: View {
                     VStack(spacing: 0.0) {
                         VStack {
                             Spacer()
-                            Rectangle().fill(colorWav(wavOutput)).frame(width: 10, height: height)
+                            Rectangle().fill(colorWav(wavOutput)).frame(width: 10, height: max(0, height))
                         }
                         VStack {
-                            Rectangle().fill(colorWav(wavOutput)).frame(width: 10, height: -height)
+                            Rectangle().fill(colorWav(wavOutput)).frame(width: 10, height: max(0,-height))
                             Spacer()
                         }
                     }
