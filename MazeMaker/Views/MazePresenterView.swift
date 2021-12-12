@@ -60,7 +60,7 @@ struct MazePresenterView: View {
         }
        print(value)
         
-        let (red, blue, green, color) = calcRGB(Int(value*1000)+800, total: 1000, redWav: displaySettings.colorWav)
+        let (red, blue, green, color) = calcRGB(Int(value*100), total: 100, redWav: displaySettings.redWav, blueWav: displaySettings.blueWav, greenWav: displaySettings.greenWav)
         return color
 //        return Color.init(red: displaySettings.color1.red*value + displaySettings.color2.red*value2,
 //                          green: displaySettings.color1.green*value + displaySettings.color2.green*value2,
@@ -79,19 +79,19 @@ struct Tile {
     
 }
 
-func calcRGB(_ index: Int, total: Double, wav: (Double)->Double = sin) -> (Double, Double, Double, Color) {
-    let offset1 = Double.pi*2/3*2
-    let offset2 = Double.pi*2/3
-    let circ = Double.pi*2
-    
-    let theta = Double(index)/total*circ
-    let red = (wav(theta)+1)/2
-    let blue = (wav(theta + offset1)+1)/2
-    let green = (wav(theta + offset2)+1)/2
-    let color = Color(red: red, green: green, blue: blue, opacity: 1.0)
-    
-    return (red, blue, green, color)
-}
+//func calcRGB(_ index: Int, total: Double, wav: (Double)->Double = sin) -> (Double, Double, Double, Color) {
+//    let offset1 = Double.pi*2/3*2
+//    let offset2 = Double.pi*2/3
+//    let circ = Double.pi*2
+//    
+//    let theta = Double(index)/total*circ
+//    let red = (wav(theta)+1)/2
+//    let blue = (wav(theta + offset1)+1)/2
+//    let green = (wav(theta + offset2)+1)/2
+//    let color = Color(red: red, green: green, blue: blue, opacity: 1.0)
+//    
+//    return (red, blue, green, color)
+//}
 
 func calcRGB(_ index: Int,
               total: Double,

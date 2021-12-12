@@ -79,28 +79,20 @@ struct WaveController: View {
 
 struct RanbowMakerView: View {
     @EnvironmentObject var displaySettings: MazeDisplaySettings
-    @State var wav1: (Double) -> Double = sin
-    @State var wav2: (Double) -> Double = sin
-    @State var wav3: (Double) -> Double = sin
+    
     @State var wav4: (Double) -> Double = sin
     var body: some View {
         VStack {
             HStack {
-                WaveController(wav: $wav1)
-                WaveController(wav: $wav2)
+                WaveController(wav: $displaySettings.redWav)
+                WaveController(wav: $displaySettings.blueWav, phase: Double.pi*2/3)
             }
             HStack {
-                WaveController(wav: $wav3)
+                WaveController(wav: $displaySettings.greenWav, phase: Double.pi*4/3)
                 WaveController(wav: $wav4)
             }
             
-            WaveBowView(wav: { wav1($0) + wav2($0) + wav3($0) + wav4($0)})
-            Button {
-                displaySettings.colorWav = { wav1($0) + wav2($0) + wav3($0) + wav4($0)}
-            } label: {
-                Text("set")
-            }
-            
+            WaveBowView(redWav: displaySettings.redWav, blueWav: displaySettings.blueWav, greenWav: displaySettings.greenWav)
         }
     }
 }
@@ -111,36 +103,24 @@ struct RanbowMakerView_Previews: PreviewProvider {
     }
 }
 
-struct PolarView: View {
-    var wav: (Double) -> Double = sin
-    let radius = 120.0
-    let drawPoints = 360.0
-    var body: some View {
-        ZStack {
-            ForEach(0..<Int(drawPoints+1)) { angle in
-                let (_, _, _, color) = calcRGB(angle, total: drawPoints, wav: wav)
-                
-                Path { path in
-                    path.move(to: CGPoint(x: 200, y: 200))
-                    path.addLine(to: CGPoint(x: wav(Double(angle)/drawPoints*Double.pi*2+Double.pi/2)*radius+200, y: wav(Double(angle)/drawPoints*Double.pi*2)*radius+200))
-                }.stroke(color, lineWidth: 2.0)
-            }
-        }.frame(width: 500, height: 500)
-    }
-}
-
 
 struct WaveBowView: View {
-    var wav: (Double) -> Double = sin
+    var redWav: (Double) -> Double = sin
+    var blueWav: (Double) -> Double = sin
+    var greenWav: (Double) -> Double = sin
     var body: some View {
         VStack {
-            ColorBandView(wav: wav)
+            ColorBandView(redWav: redWav, blueWav: blueWav, greenWav: greenWav)
                 .padding()
             
-            
-            WaveView(frequency: 1.0, wav: wav)
-                .frame(width: 600, height: 300)
+            ZStack {
+                WaveView(frequency: 1.0, wav: redWav, color: .red)
+                WaveView(frequency: 1.0, wav: blueWav, color: .blue)
+                WaveView(frequency: 1.0, wav: greenWav, color: .green)
+            }.frame(width: 600, height: 300)
                 .padding()
+            
+                
             
             //            PolarView(wav: wav)
         }.border(Color.black, width: 4)
@@ -155,12 +135,14 @@ var rainbowColor: (Double) -> Color {
 }
 
 struct ColorBandView: View  {
-    var wav: (Double) -> Double = sin
+    var redWav: (Double) -> Double = sin
+    var blueWav: (Double) -> Double = sin
+    var greenWav: (Double) -> Double = sin
     var body: some View {
         ScrollView(.horizontal) {
             HStack {
-                ForEach(0..<200) { index in
-                    let (red, blue, green, color) = calcRGB(index, total: 200, redWav: wav)
+                ForEach(0..<100) { index in
+                    let (red, blue, green, color) = calcRGB(index, total: 100, redWav: redWav, blueWav: blueWav, greenWav: greenWav)
                     Rectangle()
                         .fill(color)
                         .frame(width: 20, height: 60)
@@ -174,9 +156,7 @@ struct WaveView: View {
     var title: String = ""
     let frequency: Double
     var wav: (Double) -> Double = sin
-    var colorWav: (Double) -> Color = {(input: Double) -> Color in
-        return input >= 0 ? Color.blue : Color.green
-    }
+    var color: Color
     var body: some View {
         VStack {
             Text(title)
@@ -188,10 +168,10 @@ struct WaveView: View {
                     VStack(spacing: 0.0) {
                         VStack {
                             Spacer()
-                            Rectangle().fill(colorWav(wavOutput)).frame(width: 10, height: max(0, height))
+                            Rectangle().fill(color).frame(width: 10, height: max(0, height))
                         }
                         VStack {
-                            Rectangle().fill(colorWav(wavOutput)).frame(width: 10, height: max(0,-height))
+                            Rectangle().fill(color).frame(width: 10, height: max(0,-height))
                             Spacer()
                         }
                     }
