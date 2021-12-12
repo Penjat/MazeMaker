@@ -34,9 +34,3 @@ struct ColorPicker: View {
         outputColor = ColorOutput(color: color, red: red, green: green, blue: blue)
     }
 }
-
-//struct ColorPicker_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ColorPicker()
-//    }
-//}

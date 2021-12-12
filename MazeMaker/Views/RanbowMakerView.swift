@@ -27,7 +27,7 @@ enum WaveType: String, CaseIterable {
 struct WaveController: View {
     @Binding var wav: (Double) -> Double
     @State var frequency = 1.0
-    @State var magnitude = 0.25
+    @State var magnitude = 1.0
     @State var phase = 0.0
     @State var waveType = WaveType.SIN
     @State var isOn = true
@@ -73,7 +73,7 @@ struct WaveController: View {
     }
     
     func setWave() {
-        wav = isOn ? { waveType.waveForm($0*frequency + phase)*magnitude} : { (_:Double) in 0}
+        wav = isOn ? { waveType.waveForm($0*frequency + phase)*magnitude} : { (_:Double) in -1}
     }
 }
 
@@ -127,13 +127,6 @@ struct WaveBowView: View {
     }
 }
 
-var rainbowColor: (Double) -> Color {
-    return {(input: Double) -> Color in
-        let (_, _, _, color) = calcRGB(Int((input+1)*40), total: 20)
-        return color
-    }
-}
-
 struct ColorBandView: View  {
     var redWav: (Double) -> Double = sin
     var blueWav: (Double) -> Double = sin
@@ -161,17 +154,17 @@ struct WaveView: View {
         VStack {
             Text(title)
             HStack(spacing: 4) {
-                ForEach(0..<40){ index in
-                    let wavOutput = wav(Double(index)/40.0*Double.pi*2*frequency)
+                ForEach(0..<100){ index in
+                    let wavOutput = (wav(Double(index)/100.0*Double.pi*2*frequency)+1)/2
                     let height = wavOutput*80
                     
                     VStack(spacing: 0.0) {
-                        VStack {
+                        VStack(spacing: 1.0) {
                             Spacer()
-                            Rectangle().fill(color).frame(width: 10, height: max(0, height))
+                            Rectangle().fill(color).frame(width: 4, height: max(0, height))
                         }
                         VStack {
-                            Rectangle().fill(color).frame(width: 10, height: max(0,-height))
+                            Rectangle().fill(color).frame(width: 4, height: max(0,-height))
                             Spacer()
                         }
                     }
