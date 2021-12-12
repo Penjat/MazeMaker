@@ -95,10 +95,7 @@ struct SideBar: View {
                         displaySettings.mazeProvider.generateMazeData()
                     }
                     
-                    HStack {
-                        ColorPicker(outputColor: $displaySettings.color1)
-                        ColorPicker(outputColor: $displaySettings.color2)
-                    }
+                    RanbowMakerView()
                     
                     HStack {
                         ColorPicker(outputColor: $displaySettings.wallColor)
@@ -110,7 +107,7 @@ struct SideBar: View {
                 }
                 
             }
-        }.frame(width:200).padding()
+        }.frame(width:600).padding()
     }
     
     var stats: some View {
