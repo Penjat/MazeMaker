@@ -62,6 +62,7 @@ struct WaveController: View {
 }
 
 struct RanbowMakerView: View {
+    @EnvironmentObject var displaySettings: MazeDisplaySettings
     @State var wav1: (Double) -> Double = sin
     @State var wav2: (Double) -> Double = sin
     @State var wav3: (Double) -> Double = sin
@@ -78,6 +79,12 @@ struct RanbowMakerView: View {
             }
             
             WaveBowView(wav: { wav1($0) + wav2($0) + wav3($0) + wav4($0)})
+            Button {
+                displaySettings.colorWav = { wav1($0) + wav2($0) + wav3($0) + wav4($0)}
+            } label: {
+                Text("set")
+            }
+
         }
     }
 }

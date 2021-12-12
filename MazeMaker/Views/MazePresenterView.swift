@@ -18,7 +18,7 @@ var distortion = { (point: CGPoint) -> CGPoint in
 struct MazePresenterView: View {
     @EnvironmentObject var displaySettings: MazeDisplaySettings
     @State private var percentage: CGFloat = .zero
-    let wav: (Double) -> Double = {sin($0*3)}
+    
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
             GeometryReader { geometry in
@@ -60,7 +60,7 @@ struct MazePresenterView: View {
         }
        print(value)
         
-        let (red, blue, green, color) = calcRGB(Int(value*1000)+800, total: 1000, wav: wav)
+        let (red, blue, green, color) = calcRGB(Int(value*1000)+800, total: 1000, wav: displaySettings.colorWav)
         return color
 //        return Color.init(red: displaySettings.color1.red*value + displaySettings.color2.red*value2,
 //                          green: displaySettings.color1.green*value + displaySettings.color2.green*value2,
