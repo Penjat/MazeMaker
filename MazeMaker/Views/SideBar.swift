@@ -1,13 +1,25 @@
 import SwiftUI
 
+enum SideBarTab: String, CaseIterable {
+    case generate
+    case distort
+}
+
 struct SideBar: View {
     @EnvironmentObject var displaySettings: MazeDisplaySettings
     @State var color1: Color = .blue
     @State var showSetSize = true
+    @State var tab: SideBarTab = .generate
     var body: some View {
         ScrollView {
             VStack(alignment: .center, spacing: 20){
-                MazeSizeView()
+                Picker(selection: $tab, label: Text(tab.rawValue)) {
+                    ForEach(SideBarTab.allCases, id: \.rawValue) { tabType in
+                        Text("\(tabType.rawValue)").tag(tabType)
+                    }
+                }
+                tabView
+                
                 stats
                 
                 Button("Binary Tree") {
@@ -109,6 +121,15 @@ struct SideBar: View {
                 
             }
         }.frame(width:600).padding()
+    }
+    
+    var tabView: some View {
+        switch tab {
+        case .generate:
+            return AnyView(MazeSizeView())
+        case .distort:
+            return AnyView(Text("Distort"))
+        }
     }
     
     var stats: some View {

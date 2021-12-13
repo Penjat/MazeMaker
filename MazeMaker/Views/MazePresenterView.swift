@@ -7,14 +7,6 @@ import UIKit
 
 import Cocoa
 
-var distortion = { (point: CGPoint) -> CGPoint in
-    let xDistortion =  sin(point.y/1700*Double.pi*2)*((point.x-point.y)/7)
-    let yDistortion = sin(point.x/900*Double.pi*2 + Double.pi/2)*((point.x-point.y)/5)
-//    return CGPoint(x: xDistortion, y: yDistortion)
-    
-    return CGPoint.zero
-}
-
 struct MazePresenterView: View {
     @EnvironmentObject var displaySettings: MazeDisplaySettings
     @State private var percentage: CGFloat = .zero
@@ -65,7 +57,13 @@ struct MazePresenterView: View {
 //                          opacity: 1)
     }
     
-    
+    var distortion = { (point: CGPoint) -> CGPoint in
+        let xDistortion =  sin(point.y/1700*Double.pi*2)*((point.x-point.y)/7)
+        let yDistortion = sin(point.x/900*Double.pi*2 + Double.pi/2)*((point.x-point.y)/5)
+    //    return CGPoint(x: xDistortion, y: yDistortion)
+        
+        return CGPoint.zero
+    }
     
 }
 
@@ -87,7 +85,6 @@ func calcRGB(_ index: Int,
     let red = (redWav(theta))
     let blue = (blueWav(theta))
     let green = (greenWav(theta))
-    print("red is \(red) \(blue) \(green) for \(index)")
     let color = Color(red: red, green: green, blue: blue, opacity: 1.0)
     
     return (red, blue, green, color)

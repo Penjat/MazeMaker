@@ -11,15 +11,13 @@ struct RBGControllerView: View {
     @EnvironmentObject var displaySettings: MazeDisplaySettings
     @State var selectedColor = RBGValue.RED
     var body: some View {
-        Picker(selection: $selectedColor, label: Text(selectedColor.rawValue)) {
-            ForEach(RBGValue.allCases, id: \.self.rawValue) { rbgValue in
-                Text(rbgValue.rawValue).tag(rbgValue)
+        VStack {
+            Text(selectedColor.rawValue)
+            TabView {
+                WaveMakerView(wav: $displaySettings.redWav).id(RBGValue.RED)
+                WaveMakerView(wav: $displaySettings.blueWav).id(RBGValue.BLUE)
+                WaveMakerView(wav: $displaySettings.greenWav).id(RBGValue.GREEN)
             }
-        }.pickerStyle(SegmentedPickerStyle())
-        TabView {
-            WaveMakerView(wav: $displaySettings.redWav).id(RBGValue.RED)
-            WaveMakerView(wav: $displaySettings.blueWav).id(RBGValue.BLUE)
-            WaveMakerView(wav: $displaySettings.greenWav).id(RBGValue.GREEN)
         }
     }
 }
