@@ -10,9 +10,9 @@ import Cocoa
 var distortion = { (point: CGPoint) -> CGPoint in
     let xDistortion =  sin(point.y/1700*Double.pi*2)*((point.x-point.y)/7)
     let yDistortion = sin(point.x/900*Double.pi*2 + Double.pi/2)*((point.x-point.y)/5)
-    return CGPoint(x: xDistortion, y: yDistortion)
+//    return CGPoint(x: xDistortion, y: yDistortion)
     
-//    CGPoint.zero
+    return CGPoint.zero
 }
 
 struct MazePresenterView: View {
@@ -51,16 +51,13 @@ struct MazePresenterView: View {
         (displaySettings.mazeType == .square ? CGPoint.zero : centerScreen)
     }
     
-    
-    
     func blendColorForValue(value: Double) -> Color {
         
         guard value != .infinity else {
             return .white
         }
-       print(value)
-        
-        let (red, blue, green, color) = calcRGB(Int(value*1000)+800, total: 1000, wav: displaySettings.colorWav)
+//       print(value)
+        let (red, blue, green, color) = calcRGB(Int(value*10000), total: 10000, redWav: displaySettings.redWav, blueWav: displaySettings.blueWav, greenWav: displaySettings.greenWav)
         return color
 //        return Color.init(red: displaySettings.color1.red*value + displaySettings.color2.red*value2,
 //                          green: displaySettings.color1.green*value + displaySettings.color2.green*value2,
@@ -79,15 +76,18 @@ struct Tile {
     
 }
 
-func calcRGB(_ index: Int, total: Double, wav: (Double)->Double = sin) -> (Double, Double, Double, Color) {
-    let offset1 = Double.pi*2/3*2
-    let offset2 = Double.pi*2/3
+func calcRGB(_ index: Int,
+              total: Double,
+              redWav: (Double)->Double = {_ in 0},
+              blueWav: (Double)->Double = {_ in 0},
+              greenWav: (Double)->Double = {_ in 0}) -> (Double, Double, Double, Color) {
     let circ = Double.pi*2
     
     let theta = Double(index)/total*circ
-    let red = (wav(theta)+1)/2
-    let blue = (wav(theta + offset1)+1)/2
-    let green = (wav(theta + offset2)+1)/2
+    let red = (redWav(theta))
+    let blue = (blueWav(theta))
+    let green = (greenWav(theta))
+    print("red is \(red) \(blue) \(green) for \(index)")
     let color = Color(red: red, green: green, blue: blue, opacity: 1.0)
     
     return (red, blue, green, color)
