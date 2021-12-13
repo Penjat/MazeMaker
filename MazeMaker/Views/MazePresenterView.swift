@@ -51,11 +51,6 @@ struct MazePresenterView: View {
         (displaySettings.mazeType == .square ? CGPoint.zero : centerScreen)
     }
     
-    
-    
-    /// <#Description#>
-    /// - Parameter value: <#value description#>
-    /// - Returns: <#description#>
     func blendColorForValue(value: Double) -> Color {
         
         guard value != .infinity else {
@@ -89,9 +84,9 @@ func calcRGB(_ index: Int,
     let circ = Double.pi*2
     
     let theta = Double(index)/total*circ
-    let red = (redWav(theta)+1)/2
-    let blue = (blueWav(theta)+1)/2
-    let green = (greenWav(theta)+1)/2
+    let red = (redWav(theta))
+    let blue = (blueWav(theta))
+    let green = (greenWav(theta))
     print("red is \(red) \(blue) \(green) for \(index)")
     let color = Color(red: red, green: green, blue: blue, opacity: 1.0)
     

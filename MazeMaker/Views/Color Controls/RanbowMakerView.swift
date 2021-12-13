@@ -27,11 +27,11 @@ enum WaveType: String, CaseIterable {
 struct WaveController: View {
     @Binding var wav: (Double) -> Double
     @State var frequency = 1.0
-    @State var magnitude = 1.0
+    @State var magnitude = 0.5
     @State var phase = 0.0
     @State var waveType = WaveType.SIN
     @State var isOn = true
-    @State var lift = 0.0
+    @State var lift = 1.0
     var body: some View {
         VStack(spacing: 0.0) {
             Toggle(isOn: $isOn) {
@@ -81,36 +81,9 @@ struct WaveController: View {
     }
     
     func setWave() {
-        wav = isOn ? { waveType.waveForm($0*frequency + phase)*magnitude + lift}: { (_:Double) in -1}
+        wav = isOn ? { waveType.waveForm($0*frequency + phase)*magnitude + lift}: { (_:Double) in 0}
     }
 }
-
-struct RanbowMakerView: View {
-    @EnvironmentObject var displaySettings: MazeDisplaySettings
-    
-    @State var wav4: (Double) -> Double = sin
-    var body: some View {
-        VStack {
-            HStack {
-                WaveController(wav: $displaySettings.redWav)
-                WaveController(wav: $displaySettings.blueWav, phase: Double.pi*2/3)
-            }
-            HStack {
-                WaveController(wav: $displaySettings.greenWav, phase: Double.pi*4/3)
-                WaveController(wav: $wav4)
-            }
-            
-            WaveBowView(redWav: displaySettings.redWav, blueWav: displaySettings.blueWav, greenWav: displaySettings.greenWav)
-        }
-    }
-}
-
-struct RanbowMakerView_Previews: PreviewProvider {
-    static var previews: some View {
-        RanbowMakerView()
-    }
-}
-
 
 struct WaveBowView: View {
     var redWav: (Double) -> Double = sin
@@ -141,16 +114,16 @@ struct ColorBandView: View  {
     var blueWav: (Double) -> Double = sin
     var greenWav: (Double) -> Double = sin
     var body: some View {
-        ScrollView(.horizontal) {
-            HStack {
+        
+        HStack(spacing: 2.0) {
                 ForEach(0..<100) { index in
                     let (red, blue, green, color) = calcRGB(index, total: 100, redWav: redWav, blueWav: blueWav, greenWav: greenWav)
                     Rectangle()
                         .fill(color)
-                        .frame(width: 20, height: 60)
+                        .frame(width: 4, height: 60)
                 }
             }
-        }.frame(width: 600, height: 100)
+        
     }
 }
 
