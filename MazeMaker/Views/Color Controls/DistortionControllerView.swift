@@ -5,7 +5,7 @@ struct DistortionControllerView: View {
     
     var body: some View {
         VStack {
-            WaveController(wav: $displaySettings.distortionWav)
+            WaveMakerView(wav: $displaySettings.distortionWav)
             
         }
     }
