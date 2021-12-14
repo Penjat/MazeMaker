@@ -128,7 +128,7 @@ struct SideBar: View {
         case .generate:
             return AnyView(MazeSizeView())
         case .distort:
-            return AnyView(Text("Distort"))
+            return AnyView(DistortionControllerView())
         }
     }
     
