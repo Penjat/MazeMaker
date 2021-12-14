@@ -45,13 +45,13 @@ struct WaveController: View {
             Group {
                 HStack {
                     Text(String(format: "%.02f", frequency))
-                    Slider(value: $frequency, in: 0.0...12.0).onChange(of: frequency) { _ in
+                    Slider(value: $frequency, in: 0.0...20.0).onChange(of: frequency) { _ in
                         setWave()
                     }
                 }
                 HStack {
                     Text(String(format: "%.02f", magnitude))
-                    Slider(value: $magnitude, in: 0.0...2.0).onChange(of: magnitude) { _ in
+                    Slider(value: $magnitude, in: -20.0...20.0).onChange(of: magnitude) { _ in
                         setWave()
                     }
                 }

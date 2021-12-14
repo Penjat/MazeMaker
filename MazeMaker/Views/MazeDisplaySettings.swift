@@ -20,8 +20,8 @@ class MazeDisplaySettings: ObservableObject {
     
     lazy var distortion = { (point: CGPoint) -> CGPoint in
         let amt = 5.0
-        let xDistortion = self.distortionXX(point.x)*amt
-        let yDistortion = self.distortionYY(point.y)*amt
+        let xDistortion = self.distortionXX(point.x/1000*Double.pi*2) + self.distortionXY(point.y/1000*Double.pi*2)
+        let yDistortion = self.distortionYY(point.y/1000*Double.pi*2) + self.distortionYX(point.x/1000*Double.pi*2)
         return CGPoint(x: xDistortion, y: yDistortion)
         
 //        return CGPoint.zero

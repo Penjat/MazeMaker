@@ -4,13 +4,12 @@ struct DistortionControllerView: View {
     @EnvironmentObject var displaySettings: MazeDisplaySettings
     
     var body: some View {
-//        TabView {
-//            <#code#>
-//        }
-        VStack {
-            WaveMakerView(wav: $displaySettings.distortionXX)
-            WaveMakerView(wav: $displaySettings.distortionYY)
-            
+//
+        TabView {
+            WaveMakerView(wav: $displaySettings.distortionXX).tag(1)
+            WaveMakerView(wav: $displaySettings.distortionYY).tag(2)
+            WaveMakerView(wav: $displaySettings.distortionXY).tag(3)
+            WaveMakerView(wav: $displaySettings.distortionYX).tag(4)
         }
     }
 }
