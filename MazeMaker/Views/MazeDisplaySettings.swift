@@ -13,11 +13,15 @@ class MazeDisplaySettings: ObservableObject {
     @Published var blueWav: (Double) -> Double = {sin($0)}
     @Published var greenWav: (Double) -> Double = {sin($0)}
     
-    @Published var distortionWav: (Double) -> Double = {_ in 0}
+    @Published var distortionXX: (Double) -> Double = {_ in 0}
+    @Published var distortionYY: (Double) -> Double = {_ in 0}
+    @Published var distortionXY: (Double) -> Double = {_ in 0}
+    @Published var distortionYX: (Double) -> Double = {_ in 0}
     
     lazy var distortion = { (point: CGPoint) -> CGPoint in
-        let xDistortion = self.distortionWav(point.x)*5
-        let yDistortion = 0.0
+        let amt = 5.0
+        let xDistortion = self.distortionXX(point.x)*amt
+        let yDistortion = self.distortionYY(point.y)*amt
         return CGPoint(x: xDistortion, y: yDistortion)
         
 //        return CGPoint.zero
