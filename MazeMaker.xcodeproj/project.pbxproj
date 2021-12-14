@@ -12,6 +12,7 @@
 		0B81921B2766BBD600E09F8D /* RBGControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B81921A2766BBD600E09F8D /* RBGControllerView.swift */; };
 		0B81921D2766C02E00E09F8D /* WaveMakerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B81921C2766C02E00E09F8D /* WaveMakerView.swift */; };
 		0B81921F2766FF1E00E09F8D /* DistortionControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B81921E2766FF1E00E09F8D /* DistortionControllerView.swift */; };
+		0B9248AD2768658B00D6DBD9 /* DistortionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9248AC2768658B00D6DBD9 /* DistortionPage.swift */; };
 		0B9AF6D7268ADBFE0044DC40 /* MazeMakerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6D6268ADBFE0044DC40 /* MazeMakerApp.swift */; };
 		0B9AF6D9268ADBFE0044DC40 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AF6D8268ADBFE0044DC40 /* ContentView.swift */; };
 		0B9AF6DB268ADC000044DC40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B9AF6DA268ADC000044DC40 /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 		0B81921A2766BBD600E09F8D /* RBGControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBGControllerView.swift; sourceTree = "<group>"; };
 		0B81921C2766C02E00E09F8D /* WaveMakerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveMakerView.swift; sourceTree = "<group>"; };
 		0B81921E2766FF1E00E09F8D /* DistortionControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistortionControllerView.swift; sourceTree = "<group>"; };
+		0B9248AC2768658B00D6DBD9 /* DistortionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistortionPage.swift; sourceTree = "<group>"; };
 		0B9AF6D3268ADBFE0044DC40 /* MazeMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MazeMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B9AF6D6268ADBFE0044DC40 /* MazeMakerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeMakerApp.swift; sourceTree = "<group>"; };
 		0B9AF6D8268ADBFE0044DC40 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				0B81921A2766BBD600E09F8D /* RBGControllerView.swift */,
 				0B81921C2766C02E00E09F8D /* WaveMakerView.swift */,
 				0B81921E2766FF1E00E09F8D /* DistortionControllerView.swift */,
+				0B9248AC2768658B00D6DBD9 /* DistortionPage.swift */,
 			);
 			path = "Color Controls";
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				0BD3B595268EC1730024EBDC /* DijkstraService.swift in Sources */,
 				0BCA34F127657268001C9E31 /* RanbowMakerView.swift in Sources */,
 				0BFF221226A4C520008495C9 /* CGPoint+math.swift in Sources */,
+				0B9248AD2768658B00D6DBD9 /* DistortionPage.swift in Sources */,
 				0B9AF6F1268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift in Sources */,
 				0B9AF6E7268AE0F40044DC40 /* MazePresenterView.swift in Sources */,
 			);

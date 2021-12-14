@@ -120,7 +120,7 @@ struct SideBar: View {
                 }
                 
             }
-        }.frame(width:600).padding()
+        }.frame(width:800).padding()
     }
     
     var tabView: some View {
