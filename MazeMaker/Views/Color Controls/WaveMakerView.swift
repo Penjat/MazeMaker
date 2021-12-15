@@ -12,15 +12,16 @@ struct WaveMakerView: View {
     @Binding var wav: (Double) -> Double
     @StateObject var viewModel = WaveMakerViewModel()
     @State var bag = Set<AnyCancellable>()
+    var maxMagnitude: Double = 2.0
     var body: some View {
         VStack {
             HStack {
-                WaveController(wav: $viewModel.wav1)
-                WaveController(wav: $viewModel.wav2, isOn: false)
+                WaveController(wav: $viewModel.wav1, maxMagnitude: maxMagnitude)
+                WaveController(wav: $viewModel.wav2, isOn: false, maxMagnitude: maxMagnitude)
             }
             HStack {
-                WaveController(wav: $viewModel.wav3, isOn: false)
-                WaveController(wav: $viewModel.wav4, isOn: false)
+                WaveController(wav: $viewModel.wav3, isOn: false, maxMagnitude: maxMagnitude)
+                WaveController(wav: $viewModel.wav4, isOn: false, maxMagnitude: maxMagnitude)
             }
         }.onAppear {
             viewModel.$wav1.eraseToAnyPublisher().merge(with: viewModel.$wav2, viewModel.$wav3, viewModel.$wav4).sink { _ in

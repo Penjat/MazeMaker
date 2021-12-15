@@ -32,6 +32,7 @@ struct WaveController: View {
     @State var waveType = WaveType.SIN
     @State var isOn = true
     @State var lift = 1.0
+    var maxMagnitude: Double = 2.0
     var body: some View {
         VStack(spacing: 0.0) {
             Toggle(isOn: $isOn) {
@@ -51,7 +52,7 @@ struct WaveController: View {
                 }
                 HStack {
                     Text(String(format: "%.02f", magnitude))
-                    Slider(value: $magnitude, in: -20.0...20.0).onChange(of: magnitude) { _ in
+                    Slider(value: $magnitude, in: -maxMagnitude...maxMagnitude).onChange(of: magnitude) { _ in
                         setWave()
                     }
                 }
@@ -132,12 +133,13 @@ struct WaveView: View {
     let frequency: Double
     var wav: (Double) -> Double = sin
     var color: Color
+    var magnitude = 1.0
     var body: some View {
         VStack {
             Text(title)
             HStack(spacing: 4) {
                 ForEach(0..<100){ index in
-                    let wavOutput = (wav(Double(index)/100.0*Double.pi*2*frequency)+1)/2
+                    let wavOutput = (wav(Double(index)/100.0*Double.pi*2*frequency)/magnitude+1)/2
                     let height = wavOutput*30
                     
                     VStack(spacing: 0.0) {
