@@ -107,20 +107,18 @@ struct SideBar: View {
                         displaySettings.mazeProvider.generateMazeData()
                     }
                     
-//                    RanbowMakerView()
                     RBGControllerView()
                     WaveBowView(redWav: displaySettings.redWav, blueWav: displaySettings.blueWav, greenWav: displaySettings.greenWav)
                     HStack {
-                        ColorPicker(outputColor: $displaySettings.wallColor)
+                        ColorPicker("wall", selection: $displaySettings.wallColor)
                         Slider(value: $displaySettings.wallWidth, in: 0.0...14.0) {
                             
                         }
                     }
                     Spacer()
                 }
-                
             }
-        }.frame(width:600).padding()
+        }.frame(width:800).padding()
     }
     
     var tabView: some View {
@@ -148,28 +146,6 @@ struct SideBar: View {
         bitmapRep.canBeCompressed(using: .jpeg)
         nsView.cacheDisplay(in: nsView.bounds, to: bitmapRep)
         
-        //        bitmapRep.bitmapData
-        let data = bitmapRep.bitmapData//image.representation(using: .jpeg, properties: [:])
-        //                try data?.write(to: "myMaze.jpg")
+        let data = bitmapRep.bitmapData
     }
 }
-
-//extension View {
-//    func snapshot() -> NSImage {
-//        let controller = NSHostingController(rootView: self)
-//        let view = controller.view
-//
-//        let targetSize = controller.view.intrinsicContentSize
-//        view.bounds = CGRect(origin: .zero, size: targetSize)
-//        
-//
-//    }
-//}
-
-//struct SideBar_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SideBar()
-//    }
-//}
-
-
