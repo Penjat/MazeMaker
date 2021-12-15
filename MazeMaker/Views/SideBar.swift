@@ -107,18 +107,16 @@ struct SideBar: View {
                         displaySettings.mazeProvider.generateMazeData()
                     }
                     
-//                    RanbowMakerView()
                     RBGControllerView()
                     WaveBowView(redWav: displaySettings.redWav, blueWav: displaySettings.blueWav, greenWav: displaySettings.greenWav)
                     HStack {
-                        ColorPicker(outputColor: $displaySettings.wallColor)
+                        ColorPicker("wall", selection: $displaySettings.wallColor)
                         Slider(value: $displaySettings.wallWidth, in: 0.0...14.0) {
                             
                         }
                     }
                     Spacer()
                 }
-                
             }
         }.frame(width:800).padding()
     }

@@ -32,12 +32,10 @@ struct MazePresenterView: View {
                             to: wall.end + offset(centerScreen) + displaySettings.distortion(wall.end)
                         )
                     }
-                }.stroke(displaySettings.wallColor.color, lineWidth: displaySettings.wallWidth)
+                }.stroke(displaySettings.wallColor, lineWidth: displaySettings.wallWidth)
             }.padding()
         }
     }
-    
-    
     
     func offset(_ centerScreen: CGPoint) -> CGPoint {
         (displaySettings.mazeType == .square ? CGPoint.zero : centerScreen)
