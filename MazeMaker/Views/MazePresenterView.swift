@@ -43,11 +43,11 @@ struct MazePresenterView: View {
     
     func blendColorForValue(value: Double) -> Color {
         
-        guard value != .infinity else {
+        guard value != .infinity, value != Double.nan else {
             return .white
         }
 //       print(value)
-        let (red, blue, green, color) = calcRGB(Int(value*10000), total: 10000, redWav: displaySettings.redWav, blueWav: displaySettings.blueWav, greenWav: displaySettings.greenWav)
+        let (red, blue, green, color) = calcRGB(Int(value*10000.0), total: 10000, redWav: displaySettings.redWav, blueWav: displaySettings.blueWav, greenWav: displaySettings.greenWav)
         return color
 //        return Color.init(red: displaySettings.color1.red*value + displaySettings.color2.red*value2,
 //                          green: displaySettings.color1.green*value + displaySettings.color2.green*value2,
