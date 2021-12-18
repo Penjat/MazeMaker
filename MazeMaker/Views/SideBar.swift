@@ -53,7 +53,8 @@ struct SideBar: View {
                         displaySettings.mazeProvider.clearAll()
                         let prims = PrimsMazeGenerator()
                         prims.activeCells.append(displaySettings.mazeProvider.randomCell()!)
-                        prims.simplifiedFindPaths(mazeProvider: displaySettings.mazeProvider)
+//                        prims.simplifiedFindPaths(mazeProvider: displaySettings.mazeProvider)
+                        prims.findPathsCycling(mazeProvider: displaySettings.mazeProvider)
                         displaySettings.mazeProvider.clearData()
                         
                         let ds = DijkstraService()
