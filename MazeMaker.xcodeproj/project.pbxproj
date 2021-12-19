@@ -13,6 +13,7 @@
 		0B6F8B14276E11F900076AA8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B6F8B13276E11F900076AA8 /* Preview Assets.xcassets */; };
 		0B6F8B1A276E138F00076AA8 /* MazeWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F8B19276E138F00076AA8 /* MazeWall.swift */; };
 		0B6F8B1C276E188F00076AA8 /* MazeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F8B1B276E188F00076AA8 /* MazeCell.swift */; };
+		0B6F8B1E276F855C00076AA8 /* PrimsConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F8B1D276F855C00076AA8 /* PrimsConfigView.swift */; };
 		0B801D892692C43500129463 /* PolarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B801D882692C43500129463 /* PolarCell.swift */; };
 		0B81921B2766BBD600E09F8D /* RBGControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B81921A2766BBD600E09F8D /* RBGControllerView.swift */; };
 		0B81921D2766C02E00E09F8D /* WaveMakerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B81921C2766C02E00E09F8D /* WaveMakerView.swift */; };
@@ -64,6 +65,7 @@
 		0B6F8B15276E11F900076AA8 /* PolyMazeMaker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PolyMazeMaker.entitlements; sourceTree = "<group>"; };
 		0B6F8B19276E138F00076AA8 /* MazeWall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeWall.swift; sourceTree = "<group>"; };
 		0B6F8B1B276E188F00076AA8 /* MazeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeCell.swift; sourceTree = "<group>"; };
+		0B6F8B1D276F855C00076AA8 /* PrimsConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimsConfigView.swift; sourceTree = "<group>"; };
 		0B801D882692C43500129463 /* PolarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolarCell.swift; sourceTree = "<group>"; };
 		0B81921A2766BBD600E09F8D /* RBGControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBGControllerView.swift; sourceTree = "<group>"; };
 		0B81921C2766C02E00E09F8D /* WaveMakerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveMakerView.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				0B8192192766BB4500E09F8D /* Color Controls */,
 				0B9AF6E6268AE0F40044DC40 /* MazePresenterView.swift */,
 				0BD3B5B52690250C0024EBDC /* SideBar.swift */,
+				0B6F8B1D276F855C00076AA8 /* PrimsConfigView.swift */,
 				0BFF221326A4DA53008495C9 /* BacktraceControlView.swift */,
 				0BD3B5BE269209510024EBDC /* MazeDisplaySettings.swift */,
 				0BD3B5C22692702A0024EBDC /* MazeSizeView.swift */,
@@ -457,6 +460,7 @@
 				0BD3B595268EC1730024EBDC /* DijkstraService.swift in Sources */,
 				0BCA34F127657268001C9E31 /* RanbowMakerView.swift in Sources */,
 				0BFF221226A4C520008495C9 /* CGPoint+math.swift in Sources */,
+				0B6F8B1E276F855C00076AA8 /* PrimsConfigView.swift in Sources */,
 				0B9248AD2768658B00D6DBD9 /* DistortionPage.swift in Sources */,
 				0B9AF6F1268E4CE70044DC40 /* BinaryTreeMazeGenerator.swift in Sources */,
 				0B9AF6E7268AE0F40044DC40 /* MazePresenterView.swift in Sources */,

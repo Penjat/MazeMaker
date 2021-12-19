@@ -7,7 +7,11 @@ class PrimsMazeGenerator: ObservableObject {
     var activeCells = [Cell]()
     let variation: Double = 0.6
     var cellCount = 0
-    var tunnelLength = 20//Int.random(in: 1...150)
+    var tunnelLength: Int = 20//Int.random(in: 1...150)
+    
+    init(tunnelLength: Int = -1) {
+        self.tunnelLength = tunnelLength
+    }
     
     func findPathsCycling(mazeProvider: MazeProvider) {
         guard let cell = activeCells.last else {
@@ -70,7 +74,7 @@ class PrimsMazeGenerator: ObservableObject {
         guard !activeCells.isEmpty else {
             return
         }
-        let randomIndex = 5//Int.random(in: 0..<activeCells.count)
+        let randomIndex = Int.random(in: 0..<activeCells.count)
         let cell = activeCells[randomIndex]
         let neighbors = mazeProvider.neighborsFor(cell.location).filter{ $0.data as? String ?? "" != VISITED}
         
