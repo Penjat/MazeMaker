@@ -70,7 +70,7 @@ class PrimsMazeGenerator: ObservableObject {
         guard !activeCells.isEmpty else {
             return
         }
-        let randomIndex = 5//Int.random(in: 0..<activeCells.count)
+        let randomIndex = Int.random(in: 0..<activeCells.count)
         let cell = activeCells[randomIndex]
         let neighbors = mazeProvider.neighborsFor(cell.location).filter{ $0.data as? String ?? "" != VISITED}
         
